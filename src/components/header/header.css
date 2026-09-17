@@ -1,0 +1,255 @@
+.header-demo {
+  --header-canvas: #08090a;
+  --header-muted: #a4a4a4;
+  --header-border: rgb(255 255 255 / 10%);
+  min-height: 100%;
+  color: #fff;
+  background: var(--header-canvas);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.header-bar {
+  box-shadow: inset 0 -1px var(--header-border);
+}
+
+.header-nav {
+  --dropdown-top: 65px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  height: 74px;
+  margin-inline: auto;
+  padding: 20px clamp(24px, 8.888889vw, 128px);
+}
+
+.header-brand { width: 166px; }
+.header-logo {
+  display: flex;
+  align-items: center;
+  width: 31.167px;
+  height: 34px;
+  border-radius: 4px;
+}
+.header-logo img { display: block; width: 31.167px; height: 31.167px; }
+.header-links, .header-auth { display: flex; align-items: center; }
+.header-auth { justify-self: end; gap: 10px; }
+
+.nav-link {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--header-muted);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 140ms ease, background-color 140ms ease;
+}
+
+.products-trigger { width: 92px; }
+.nav-link--resources { width: 102px; }
+.nav-link--customer { width: 97px; }
+.nav-link--pricing { width: 78px; }
+.login-button { width: 73px; }
+.signup-button { width: 83px; background: #fff; color: #000; font-weight: 500; }
+.products-trigger[aria-expanded='true'] { background: #282828; color: #fff; }
+.nav-link:hover { color: #fff; background: #202020; }
+.products-trigger[aria-expanded='true']:hover { background: #282828; }
+.resources-trigger[aria-expanded='true'],
+.resources-trigger[aria-expanded='true']:hover { background: #282828; color: #fff; }
+.signup-button:hover { background: #e8e8e8; color: #000; }
+
+.header-demo :is(a, button):focus-visible {
+  outline: 2px solid #d4d4d4;
+  outline-offset: 3px;
+}
+
+.shared-menu-anchor {
+  /* Both Figma panels share this anchor. Its left edge never follows the trigger. */
+  position: absolute;
+  z-index: 10;
+  top: var(--dropdown-top);
+  left: max(16px, calc((100% - 760px) / 2));
+  width: min(760px, calc(100% - 32px));
+}
+
+.shared-menu-shell {
+  position: relative;
+  width: 100%;
+  height: 0;
+  border-radius: 12px;
+  background: linear-gradient(rgb(255 255 255 / 2%), rgb(255 255 255 / 2%)), var(--header-canvas);
+  box-shadow: inset 0 0 0 1px var(--header-border);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(5px);
+  transition: opacity 120ms ease-in, transform 120ms ease-in, visibility 0s linear 120ms;
+}
+.shared-menu-shell[data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition: opacity 160ms ease-out, transform 160ms ease-out, visibility 0s;
+}
+.shared-menu-shell[data-open='true'][data-switching='true'] {
+  transition: width 150ms cubic-bezier(.65, 0, .35, 1), height 150ms cubic-bezier(.65, 0, .35, 1), opacity 160ms ease-out, transform 160ms ease-out, visibility 0s;
+}
+/* Preserve the trigger-to-menu bridge and the existing 150ms leave grace period. */
+.shared-menu-shell::before { content: ''; position: absolute; inset: -11px 0 auto; height: 11px; }
+.shared-menu-viewport { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: inherit; }
+.shared-menu-grid-surface {
+  position: absolute;
+  inset: 0 0 auto;
+  border-radius: 12px;
+  background: linear-gradient(180deg, transparent, rgb(0 0 0 / 10%)), #292929;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 10%), inset 0 -1px 1px rgb(0 0 0 / 10%), inset 0 1px 1px rgb(255 255 255 / 10%), 0 2px 8px -2px rgb(0 0 0 / 10%), 0 1px 4px -1px rgb(0 0 0 / 20%);
+}
+.shared-menu-shell[data-switching='true'] .shared-menu-grid-surface { transition: height 150ms cubic-bezier(.65, 0, .35, 1); }
+.shared-menu-layer {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: var(--menu-content-width, 100%);
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateX(-200px);
+  transition: transform 200ms cubic-bezier(.65, 0, .35, 1), opacity 200ms cubic-bezier(.65, 0, .35, 1), filter 200ms cubic-bezier(.65, 0, .35, 1);
+}
+.shared-menu-layer[data-menu='resources'] { transform: translateX(200px); }
+.shared-menu-layer[data-active='false'] { pointer-events: none; }
+.products-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  padding: 16px;
+  border-radius: 12px;
+}
+.products-grid::after { content: ''; position: absolute; top: 16px; bottom: 16px; left: 50%; width: 1px; background: var(--header-border); transform: translateX(-.5px); }
+.products-column { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 60px;
+  padding: 8px;
+  border-radius: 16px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 140ms ease;
+}
+.product-item:hover, .product-item:focus-visible { background: #353535; }
+.product-icon-beam[data-beam] {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  /* Keep the icon's existing outer border/shadow; Beam clips its own stroke. */
+  overflow: visible;
+}
+
+/* Preserve the rotation phase while only the library's fade-out runs on leave. */
+.product-icon-beam[data-beam][data-fading] {
+  animation-play-state: paused, running;
+  animation-duration: 1.96s, 140ms;
+}
+.product-icon-beam[data-beam][data-fading]::before,
+.product-icon-beam[data-beam][data-fading]::after,
+.product-icon-beam[data-beam][data-fading] > [data-beam-bloom] {
+  animation-play-state: paused;
+}
+.product-icon {
+  position: relative;
+  display: grid;
+  flex: 0 0 44px;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: linear-gradient(180deg, transparent, rgb(0 0 0 / 10%)), #303030;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 50%), 0 2.192px 2.192px rgb(0 0 0 / 25%), inset 0 .548px .548px rgb(255 255 255 / 20%), inset 0 -.548px .548px rgb(0 0 0 / 10%), inset 0 0 0 .548px rgb(255 255 255 / 10%);
+}
+.product-icon::after { content: ''; position: absolute; inset: 0; border: .5px solid var(--header-border); border-radius: inherit; pointer-events: none; }
+.product-icon::before { content: ''; position: absolute; inset: 0; opacity: 0; background: url('/assets/figma/icon-noise.png') 0 0 / 6.5px 6.5px; pointer-events: none; transition: opacity 140ms ease; }
+.product-icon img { position: relative; grid-area: 1 / 1; display: block; width: 24px; height: 24px; pointer-events: none; transition: opacity 140ms ease; }
+.product-icon__neutral { opacity: 1; }
+.product-icon__active { opacity: 0; }
+.product-item:is(:hover, :focus-visible) .product-icon__neutral { opacity: 0; }
+.product-item:is(:hover, :focus-visible) .product-icon__active { opacity: 1; }
+.product-item:is(:hover, :focus-visible) .product-icon::before { opacity: .05; }
+.product-copy { display: flex; flex-direction: column; min-width: 0; }
+/* Figma resolves the 160% text line boxes to 22px, making each card 60px tall. */
+.product-title, .product-description { font-size: 14px; line-height: 22px; font-weight: 400; }
+.product-description { color: var(--header-muted); }
+.products-utilities { display: flex; align-items: center; justify-content: center; gap: 32px; padding: 18px 24px 16px; }
+.utility-link { display: inline-flex; align-items: center; gap: 8px; border-radius: 3px; color: var(--header-muted); font-size: 14px; line-height: 14px; white-space: nowrap; text-decoration: none; cursor: pointer; transition: color 140ms ease; }
+.utility-link img { display: block; width: 14px; height: 14px; transition: filter 140ms ease; }
+.utility-link:hover, .utility-link:focus-visible { color: #fff; }
+.utility-link:hover img, .utility-link:focus-visible img { filter: brightness(1.35); }
+
+@media (max-width: 1000px) {
+  .header-nav { padding-inline: 24px; }
+  .header-brand { width: auto; }
+}
+
+@media (max-width: 720px) {
+  .header-nav { --dropdown-top: 105px; grid-template-columns: 1fr 1fr; height: 114px; padding: 16px; row-gap: 14px; }
+  .header-brand { grid-column: 1; grid-row: 1; }
+  .header-auth { grid-column: 2; grid-row: 1; }
+  .header-links { grid-column: 1 / -1; grid-row: 2; justify-self: center; }
+  .products-grid { gap: 24px; padding: 12px; }
+  .products-grid::after { top: 12px; bottom: 12px; }
+  .product-item { align-items: flex-start; }
+  .products-utilities { gap: 16px; padding-inline: 16px; flex-wrap: wrap; }
+}
+
+@media (max-width: 560px) {
+  .products-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .products-grid::after { display: none; }
+  .product-item { align-items: center; }
+  .products-utilities { justify-content: flex-start; gap: 18px; }
+  .shared-menu-shell { max-height: calc(100svh - var(--dropdown-top) - 106px); }
+  .shared-menu-viewport { overflow-y: auto; overscroll-behavior: contain; }
+}
+
+@media (max-width: 400px) {
+  .header-links .nav-link { width: auto; padding-inline: 10px; }
+  .product-item { gap: 10px; }
+}
+
+@media (max-height: 500px) {
+  .shared-menu-shell { max-height: calc(100svh - var(--dropdown-top) - 74px); }
+  .shared-menu-viewport { overflow-y: auto; overscroll-behavior: contain; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-demo *, .header-demo *::before, .header-demo *::after { transition: none !important; }
+  /* Also cover a live preference change before the React subscription commits. */
+  .product-icon-beam[data-beam] {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .product-icon-beam[data-beam]::before,
+  .product-icon-beam[data-beam]::after,
+  .product-icon-beam[data-beam] > [data-beam-bloom] {
+    display: none !important;
+    animation: none !important;
+  }
+}

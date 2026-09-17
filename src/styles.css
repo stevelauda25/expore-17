@@ -1,0 +1,84 @@
+:root {
+  font-family: 'Inter', sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+  background: #08090a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+}
+
+button:not(:disabled),
+a {
+  cursor: pointer;
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+.exploration-page {
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  isolation: isolate;
+  background: #08090a;
+}
+
+.exploration-page--date-picker,
+.exploration-page--profile {
+  color-scheme: light;
+  background: #fff;
+}
+
+.exploration-panel {
+  position: absolute;
+  inset: 0;
+  min-width: 0;
+}
+
+.exploration-panel:focus-visible {
+  outline: 2px solid #989898;
+  outline-offset: -4px;
+}
+
+.empty-demo {
+  background: #fff;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

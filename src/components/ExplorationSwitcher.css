@@ -1,0 +1,99 @@
+.exploration-switcher {
+  position: absolute;
+  z-index: 10;
+  bottom: 48px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 38px;
+  gap: 0;
+  padding: 2px;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  background: #3a3a3a;
+  color-scheme: dark;
+}
+
+.exploration-switcher__indicator {
+  position: absolute;
+  z-index: 0;
+  top: 2px;
+  left: 0;
+  width: 0;
+  height: 34px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, transparent, rgb(0 0 0 / 10%)), #6c6c6c;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 50%), 0 2.191963px 2.191963px rgb(0 0 0 / 25%), inset 0 .547991px .547991px rgb(255 255 255 / 20%), inset 0 -.547991px .547991px rgb(0 0 0 / 10%), inset 0 0 0 .547991px rgb(255 255 255 / 10%);
+  pointer-events: none;
+}
+
+.exploration-switcher__indicator[data-ready='true'] {
+  transition: transform 250ms cubic-bezier(.22, 1, .36, 1), width 250ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.exploration-switcher__tab {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  height: 34px;
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #c9c9c9;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  /* Figma's 140% line height resolves to a 22px text box in node 2855:3115. */
+  line-height: 22px;
+  letter-spacing: 0;
+  text-align: left;
+  white-space: nowrap;
+  transition: color 250ms cubic-bezier(.22, 1, .36, 1), background-color 140ms ease;
+}
+
+/* Preserve Figma's rounded hug-content bounds with the bundled Inter font. */
+.exploration-switcher__tab--header { min-width: 76px; }
+.exploration-switcher__tab--date-picker { min-width: 107px; }
+.exploration-switcher__tab--profile { min-width: 69px; }
+
+.exploration-switcher__indicator::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: .5px solid rgb(255 255 255 / 10%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.exploration-switcher__tab:hover {
+  color: #fff;
+  background-color: rgb(255 255 255 / 5%);
+}
+
+.exploration-switcher__tab[aria-selected='true'] {
+  background: transparent;
+  color: #fff;
+}
+
+.exploration-switcher__tab:focus-visible {
+  z-index: 1;
+  outline: 2px solid #c9c9c9;
+  outline-offset: 2px;
+}
+
+@media (max-height: 500px) {
+  .exploration-switcher {
+    bottom: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exploration-switcher__indicator[data-ready='true'],
+  .exploration-switcher__tab {
+    transition: none;
+  }
+}
