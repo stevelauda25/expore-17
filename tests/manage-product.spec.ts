@@ -1,0 +1,103 @@
+import { expect, test, type Page } from '@playwright/test'
+
+async function openProductUsage(page: Page) {
+  await page.setViewportSize({ width: 1200, height: 771 })
+  await page.goto('/')
+  await page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab', { name: 'Product usage', exact: true }).click()
+  await expect(page.locator('.product-usage-demo tbody tr')).toHaveCount(6)
+  await page.evaluate(() => document.fonts.ready)
+  return page.locator('.product-usage-demo')
+}
+
+test('Manage product matches modal geometry and connects five switches to active usage data', async ({ page }) => {
+  const root = await openProductUsage(page)
+  const dialog = root.getByRole('dialog', { name: 'Manage product', exact: true })
+  const trigger = root.getByRole('button', { name: 'Manage product', exact: true })
+  const tableBefore = await root.locator('table').innerHTML()
+  const activityBefore = await root.locator('.activity-card').innerHTML()
+  const filterBefore = await root.locator('#filter-menu').innerHTML()
+  await trigger.click()
+  await expect(dialog).toBeVisible()
+  expect(await dialog.boundingBox()).toEqual({ x: 334, y: 105.5, width: 532, height: 560 })
+  await expect(dialog).toHaveAttribute('aria-modal', 'true')
+  expect(await dialog.evaluate(n => getComputedStyle(n, '::backdrop').backgroundColor)).toBe('rgba(0, 0, 0, 0.3)')
+  for (const [selector, height] of [['.manage-header', 70], ['.manage-usage', 242], ['.manage-features', 248]] as const) {
+    expect(await dialog.locator(selector).boundingBox()).toMatchObject({ width: 532, height })
+  }
+  expect(await dialog.locator('.manage-progress').boundingBox()).toMatchObject({ width: 500, height: 10 })
+  expect((await dialog.locator('.manage-progress-fill').boundingBox())!.width).toBeCloseTo(125, 1)
+  expect(await dialog.locator('.manage-progress-dot').boundingBox()).toMatchObject({ width: 4, height: 4 })
+  await expect(dialog).toContainText('12,500 / 50,000 actions this month')
+  await expect(dialog).toContainText('25.0%')
+  await expect(dialog.locator('.manage-feature-label')).toHaveText(['AI Assistant', 'Document Editor', 'Analytics', 'Settings', 'Help & Support'])
+  await dialog.locator('img').evaluateAll(images => Promise.all(images.map(img => (img as HTMLImageElement).decode())))
+  const switches = dialog.getByRole('switch')
+  await expect(switches).toHaveCount(5)
+  for (const toggle of await switches.all()) {
+    await expect(toggle).toHaveAttribute('aria-checked', 'true')
+    expect(await toggle.boundingBox()).toMatchObject({ width: 36, height: 20 })
+    await toggle.click(); await expect(toggle).toHaveAttribute('aria-checked', 'false')
+    await toggle.press('Space'); await expect(toggle).toHaveAttribute('aria-checked', 'true')
+    await toggle.press('Enter'); await expect(toggle).toHaveAttribute('aria-checked', 'false')
+  }
+  await dialog.getByRole('button', { name: 'Close Manage product' }).click()
+  await expect(dialog).toBeHidden()
+  await expect(trigger).toBeFocused()
+  await expect(root.locator('tbody tr')).toHaveCount(1)
+  await expect(root.locator('tbody tr')).toContainText('Other')
+  await expect(root.locator('#summary dd').first()).toHaveText('1,020')
+  expect(await root.locator('#filter-menu').innerHTML()).toBe(filterBefore)
+  await trigger.click()
+  for (const toggle of await switches.all()) await expect(toggle).toHaveAttribute('aria-checked', 'false')
+  for (const toggle of await switches.all()) await toggle.click()
+  await dialog.getByRole('button', { name: 'Close Manage product' }).click()
+  expect(await root.locator('table').innerHTML()).toBe(tableBefore)
+  expect(await root.locator('.activity-card').innerHTML()).toBe(activityBefore)
+  await page.reload()
+  await page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab', { name: 'Product usage', exact: true }).click()
+  await trigger.click()
+  for (const toggle of await switches.all()) await expect(toggle).toHaveAttribute('aria-checked', 'true')
+})
+
+test('Manage product isolates focus, dismisses correctly, and closes previous transient surfaces', async ({ page }) => {
+  const errors: string[] = []
+  page.on('pageerror', e => errors.push(e.message))
+  const root = await openProductUsage(page)
+  const trigger = root.locator('#manage'), dialog = root.locator('#manage-menu')
+  const close = dialog.getByRole('button', { name: 'Close Manage product' })
+  await root.locator('#filter').click()
+  await expect(root.locator('#filter-menu')).toBeVisible()
+  await trigger.click()
+  await expect(root.locator('#filter-menu')).toBeHidden()
+  await expect(close).toBeFocused()
+  await root.locator('#filter').evaluate(n => n.focus())
+  await expect(close).toBeFocused()
+  await page.keyboard.press('Shift+Tab'); await expect(dialog.getByRole('switch').last()).toBeFocused()
+  await page.keyboard.press('Tab'); await expect(close).toBeFocused()
+  for (let i = 0; i < 9; i++) await page.keyboard.press('Tab')
+  await expect(close).toBeFocused()
+  await dialog.getByText('Usage', { exact: true }).click()
+  for (const edit of await dialog.locator('.manage-edit').all()) {
+    await edit.click()
+    await page.keyboard.press('Escape') // Cancel the inline editor, retaining the modal.
+  }
+  await expect(dialog).toBeVisible()
+  await page.keyboard.press('Escape'); await expect(dialog).toBeHidden(); await expect(trigger).toBeFocused()
+  await trigger.click(); await page.mouse.click(20, 20)
+  await expect(dialog).toBeHidden(); await expect(trigger).toBeFocused()
+  for (const [selector, surface] of [['[data-info="ai"]', '#feature-detail'], ['[data-segment="ai"]', '#tooltip']]) {
+    await root.locator(selector).hover(); await expect(root.locator(surface)).toBeVisible()
+    // Open without a pointer-leave event dismissing the surface first.
+    await trigger.evaluate(n => (n as HTMLButtonElement).click())
+    await expect(root.locator(surface)).toBeHidden()
+    await close.click(); await expect(dialog).toBeHidden()
+  }
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
+  await trigger.click()
+  expect(await dialog.evaluate(n => getComputedStyle(n).animationDuration)).toBe('0.16s')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  expect(await dialog.evaluate(n => getComputedStyle(n).animationName)).toBe('none')
+  expect(await dialog.evaluate(n => getComputedStyle(n, '::backdrop').animationName)).toBe('none')
+  await close.click(); await expect(dialog).toBeHidden()
+  expect(errors).toEqual([])
+})

@@ -1,4 +1,6 @@
-import { features, activityForRange, ranges, number, scaleCount, visibleFeatures, toCsv } from './data.js';
+import { mountFocusRestoration } from './focus-restoration.js';
+import { mountManageProduct } from './manage-modal.js';
+import { features, createManageSettings, activityForRange, ranges, number, scaleCount, visibleFeatures, toCsv } from './data.js';
 import { artwork, icons } from './figma-artwork.js';
 import { featureDetails } from './feature-details.js';
 
@@ -8,6 +10,7 @@ import { featureDetails } from './feature-details.js';
 export function mountProductUsage(root) {
 const $ = selector => root.querySelector(selector);
 const lifecycle = new AbortController();
+const restoreFocus = mountFocusRestoration(root, lifecycle.signal);
 let disposed = false;
 const isActive = () => root.dataset.productUsageActive === 'true';
 const onDocument = (type, listener) => document.addEventListener(type, event => {
@@ -17,7 +20,7 @@ const onWindow = (type, listener, options = {}) => window.addEventListener(type,
   if (isActive()) listener(event);
 }, { ...options, signal: lifecycle.signal });
 
-const state = { range: 'Month', tab: 'features', query: '', category: '', feature: null, anchor: null };
+const state = { range: 'Month', tab: 'features', query: '', category: '', feature: null, anchor: null, manageSettings: createManageSettings() };
 const tooltip = $('#tooltip');
 const detail = $('#feature-detail');
 const filterMenu = $('#filter-menu');
@@ -50,7 +53,7 @@ root.querySelectorAll('.segmented').forEach(control => {
 
 function renderActivity() {
   const range = ranges[state.range];
-  const { total, segments } = activityForRange(state.range);
+  const { total, segments } = activityForRange(state.range, state.manageSettings.enabledFeatures);
   $('#activity-subtitle').textContent = `${number(total)} total actions across all features ${range.period}`;
   $('#summary').innerHTML = metric(number(total), 'Total actions') + metric(number(range.users), 'Active users') + metric(number(range.sessions), 'Unique sessions') + metric(range.average, 'Avg. session length (min)');
   // Zero-basis flex tracks divide the full width in the ratio of these counts.
@@ -59,6 +62,7 @@ function renderActivity() {
   root.querySelectorAll('[data-segment]').forEach(button => {
     const d = segments.find(d => d.id === button.dataset.segment);
     const show = () => {
+      if (manageMenu.open) return;
       const box = button.getBoundingClientRect();
       tooltip.innerHTML = `<div class="tooltip-body"><h2>${d.label}</h2><p>${summaryLine(d.actions, d.share)}</p></div><div class="tooltip-line"><img src="${icons.tooltipLine}" width="20" height="1" alt=""></div><span class="tooltip-endpoint" aria-hidden="true"></span>`;
       tooltip.hidden = false;
@@ -78,7 +82,7 @@ function renderActivity() {
 }
 
 function renderRows() {
-  const rows = visibleFeatures(state.query, state.category, state.range);
+  const rows = visibleFeatures(state.query, state.category, state.range, state.manageSettings.enabledFeatures);
   $('#feature-rows').innerHTML = rows.map(f => `<tr data-feature="${f.id}">
     <td><div class="feature-name"><span>${f.name.replace('&', '&amp;')}</span><button class="feature-info" type="button" aria-label="Details for ${f.name.replace('&', '&amp;')}" aria-haspopup="dialog" aria-expanded="false" data-info="${f.id}"><span class="info-symbol" style="mask-image:url('${icons.info}')" aria-hidden="true"></span></button></div></td>
     <td><span class="badge" style="--badge-color:${f.color}">${artwork[f.art]}<span class="badge-label">${f.category}</span></span></td>
@@ -99,14 +103,14 @@ function hideTooltip() {
   root.querySelectorAll('[aria-describedby="tooltip"]').forEach(el => el.removeAttribute('aria-describedby'));
 }
 
-function closeFeature(restoreFocus = false) {
+function closeFeature(shouldRestoreFocus = false, fromEscape = false) {
   clearTimeout(featureCloseTimer);
   const anchor = state.anchor;
   if (anchor) anchor.setAttribute('aria-expanded', 'false');
   detail.hidden = true;
   state.feature = null;
   state.anchor = null;
-  if (restoreFocus && anchor?.isConnected) anchor.focus({ preventScroll: true });
+  if (shouldRestoreFocus) restoreFocus(anchor, fromEscape);
 }
 
 function scheduleFeatureClose() {
@@ -118,13 +122,10 @@ function scheduleFeatureClose() {
 detail.addEventListener('pointerenter', () => clearTimeout(featureCloseTimer));
 detail.addEventListener('pointerleave', scheduleFeatureClose);
 
-function closeMenus(restoreFocus = false) {
-  if (!filterMenu.hidden && restoreFocus) $('#filter').focus();
-  if (!manageMenu.hidden && restoreFocus) $('#manage').focus();
+function closeMenus(shouldRestoreFocus = false, fromEscape = false) {
+  if (!filterMenu.hidden && shouldRestoreFocus) restoreFocus($('#filter'), fromEscape);
   filterMenu.hidden = true;
-  manageMenu.hidden = true;
   $('#filter').setAttribute('aria-expanded', 'false');
-  $('#manage').setAttribute('aria-expanded', 'false');
 }
 
 function positionFeature() {
@@ -135,19 +136,21 @@ function positionFeature() {
 }
 
 function openFeature(id, anchor) {
+  if (manageMenu.open) return;
+  const f = visibleFeatures('', '', state.range, state.manageSettings.enabledFeatures).find(f => f.id === id);
+  if (!f) return;
   clearTimeout(featureCloseTimer);
   if (state.feature === id) return;
   closeFeature(); closeMenus(); hideTooltip();
   state.feature = id;
   state.anchor = anchor;
   anchor.setAttribute('aria-expanded', 'true');
-  const f = features.find(f => f.id === id);
   const content = featureDetails[id];
   const art = `<span class="feature-art"><img src="${content.orb}" width="37" height="37" alt=""></span>`;
   const trend = state.range === 'Month' ? `<div class="trend pill${content.change.startsWith('-') ? ' trend-negative' : ''}" style="--trend-width:${content.badgeWidth}px"><p><span>${content.change}</span> vs last month</p></div>` : '';
   const description = `<p class="description">${content.description.replace('this month', ranges[state.range].period)}</p>`;
-  detail.innerHTML = `<div class="detail-intro"><div class="detail-header"><div class="detail-identity">${art}<div class="detail-heading"><h2 id="detail-title">${f.name.replace('&', '&amp;')}</h2><p>${summaryLine(scaleCount(f.actions, state.range), f.share)}</p></div></div>${trend}</div>${description}</div>
-    <dl class="detail-metrics">${metric(number(scaleCount(f.users, state.range)), 'Unique users')}${metric(number(scaleCount(content.sessions, state.range)), 'Sessions')}${metric(f.time, 'Avg. time')}</dl>
+  detail.innerHTML = `<div class="detail-intro"><div class="detail-header"><div class="detail-identity">${art}<div class="detail-heading"><h2 id="detail-title">${f.name.replace('&', '&amp;')}</h2><p>${summaryLine(f.actions, f.share)}</p></div></div>${trend}</div>${description}</div>
+    <dl class="detail-metrics">${metric(number(f.users), 'Unique users')}${metric(number(scaleCount(content.sessions, state.range)), 'Sessions')}${metric(f.time, 'Avg. time')}</dl>
     <div class="top-actions"><div class="action-row"><span>Top actions</span><span>Total actions</span></div>${content.actions.map(action => `<div class="action-row"><span class="action-label"><img src="${action.icon}" width="14" height="14" alt="">${action.label}</span><span>${number(scaleCount(action.count, state.range))}</span></div>`).join('')}</div>`;
   detail.hidden = false;
   positionFeature();
@@ -173,6 +176,7 @@ function selectTab(tab) {
   $('#segments-empty').hidden = tab !== 'segments';
   $('#usage-panel').setAttribute('aria-labelledby', tab === 'features' ? 'features-tab' : 'segments-tab');
   $('#search').disabled = tab !== 'features';
+  $('#search-clear').disabled = tab !== 'features';
   $('#filter').disabled = tab !== 'features';
 }
 root.querySelectorAll('[data-tab]').forEach(button => {
@@ -185,7 +189,21 @@ root.querySelectorAll('[data-tab]').forEach(button => {
     }
   });
 });
-$('#search').addEventListener('input', event => { state.query = event.target.value; closeFeature(); renderRows(); });
+function updateSearch() {
+  state.query = $('#search').value;
+  $('#search-clear').hidden = !state.query;
+  closeFeature(); renderRows();
+}
+$('#search').addEventListener('input', updateSearch);
+// Preserve the original label's click-to-focus behavior around the new clear button.
+$('.search-field').addEventListener('click', event => {
+  if (!event.target.closest('button, input')) restoreFocus($('#search'));
+});
+$('#search-clear').addEventListener('click', () => {
+  $('#search').value = '';
+  updateSearch();
+  restoreFocus($('#search'));
+});
 
 function positionMenu(menu, button) {
   const rect = button.getBoundingClientRect();
@@ -206,18 +224,14 @@ $('#filter').addEventListener('click', () => {
   $('#filter').setAttribute('aria-expanded', String(open));
   if (open) { positionMenu(filterMenu, $('#filter')); filterMenu.querySelector('input:checked').focus(); }
 });
-$('#manage').addEventListener('click', () => {
-  const open = manageMenu.hidden;
-  closeFeature(); closeMenus();
-  manageMenu.hidden = !open;
-  $('#manage').setAttribute('aria-expanded', String(open));
-  if (open) { positionMenu(manageMenu, $('#manage')); $('#view-features').focus(); }
-});
-$('#view-features').addEventListener('click', () => {
-  state.query = ''; state.category = ''; $('#search').value = '';
-  $('.filter-indicator').hidden = true;
-  $('#category-options input[value=""]').checked = true;
-  selectTab('features'); renderRows(); $('#search').focus();
+const manageModal = mountManageProduct(root, {
+  saved: state.manageSettings,
+  restoreFocus,
+  beforeOpen() { closeFeature(); closeMenus(); hideTooltip(); },
+  onFeaturesChange() {
+    closeFeature(); hideTooltip();
+    renderActivity(); renderRows();
+  },
 });
 
 function announce(message) {
@@ -227,7 +241,7 @@ function announce(message) {
 }
 $('#export').addEventListener('click', () => {
   if (state.tab !== 'features') { announce('No user segments to export.'); return; }
-  const rows = visibleFeatures(state.query, state.category, state.range);
+  const rows = visibleFeatures(state.query, state.category, state.range, state.manageSettings.enabledFeatures);
   const url = URL.createObjectURL(new Blob(['\uFEFF' + toCsv(rows)], { type: 'text/csv;charset=utf-8' }));
   const link = document.createElement('a');
   link.href = url; link.download = `product-usage-${state.range.toLowerCase()}.csv`;
@@ -251,7 +265,7 @@ onDocument('focusin', event => {
   if (!event.target.closest('#filter-menu, #filter, #manage-menu, #manage')) closeMenus();
 });
 onDocument('keydown', event => {
-  if (event.key === 'Escape') { closeFeature(true); closeMenus(true); hideTooltip(); }
+  if (event.key === 'Escape') { closeFeature(true, true); closeMenus(true, true); hideTooltip(); }
 });
 onWindow('resize', () => { positionFeature(); closeMenus(); hideTooltip(); });
 onWindow('scroll', () => { positionFeature(); closeMenus(); hideTooltip(); }, { passive: true });
@@ -272,6 +286,7 @@ return {
   refresh,
   destroy() {
     disposed = true;
+    manageModal.destroy();
     lifecycle.abort();
     segmentedResize.disconnect();
     clearTimeout(toastTimer);
