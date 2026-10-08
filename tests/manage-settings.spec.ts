@@ -1,0 +1,136 @@
+import { expect, test, type Page } from '@playwright/test'
+
+test.use({ deviceScaleFactor: 2 })
+async function setup(page: Page) {
+  await page.setViewportSize({ width: 1200, height: 771 })
+  await page.goto('/')
+  await page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab', { name: 'Product usage', exact: true }).click()
+  const root = page.locator('.product-usage-demo')
+  await expect(root.locator('tbody tr')).toHaveCount(6)
+  await page.evaluate(() => document.fonts.ready)
+  await root.locator('#manage').click()
+  const dialog = root.locator('#manage-menu')
+  await expect(dialog).toBeVisible()
+  return { root, dialog, row: (key: string) => dialog.locator(`[data-manage-setting="${key}"]`) }
+}
+
+test('action limit normalizes, validates, saves only changes and restores saved values', async ({ page }) => {
+  const { dialog, row } = await setup(page)
+  const limit = row('actionLimit'), edit = limit.getByRole('button', { name: 'Edit monthly action limit' })
+  await edit.click()
+  const input = limit.getByRole('textbox', { name: 'Monthly action limit' }), save = limit.getByRole('button', { name: 'Save' })
+  await expect(input).toBeFocused(); await expect(input).toHaveValue('50,000'); await expect(save).toBeDisabled()
+  await expect(save).toHaveCSS('color', 'rgba(0, 0, 0, 0.4)')
+  await input.press('Enter'); await expect(input).toBeVisible(); await expect(dialog).toBeVisible()
+  await input.fill('75000'); await expect(save).toBeEnabled(); await expect(save).toHaveCSS('color', 'rgb(0, 0, 0)')
+  await input.fill('50000'); await expect(save).toBeDisabled()
+  await input.fill('050000'); await expect(save).toBeDisabled()
+  for (const invalid of ['', '0', '-10', '2.5', '50,00', 'abc', '1e3', '9007199254740992']) {
+    await input.fill(invalid); await expect(save).toBeDisabled()
+    await input.press('Enter'); await expect(input).toBeVisible()
+  }
+  await input.fill('75000'); await input.press('Tab'); await expect(save).toBeFocused(); await expect(input).toHaveValue('75,000')
+  await save.click(); await expect(limit).toContainText('75,000 actions'); await expect(edit).toBeFocused()
+  await edit.click(); await expect(input).toHaveValue('75,000'); await expect(save).toBeDisabled()
+  await input.fill('80000'); await input.press('Enter'); await expect(limit).toContainText('80,000 actions')
+  await edit.click(); await input.fill('90000'); await page.keyboard.press('Escape')
+  await expect(dialog).toBeVisible(); await expect(limit).toContainText('80,000 actions'); await expect(edit).toBeFocused()
+})
+
+test('alert inputs validate range/order, normalize percent notation and retain saved values', async ({ page }) => {
+  const { dialog, row } = await setup(page)
+  const alerts = row('alerts'); await alerts.getByRole('button').click()
+  const first = alerts.getByRole('textbox', { name: 'Alert 1' }), second = alerts.getByRole('textbox', { name: 'Alert 2' }), save = alerts.getByRole('button', { name: 'Save' })
+  await expect(first).toBeFocused(); await expect(first).toHaveValue('80%'); await expect(second).toHaveValue('100%'); await expect(save).toBeDisabled()
+  await first.fill('75'); await expect(save).toBeEnabled()
+  await first.fill('080.0%'); await expect(save).toBeDisabled()
+  for (const value of ['101%', '-1%', '', 'abc']) { await first.fill(value); await expect(save).toBeDisabled() }
+  await first.fill('90'); await second.fill('80'); await expect(save).toBeDisabled()
+  await first.fill('75'); await second.fill('95'); await expect(save).toBeEnabled()
+  await first.focus(); await first.press('Tab'); await expect(second).toBeFocused()
+  await second.press('Tab'); await expect(save).toBeFocused()
+  await save.click(); await expect(alerts).toContainText('75% · 95%')
+  await alerts.getByRole('button').click(); await expect(first).toHaveValue('75%'); await expect(second).toHaveValue('95%'); await expect(save).toBeDisabled()
+  await first.fill('0'); await second.fill('100%'); await second.press('Enter')
+  await expect(alerts).toContainText('0% · 100%'); await expect(dialog).toBeVisible()
+})
+
+test('cycle radios use one tab stop, arrow navigation, dirty selection and inline save', async ({ page }) => {
+  const { row } = await setup(page)
+  const cycle = row('resetCycle'); await cycle.getByRole('button').click()
+  const group = cycle.getByRole('radiogroup', { name: 'Reset cycle' }), save = cycle.getByRole('button', { name: 'Save' })
+  await expect(group.getByRole('radio')).toHaveText(['Daily', 'Weekly', 'Monthly', 'Yearly'])
+  const monthly = group.getByRole('radio', { name: 'Monthly' }), weekly = group.getByRole('radio', { name: 'Weekly' })
+  await expect(monthly).toBeFocused(); await expect(monthly).toHaveAttribute('aria-checked', 'true'); await expect(save).toBeDisabled()
+  await weekly.click(); await expect(weekly).toHaveAttribute('aria-checked', 'true'); await expect(save).toBeEnabled()
+  await monthly.click(); await expect(save).toBeDisabled()
+  await monthly.press('ArrowRight'); await expect(group.getByRole('radio', { name: 'Yearly' })).toBeFocused()
+  await page.keyboard.press('ArrowRight'); await expect(group.getByRole('radio', { name: 'Daily' })).toBeFocused()
+  await page.keyboard.press('ArrowRight'); await expect(weekly).toBeFocused()
+  await weekly.press('Space'); await expect(weekly).toHaveAttribute('aria-checked', 'true')
+  await weekly.press('Enter'); await expect(weekly).toHaveAttribute('aria-checked', 'true')
+  await weekly.press('Tab'); await expect(save).toBeFocused()
+  await save.click(); await expect(cycle).toContainText('Weekly')
+  await cycle.getByRole('button').click(); await expect(weekly).toBeFocused(); await expect(save).toBeDisabled()
+  await weekly.press('ArrowLeft'); await expect(save).toBeEnabled()
+  await page.keyboard.press('Escape'); await expect(cycle).toContainText('Weekly')
+})
+
+test('editor geometry and focus match Figma without changing the modal or outside page', async ({ page }) => {
+  const errors: string[] = []
+  page.on('pageerror', e => errors.push(e.message))
+  page.on('console', m => { if (m.type() === 'error' && !m.location().url.endsWith('/favicon.ico')) errors.push(m.text()) })
+  const { root, dialog, row } = await setup(page)
+  const geometry = await dialog.boundingBox(), features = await dialog.locator('.manage-features').innerHTML(), featureBox = await dialog.locator('.manage-features').boundingBox(), header = await dialog.locator('.manage-header').innerHTML()
+  const outside = await root.locator('.usage-page').innerHTML(), filter = await root.locator('#filter-menu').innerHTML()
+  const shadow = 'rgba(0, 0, 0, 0.12) 0px -0.5px 1px 0px inset, rgba(255, 255, 255, 0.25) 0px 0.5px 4px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 0px 0.5px inset, rgba(0, 0, 0, 0.04) 0px 0.5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 0.5px 2px 0px'
+  for (const [index, key] of ['actionLimit', 'alerts', 'resetCycle'].entries()) {
+    const setting = row(key)
+    await setting.getByRole('button', { name: /^Edit/ }).click()
+    await expect(dialog.locator('[data-editing]')).toHaveCount(1)
+    expect(await setting.boundingBox()).toEqual({x:350,y:261.5+52*index,width:500,height:36})
+    expect(await setting.locator('.manage-editor-values').boundingBox()).toMatchObject({width:436,height:33})
+    expect(await setting.locator('.manage-save').boundingBox()).toMatchObject({x:792,y:263+52*index,width:58,height:33})
+    const controls = key === 'resetCycle' ? setting.getByRole('radio') : setting.getByRole('textbox')
+    const widths = key === 'actionLimit' ? [436] : key === 'alerts' ? [164,162] : [104.5,104.5,104.5,104.5]
+    for (const [i, control] of (await controls.all()).entries()) expect(await control.boundingBox()).toMatchObject({width:widths[i],height:33})
+    const focused = key === 'resetCycle' ? setting.getByRole('radio',{name:'Monthly'}) : controls.first()
+    await expect(focused).toHaveCSS('outline-style','none'); await expect(focused).toHaveCSS('box-shadow',shadow)
+    await dialog.locator('.manage-usage').screenshot({path:`/tmp/explore-manage-edit/${key}.png`})
+    expect(await dialog.boundingBox()).toEqual(geometry)
+    expect(await dialog.locator('.manage-features').boundingBox()).toEqual(featureBox)
+    expect(await dialog.locator('.manage-features').innerHTML()).toBe(features)
+    expect(await dialog.locator('.manage-header').innerHTML()).toBe(header)
+  }
+  await expect(dialog.getByRole('switch')).toHaveCount(5)
+  for (const toggle of await dialog.getByRole('switch').all()) await expect(toggle).toHaveAttribute('aria-checked','true')
+  // Playwright's caret-hiding screenshot helper leaves empty style attributes.
+  expect((await root.locator('#filter-menu').innerHTML()).replaceAll(' style=""', '')).toBe(filter)
+  expect((await root.locator('.usage-page').innerHTML()).replaceAll(' style=""', '')).toBe(outside)
+  await dialog.getByRole('button',{name:'Close Manage product'}).click(); await expect(dialog).toBeHidden()
+  await page.mouse.move(0,0); await root.locator('#manage').blur()
+  await page.screenshot({path:'/tmp/explore-manage-edit/closed.png'})
+  expect(errors).toEqual([])
+})
+
+test('switching editors or dismissing discards drafts; saved settings survive reopening only', async ({ page }) => {
+  const { root, dialog, row } = await setup(page)
+  await row('actionLimit').getByRole('button').click()
+  await row('actionLimit').getByRole('textbox').fill('75000'); await row('actionLimit').getByRole('button',{name:'Save'}).click()
+  await row('actionLimit').getByRole('button').click(); await row('actionLimit').getByRole('textbox').fill('90000')
+  await row('alerts').getByRole('button').click()
+  await expect(row('actionLimit')).toContainText('75,000 actions'); await expect(dialog.locator('[data-editing]')).toHaveCount(1)
+  await row('alerts').getByRole('textbox',{name:'Alert 1'}).fill('50%')
+  await row('resetCycle').getByRole('button').click(); await expect(row('alerts')).toContainText('80% · 100%')
+  await row('resetCycle').getByRole('radio',{name:'Weekly'}).click()
+  await page.keyboard.press('Escape'); await expect(row('resetCycle')).toContainText('Monthly'); await expect(row('resetCycle').getByRole('button')).toBeFocused()
+  for (const method of ['close','overlay']) {
+    await row('actionLimit').getByRole('button').click(); await row('actionLimit').getByRole('textbox').fill('90000')
+    if (method === 'close') await dialog.getByRole('button',{name:'Close Manage product'}).click()
+    else await page.mouse.click(20,20)
+    await expect(dialog).toBeHidden(); await root.locator('#manage').click()
+    await expect(row('actionLimit')).toContainText('75,000 actions'); await expect(dialog.locator('[data-editing]')).toHaveCount(0)
+  }
+  await page.reload(); await page.getByRole('tablist',{name:'UI explorations'}).getByRole('tab',{name:'Product usage',exact:true}).click(); await root.locator('#manage').click()
+  await expect(row('actionLimit')).toContainText('50,000 actions')
+})

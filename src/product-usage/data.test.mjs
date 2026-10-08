@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { features, visibleFeatures, toCsv, activityForRange, scaleCount } from './data.js';
+import { features, visibleFeatures, toCsv, activityForRange, scaleCount, createManageSettings, monthlyUsage } from './data.js';
 
 test('activity totals include every feature exactly once in each period', () => {
   assert.equal(features.reduce((sum, row) => sum + row.actions, 0), 12500);
@@ -36,4 +36,50 @@ test('CSV exports only filtered rows, preserves numeric values, and escapes quot
   assert.ok(csv.includes('"AI Assistant","AI Agent","3240","2890","4m 12s","25.9%"'));
   assert.ok(!csv.includes('Document Editor'));
   assert.ok(toCsv([{ ...features[0], name: 'A "quoted", feature' }]).includes('"A ""quoted"", feature"'));
+});
+
+test('enablement composes with ranges, queries and categories without deleting source data', () => {
+  const original = structuredClone(features);
+  for (const range of ['Day', 'Week', 'Month']) {
+    const disabled = { settings: false, support: false };
+    const enabled = visibleFeatures('', '', range, disabled);
+    const activity = activityForRange(range, disabled);
+    assert.equal(activity.total, enabled.reduce((sum, f) => sum + f.actions, 0));
+    assert.equal(activity.segments.some(s => s.id === 'settings'), false);
+    assert.equal(activity.segments.find(s => s.id === 'other').actions, scaleCount(1020, range));
+    assert.equal(enabled.some(f => ['settings', 'support'].includes(f.id)), false);
+    assert.deepEqual(visibleFeatures('settings', '', range, disabled), []);
+    assert.deepEqual(visibleFeatures('', 'Settings', range, disabled), []);
+    for (const feature of enabled) assert.equal(feature.share, `${(feature.actions / activity.total * 100).toFixed(1)}%`);
+    assert.ok(Math.abs(activity.segments.reduce((sum, s) => sum + s.actions / activity.total, 0) - 1) < 1e-12);
+  }
+  assert.deepEqual(features, original);
+});
+
+test('monthly quota derives from enabled usage independently of analytics range and reset cycle', () => {
+  const settings = createManageSettings();
+  assert.deepEqual(monthlyUsage(settings), { total: 12500, percentage: 25, progress: 25 });
+  settings.actionLimit = 60000;
+  assert.equal(monthlyUsage(settings).percentage, 12500 / 60000 * 100);
+  settings.enabledFeatures.settings = false;
+  assert.equal(monthlyUsage(settings).total, 10610);
+  assert.equal(monthlyUsage(settings).percentage, 10610 / 60000 * 100);
+  settings.resetCycle = 'Daily';
+  assert.equal(monthlyUsage(settings).total, 10610);
+  assert.equal(settings.actionLimit, 60000);
+  settings.actionLimit = 1;
+  assert.equal(monthlyUsage(settings).progress, 100);
+  settings.actionLimit = 0;
+  assert.equal(monthlyUsage(settings).percentage, 0);
+  assert.deepEqual(createManageSettings(), { actionLimit: 50000, alert1: 80, alert2: 100, resetCycle: 'Monthly', enabledFeatures: { ai: true, editor: true, analytics: true, settings: true, support: true } });
+});
+
+test('all manageable features off leaves only unmanaged Other with finite full-width shares', () => {
+  const enabled = Object.fromEntries(['ai', 'editor', 'analytics', 'settings', 'support', 'other'].map(id => [id, false]));
+  for (const range of ['Day', 'Week', 'Month']) {
+    const activity = activityForRange(range, enabled);
+    assert.equal(activity.total, scaleCount(1020, range));
+    assert.deepEqual(activity.segments.map(s => [s.id, s.share]), [['other', '100.0%']]);
+    assert.deepEqual(visibleFeatures('', '', range, enabled).map(f => [f.id, f.share]), [['other', '100.0%']]);
+  }
 });

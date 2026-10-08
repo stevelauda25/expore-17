@@ -27,7 +27,7 @@
           <button type="button" id="segments-tab" role="tab" aria-selected="false" aria-controls="usage-panel" tabindex="-1" data-tab="segments">User segments</button>
         </div>
         <div class="toolbar-actions">
-          <label class="search-field pill"><img id="search-icon" width="14" height="14" alt=""><input id="search" type="search" aria-label="Search features" placeholder="Search" autocomplete="off"></label>
+          <div class="search-field pill"><img id="search-icon" width="14" height="14" alt=""><input id="search" type="search" aria-label="Search features" placeholder="Search" autocomplete="off"><button id="search-clear" type="button" aria-label="Clear search" hidden><img src="/product-usage/assets/manage/close.svg" width="14" height="14" alt=""></button></div>
           <button class="pill icon-button" id="export" type="button"><img id="export-icon" width="14" height="14" alt="">Export</button>
           <button class="pill icon-button" id="filter" type="button" aria-haspopup="dialog" aria-expanded="false"><img id="filter-icon" width="14" height="14" alt="">Filter<span class="filter-indicator" hidden></span></button>
         </div>
@@ -46,6 +46,27 @@
   </div>
   <div id="tooltip" class="usage-tooltip" role="tooltip" hidden></div>
   <section id="feature-detail" class="detail-popover" role="dialog" aria-modal="false" aria-labelledby="detail-title" tabindex="-1" hidden></section>
-  <section id="filter-menu" class="small-popover" role="dialog" aria-modal="false" aria-labelledby="filter-title" hidden><h2 id="filter-title">Category</h2><div id="category-options"></div></section>
-  <section id="manage-menu" class="small-popover" role="dialog" aria-modal="false" aria-labelledby="manage-title" hidden><h2 id="manage-title">Manage product</h2><p>6 tracked features</p><button type="button" class="pill" id="view-features">View features</button></section>
+  <section id="filter-menu" role="dialog" aria-modal="false" aria-label="Filter by category" hidden><div id="category-options" role="radiogroup" aria-label="Category"></div></section>
+  <dialog id="manage-menu" class="manage-modal" role="dialog" aria-modal="true" aria-label="Manage product">
+    <div class="manage-body">
+      <header class="manage-header">
+        <div class="manage-identity"><img class="manage-logo" src="/product-usage/assets/manage/logo.svg" width="38" height="38" alt=""><div><h2>Wonder Labs</h2><p>Pro Plan · Created Jan 12, 2026</p></div></div>
+        <button class="manage-close" type="button" aria-label="Close Manage product" autofocus><img src="/product-usage/assets/manage/close.svg" width="14" height="14" alt=""></button>
+      </header>
+      <section class="manage-usage" aria-labelledby="manage-usage-title">
+        <div class="manage-summary"><h3 id="manage-usage-title">Usage</h3><div class="manage-usage-total"><p></p><span></span></div><div class="manage-progress" aria-hidden="true"><span class="manage-progress-fill"><span class="manage-progress-dot"></span></span></div></div>
+        <div class="manage-setting" data-manage-setting="actionLimit"><div><p>Monthly action limit</p><p>50,000 actions</p></div><button type="button" class="manage-edit" aria-label="Edit monthly action limit">Edit</button></div>
+        <div class="manage-setting" data-manage-setting="alerts"><div><p>Usage alerts</p><p>80% · 100%</p></div><button type="button" class="manage-edit" aria-label="Edit usage alerts">Edit</button></div>
+        <div class="manage-setting" data-manage-setting="resetCycle"><div><p>Reset cycle</p><p>Monthly</p></div><button type="button" class="manage-edit" aria-label="Edit reset cycle">Edit</button></div>
+      </section>
+      <section class="manage-features" aria-labelledby="manage-features-title">
+        <div class="manage-features-heading"><h3 id="manage-features-title">Features</h3><p>Control which features are available for this product.</p></div>
+        <div class="manage-feature"><span class="manage-feature-label" id="manage-feature-ai"><span class="manage-orb"><img src="/product-usage/assets/manage/ai.png" alt=""></span>AI Assistant</span><button class="manage-switch" type="button" role="switch" aria-checked="true" aria-labelledby="manage-feature-ai" data-feature-toggle="ai"><span class="manage-switch-thumb" aria-hidden="true"></span></button></div>
+        <div class="manage-feature"><span class="manage-feature-label" id="manage-feature-editor"><span class="manage-orb"><img src="/product-usage/assets/manage/editor.png" alt=""></span>Document Editor</span><button class="manage-switch" type="button" role="switch" aria-checked="true" aria-labelledby="manage-feature-editor" data-feature-toggle="editor"><span class="manage-switch-thumb" aria-hidden="true"></span></button></div>
+        <div class="manage-feature"><span class="manage-feature-label" id="manage-feature-analytics"><span class="manage-orb"><img src="/product-usage/assets/manage/analytics.png" alt=""></span>Analytics</span><button class="manage-switch" type="button" role="switch" aria-checked="true" aria-labelledby="manage-feature-analytics" data-feature-toggle="analytics"><span class="manage-switch-thumb" aria-hidden="true"></span></button></div>
+        <div class="manage-feature"><span class="manage-feature-label" id="manage-feature-settings"><span class="manage-orb"><img src="/product-usage/assets/manage/settings.png" alt=""></span>Settings</span><button class="manage-switch" type="button" role="switch" aria-checked="true" aria-labelledby="manage-feature-settings" data-feature-toggle="settings"><span class="manage-switch-thumb" aria-hidden="true"></span></button></div>
+        <div class="manage-feature"><span class="manage-feature-label" id="manage-feature-support"><span class="manage-orb"><img src="/product-usage/assets/manage/support.png" alt=""></span>Help &amp; Support</span><button class="manage-switch" type="button" role="switch" aria-checked="true" aria-labelledby="manage-feature-support" data-feature-toggle="support"><span class="manage-switch-thumb" aria-hidden="true"></span></button></div>
+      </section>
+    </div>
+  </dialog>
   <div id="status" class="toast" role="status" aria-live="polite" hidden></div>

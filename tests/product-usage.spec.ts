@@ -163,8 +163,9 @@ test('search styling, six hover-only detail variants, menus, filtered CSV and Es
   const text = Buffer.concat(chunks).toString('utf8')
   expect(text).toContain('Document Editor'); expect(text).not.toContain('AI Assistant')
   await root.getByRole('button', { name: 'Manage product', exact: true }).click()
-  await root.getByRole('button', { name: 'View features', exact: true }).click()
-  await expect(root.locator('tbody tr')).toHaveCount(6)
+  await root.getByRole('dialog', { name: 'Manage product', exact: true }).getByRole('button', { name: 'Close Manage product' }).click()
+  // The modal no longer resets the current category selection.
+  await expect(root.locator('tbody tr')).toHaveCount(1)
   expect(errors).toEqual([])
 })
 
