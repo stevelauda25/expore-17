@@ -1,0 +1,25 @@
+[WebServer] (node:24030) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 12 tests using 1 worker
+
+(node:24039) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/facility.spec.ts:243:1 › Phase 2: compact surfaces coordinate, dismiss, restore focus and support keyboard menus (3.7s)
+  ✓   2 [chromium] › tests/facility.spec.ts:281:1 › Phase 2: sidebar, breadcrumbs and host lifecycle preserve selection and close floating UI (1.6s)
+  ✓   3 [chromium] › tests/facility.spec.ts:307:1 › Phase 2: motion is restrained and reduced motion removes animation without disabling controls (1.2s)
+  ✓   4 [chromium] › tests/facility.spec.ts:323:1 › Phase 2: hover, pressed, visible focus and floating bounds remain restrained (2.4s)
+(node:24063) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [firefox] › tests/facility.spec.ts:243:1 › Phase 2: compact surfaces coordinate, dismiss, restore focus and support keyboard menus (4.4s)
+  ✓   6 [firefox] › tests/facility.spec.ts:281:1 › Phase 2: sidebar, breadcrumbs and host lifecycle preserve selection and close floating UI (2.0s)
+  ✓   7 [firefox] › tests/facility.spec.ts:307:1 › Phase 2: motion is restrained and reduced motion removes animation without disabling controls (1.4s)
+  ✓   8 [firefox] › tests/facility.spec.ts:323:1 › Phase 2: hover, pressed, visible focus and floating bounds remain restrained (2.2s)
+(node:24085) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [webkit] › tests/facility.spec.ts:243:1 › Phase 2: compact surfaces coordinate, dismiss, restore focus and support keyboard menus (4.2s)
+  ✓  10 [webkit] › tests/facility.spec.ts:281:1 › Phase 2: sidebar, breadcrumbs and host lifecycle preserve selection and close floating UI (1.8s)
+  ✓  11 [webkit] › tests/facility.spec.ts:307:1 › Phase 2: motion is restrained and reduced motion removes animation without disabling controls (775ms)
+  ✓  12 [webkit] › tests/facility.spec.ts:323:1 › Phase 2: hover, pressed, visible focus and floating bounds remain restrained (2.4s)
+
+  12 passed (30.7s)

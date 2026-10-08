@@ -1,7 +1,9 @@
-import type { Equipment } from '../data/equipment'
+import { Popover, type PopoverState } from './Popover'
+import { defaultEquipment, type Equipment } from '../data/equipment'
 import { Icon } from './Icon'
 
-function FindingCard() {
+function FindingCard({ popovers }: { popovers: PopoverState }) {
+  const log = defaultEquipment.controlLog!
   return (
     <section className="finding-card" data-geometry="finding" aria-labelledby="facility-finding-title">
       <div className="finding-rings" aria-hidden="true">
@@ -16,9 +18,9 @@ function FindingCard() {
         <p>AHU-03 is the largest outlier. Event override OV-882</p>
         <p>was enabled on 22 Sep and has no end timestamp.</p>
       </div>
-      <button className="control-log-button" type="button" aria-disabled="true">
+      <Popover name="control-log" state={popovers} label="Control log CL-203" placement="bottom-end" trigger={props => <button {...props} className="control-log-button" type="button">
         <Icon name="control-log" /><span>Control log CL-203</span><Icon name="expand" />
-      </button>
+      </button>}>{() => <><h2>Control log: {log.id}</h2><p>AHU-03 · Library East</p><dl className="inspection-facts"><div><dt>Override</dt><dd>{log.override}</dd></div><div><dt>Enabled</dt><dd>{log.enabled}</dd></div><div><dt>End timestamp</dt><dd>{log.endTimestamp}</dd></div><div><dt>Source</dt><dd>{log.source}</dd></div></dl></>}</Popover>
     </section>
   )
 }
@@ -54,10 +56,10 @@ function ReviewContext() {
   )
 }
 
-export function ContextPanel({ selected }: { selected: Equipment }) {
+export function ContextPanel({ selected, popovers }: { selected: Equipment; popovers: PopoverState }) {
   return (
     <aside className="context-panel" aria-label="Equipment findings and context">
-      <FindingCard />
+      <FindingCard popovers={popovers} />
       <EquipmentContext selected={selected} />
       <ReviewContext />
     </aside>

@@ -1,0 +1,16 @@
+[WebServer] (node:23808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:23810) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium] › tests/facility.spec.ts:323:1 › Phase 2: hover, pressed, visible focus and floating bounds remain restrained (2.2s)
+(node:23826) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [firefox] › tests/facility.spec.ts:323:1 › Phase 2: hover, pressed, visible focus and floating bounds remain restrained (2.6s)
+(node:23836) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [webkit] › tests/facility.spec.ts:323:1 › Phase 2: hover, pressed, visible focus and floating bounds remain restrained (2.7s)
+
+  3 passed (9.7s)

@@ -1,0 +1,3 @@
+[
+  "[JavaScript Warning: \"MouseEvent.mozInputSource is deprecated. Use PointerEvent.pointerType instead.\" {file: \"http://127.0.0.1:5190/node_modules/.vite/deps/@floating-ui_react.js?v=d696535f\" line: 550}]"
+]

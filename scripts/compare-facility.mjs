@@ -1,29 +1,22 @@
 import fs from 'node:fs'
 import { PNG } from 'pngjs'
 import pixelmatch from 'pixelmatch'
-const output = 'docs/qa/facility-app'
-const actual = PNG.sync.read(fs.readFileSync(`${output}/canonical-dpr1.png`))
-const results = []
-for (const file of ['phase1-baseline.png', 'figma-reference.png']) {
-  const reference = PNG.sync.read(fs.readFileSync(`${output}/source/${file}`))
-  if (actual.width !== 1440 || actual.height !== 734) throw Error('Canonical app dimensions changed')
-  const diff = new PNG({ width: 1440, height: 734 }), overlay = new PNG({ width: 1440, height: 734 })
-  const pixels = pixelmatch(reference.data, actual.data, diff.data, 1440, 734, { threshold: .1, includeAA: false })
-  let sum = 0, over16 = 0
-  for (let i = 0; i < actual.data.length; i += 4) {
-    let largest = 0
-    for (let c = 0; c < 3; c++) {
-      const delta = Math.abs(actual.data[i+c] - reference.data[i+c]); sum += delta; largest = Math.max(largest, delta)
-      overlay.data[i+c] = Math.round((actual.data[i+c] + reference.data[i+c]) / 2)
-    }
-    overlay.data[i+3] = 255
-    if (largest > 16) over16++
-  }
-  fs.writeFileSync(`${output}/${file}-diff.png`, PNG.sync.write(diff))
-  fs.writeFileSync(`${output}/${file}-overlay.png`, PNG.sync.write(overlay))
-  results.push({ reference: file, differentPixels: pixels, fraction: pixels / (1440*734), meanAbsoluteChannelDifference: sum / (1440*734*3), percentOver16: over16/(1440*734)*100 })
+const dir='docs/qa/facility-app/phase2'
+const actual=PNG.sync.read(fs.readFileSync(`${dir}/canonical-dpr1.png`))
+const results=[]
+for (const [label,file] of [['pre-phase2','pre-phase2-default.png'],['phase1','../source/phase1-baseline.png'],['figma','figma-reference.png']]) {
+ const ref=PNG.sync.read(fs.readFileSync(`${dir}/${file}`))
+ if(actual.width!==1440||actual.height!==734||ref.width!==1440||ref.height!==734)throw Error('Wrong viewport')
+ const diff=new PNG({width:1440,height:734}), overlay=new PNG({width:1440,height:734}), side=new PNG({width:2880,height:734})
+ const pixels=pixelmatch(ref.data,actual.data,diff.data,1440,734,{threshold:.1,includeAA:false})
+ let exact=0,sum=0
+ for(let y=0;y<734;y++)for(let x=0;x<1440;x++) {
+  const i=(y*1440+x)*4;let changed=false
+  for(let c=0;c<4;c++){overlay.data[i+c]=Math.round((actual.data[i+c]+ref.data[i+c])/2);side.data[(y*2880+x)*4+c]=ref.data[i+c];side.data[(y*2880+x+1440)*4+c]=actual.data[i+c];if(c<3){sum+=Math.abs(actual.data[i+c]-ref.data[i+c]);changed ||= actual.data[i+c]!==ref.data[i+c]}}
+  if(changed)exact++
+ }
+ for(const [suffix,img]of [['diff',diff],['overlay',overlay],['side-by-side',side]])fs.writeFileSync(`${dir}/${label}-${suffix}.png`,PNG.sync.write(img))
+ results.push({reference:label,differentPixels:pixels,exactDifferentPixels:exact,fraction:pixels/(1440*734),meanAbsoluteChannelDifference:sum/(1440*734*3)})
 }
-fs.writeFileSync(`${output}/comparison.json`, JSON.stringify({ results, note: 'Unmasked full app at equivalent dimensions. Source geometry gate remains 0.02px. Figma raster differences are diagnostic and require visual review, as in source closeout.' }, null, 2))
-console.log(JSON.stringify(results, null, 2))
-// Guard source preservation tightly; retain the source's diagnostic treatment of Figma.
-if (results[0].fraction > .001) throw Error('Source visual regression exceeds 0.1%; inspect the unmasked difference')
+fs.writeFileSync(`${dir}/visual-comparison.json`,JSON.stringify({viewport:[1440,734],dpr:1,zoom:1,results},null,2));console.log(JSON.stringify(results,null,2))
+if(results[0].exactDifferentPixels!==0) throw Error('Phase 2 default differs from the preserved pre-change capture; inspect the unmasked difference.')

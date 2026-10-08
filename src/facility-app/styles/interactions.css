@@ -1,0 +1,39 @@
+/* Phase 2 styles only affect interaction states and newly opened surfaces. */
+.facility-app-scope button { cursor: pointer; }
+.facility-app-scope .runtime-row[data-equipment] { cursor: pointer; transition: background-color 120ms ease-out; }
+.facility-app-scope .runtime-row[data-equipment]:not(.is-selected):hover { background: #fafafa; }
+.facility-app-scope .runtime-row.is-selected { transition-duration: 160ms; }
+.facility-app-scope .equipment-select { display: block; line-height: inherit; }
+.facility-app-scope .runtime-cell:focus-visible { outline: 2px solid var(--facility-green); outline-offset: -2px; }
+.facility-app-scope .runtime-cell:hover { outline: 1px solid rgb(0 0 0 / 18%); outline-offset: -1px; }
+.facility-app-scope .equipment-context { height: 148px; }
+.facility-app-scope .booked-hours { height: 36px; }
+.facility-app-scope :is(.nav-item, .workspace-button, .notification-button, .account-area, .breadcrumb-bar button) { transition: background-color 140ms ease-out, color 140ms ease-out; }
+.facility-app-scope :is(.nav-item, .workspace-button, .notification-button, .account-area, .breadcrumb-bar button):hover { background-color: rgb(1 128 47 / 5%); }
+.facility-app-scope button:active { filter: brightness(.94); }
+.facility-app-scope .control-log-button:focus-visible { outline-offset: -3px; }
+.facility-app-scope .facility-floating-position { z-index: 20; outline: none; }
+.facility-app-scope .facility-popover { min-width: 190px; max-width: 320px; padding: 12px; border: 1px solid #dde2df; border-radius: 8px; background: #fff; color: #17211b; box-shadow: 0 4px 16px rgb(0 0 0 / 10%); line-height: 1.5; }
+.facility-app-scope .facility-popover h2 { margin-bottom: 8px; }
+.facility-app-scope .facility-popover [role='menuitem'] { display: block; width: 100%; padding: 7px 8px; border-radius: 4px; }
+.facility-app-scope .facility-popover [role='menuitem']:is(:hover, :focus-visible) { background: #f1f6f2; }
+.facility-app-scope .facility-tooltip { z-index: 30; width: max-content; max-width: calc(100vw - 16px); padding: 7px 9px; border-radius: 5px; color: #fff; background: #27332c; font-size: 11px; line-height: 1.4; font-weight: 400; text-shadow: none; box-shadow: 0 2px 6px rgb(0 0 0 / 15%); pointer-events: none; }
+.facility-app-scope .inspection-drawer { position: fixed; inset: 0 0 0 auto; margin: 0; width: 390px; max-width: 100vw; height: 100dvh; max-height: 100dvh; overflow: auto; border: 0; border-left: 1px solid #dde2df; padding: 24px; color: #17211b; background: #fff; box-shadow: -4px 0 20px rgb(0 0 0 / 8%); line-height: 1.5; animation: facility-drawer-in 210ms ease-out; }
+.facility-app-scope .inspection-drawer::backdrop { background: rgb(20 35 25 / 12%); }
+.facility-app-scope .inspection-heading { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.facility-app-scope .inspection-heading h2 { font-size: 16px; margin-top: 6px; }
+.facility-app-scope .inspection-heading button { align-self: start; padding: 2px 8px; font-size: 24px; line-height: 1; }
+.facility-app-scope .inspection-drawer section { margin-top: 24px; }
+.facility-app-scope .inspection-drawer h3 { margin-bottom: 8px; }
+.facility-app-scope .inspection-runtime, .facility-app-scope .inspection-facts { margin: 12px 0 0; }
+.facility-app-scope :is(.inspection-runtime, .inspection-facts) > div { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-bottom: 1px solid #eef0ee; }
+.facility-app-scope :is(.inspection-runtime, .inspection-facts) dd { margin: 0; font-weight: 500; }
+.facility-app-scope .facility-placeholder { display: flex; flex-direction: column; gap: 16px; padding: 12px; line-height: 1.5; }
+.facility-app-scope .facility-placeholder h1 { font-size: 16px; }
+.facility-app-scope .facility-placeholder button { align-self: start; color: var(--facility-green); }
+.facility-app-scope .facility-notice { position: fixed; z-index: 15; left: 202px; top: 42px; display: flex; align-items: center; gap: 16px; padding: 10px 12px; background: #fff; border: 1px solid #dde2df; border-radius: 6px; box-shadow: 0 2px 8px rgb(0 0 0 / 8%); line-height: 1.5; }
+@keyframes facility-drawer-in { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .facility-app-scope *, .facility-app-scope *::before, .facility-app-scope *::after { animation: none !important; transition: none !important; }
+  .facility-app-scope .facility-motion { transform: none !important; opacity: 1 !important; }
+}

@@ -1,0 +1,31 @@
+{
+  "viewport": [
+    1440,
+    734
+  ],
+  "dpr": 1,
+  "zoom": 1,
+  "results": [
+    {
+      "reference": "pre-phase2",
+      "differentPixels": 0,
+      "exactDifferentPixels": 0,
+      "fraction": 0,
+      "meanAbsoluteChannelDifference": 0
+    },
+    {
+      "reference": "phase1",
+      "differentPixels": 131,
+      "exactDifferentPixels": 111496,
+      "fraction": 0.00012394035725098396,
+      "meanAbsoluteChannelDifference": 0.12662825461701482
+    },
+    {
+      "reference": "figma",
+      "differentPixels": 3337,
+      "exactDifferentPixels": 155772,
+      "fraction": 0.0031571677263094156,
+      "meanAbsoluteChannelDifference": 0.7478289938439803
+    }
+  ]
+}
