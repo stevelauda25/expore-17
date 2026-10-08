@@ -1,0 +1,12 @@
+{
+  "baseCommit": "e8566ea",
+  "comparedFiles": 132,
+  "changedFiles": [
+    "src/facility-app/styles/interactions.css"
+  ],
+  "sourceTemporaryUrls": false,
+  "sourceHttpUrls": false,
+  "deadAriaDisabled": false,
+  "freshFigmaSha256": "9e5849f1f470f655d452947af81674f645e062cbc1ba57f9a452fe4d945ed7d6",
+  "fontLicensePresent": true
+}

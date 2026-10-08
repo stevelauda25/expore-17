@@ -1,0 +1,377 @@
+[
+  {
+    "label": "Afterhours workspace",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Notifications",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Faults",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Sites",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Plans",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Logs",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Andrew account",
+    "outline": "solid",
+    "clipped": true
+  },
+  {
+    "label": "Afterhours",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Cedar Campus",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Select AHU-03 · Library East",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-03 / Mon 28 / 10 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-03 / Tue 29 / 10 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-03 / Wed 30 / 10 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-03 / Thu 01 / 10 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-03 / Fri 02 / 10 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-03 / Sat 03 / 5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-03 / Sun 04 / 5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Select AHU-01 · Atrium",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-01 / Mon 28 / 4 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-01 / Tue 29 / 4 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-01 / Wed 30 / 4 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-01 / Thu 01 / 4 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-01 / Fri 02 / 4 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-01 / Sat 03 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-01 / Sun 04 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Select AHU-07 · Studio Block",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-07 / Mon 28 / 3 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-07 / Tue 29 / 3 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-07 / Wed 30 / 3 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-07 / Thu 01 / 3 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-07 / Fri 02 / 3 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-07 / Sat 03 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-07 / Sun 04 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Select AHU-04 · Administration",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-04 / Mon 28 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-04 / Tue 29 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-04 / Wed 30 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-04 / Thu 01 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-04 / Fri 02 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-04 / Sat 03 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-04 / Sun 04 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Select AHU-05 · Workshop",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-05 / Mon 28 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-05 / Tue 29 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-05 / Wed 30 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-05 / Thu 01 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-05 / Fri 02 / 2 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-05 / Sat 03 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-05 / Sun 04 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Select AHU-02 · Library West",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-02 / Mon 28 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-02 / Tue 29 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-02 / Wed 30 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-02 / Thu 01 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-02 / Fri 02 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-02 / Sat 03 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-02 / Sun 04 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Select AHU-06 · Lecture Hall",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-06 / Mon 28 / 0.5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-06 / Tue 29 / 0.5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-06 / Wed 30 / 0.5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-06 / Thu 01 / 0.5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-06 / Fri 02 / 1 hr after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-06 / Sat 03 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-06 / Sun 04 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Select AHU-08 · Archives",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-08 / Mon 28 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-08 / Tue 29 / 0.5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-08 / Wed 30 / 0.5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-08 / Thu 01 / 0.5 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-08 / Fri 02 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-08 / Sat 03 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "AHU-08 / Sun 04 / 0 hrs after schedule",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Control log CL-203",
+    "outline": "solid",
+    "clipped": false
+  },
+  {
+    "label": "Inspect AHU-08",
+    "outline": "solid",
+    "clipped": false
+  }
+]

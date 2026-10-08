@@ -1,0 +1,275 @@
+
+Running 12 tests using 1 worker
+
+(node:24959) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 [chromium] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus (1.8s)
+(node:24965) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   2 [chromium] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference (2.2s)
+(node:24973) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   3 [chromium] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion reduce (2.2s)
+  ✘   4 [chromium] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard (6.5s)
+(node:24980) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   5 [firefox] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus (2.5s)
+(node:25002) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   6 [firefox] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference (2.8s)
+(node:25013) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [firefox] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion reduce (2.4s)
+  ✘   8 [firefox] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard (7.2s)
+(node:25032) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   9 [webkit] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus (6.0s)
+(node:25057) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  10 [webkit] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference (2.3s)
+(node:25077) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [webkit] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion reduce (2.3s)
+  ✘  12 [webkit] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard (7.4s)
+
+
+  1) [chromium] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 12
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "clipped": false,
+    +     "label": "Afterhours workspace",
+    +     "outline": "none",
+    +   },
+    +   Object {
+    +     "clipped": true,
+    +     "label": "Andrew account",
+    +     "outline": "solid",
+    +   },
+    + ]
+
+      398 |   await writeFile(`${output}/keyboard-${info.project.name}.json`, JSON.stringify(focusAudit, null, 2))
+      399 |   expect(focusAudit).toHaveLength(75)
+    > 400 |   expect(focusAudit.filter(item => item.outline !== 'solid' || item.clipped)).toEqual([])
+          |                                                                               ^
+      401 | })
+      402 |
+      403 | for (const reducedMotion of ['no-preference', 'reduce'] as const) test(`Phase 3: full surface sequence and backdrop with motion ${reducedMotion}`, async ({ page }) => {
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:400:79
+
+    Error Context: test-results/facility-Phase-3-complete--e31dd-has-visible-unclipped-focus-chromium/error-context.md
+
+  2) [chromium] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "rgb(247, 247, 247)"
+    Received: "rgba(0, 0, 0, 0)"
+
+      166 |   await expect(row.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
+      167 |   expect(await row.evaluate(el => getComputedStyle(el, '::after').width)).toBe('2px')
+    > 168 |   expect(await row.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(247, 247, 247)')
+          |                                                                          ^
+      169 |   await expect(page.locator('.equipment-context')).toContainText(`Selected: ${item.area}`)
+      170 |   await expect(page.locator('.equipment-context')).toContainText(`${item.id} · ${item.equipmentType}`)
+      171 |   await expect(page.locator('.booked-hours')).toHaveText(`Booked hours: ${item.bookedHours}`)
+        at expectSelection (/Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:168:74)
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:433:3
+
+    Error Context: test-results/facility-Phase-3-full-surf-eb41b-p-with-motion-no-preference-chromium/error-context.md
+
+  3) [chromium] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('menuitem', { name: 'Account settings', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('menuitem', { name: 'Account settings', exact: true }) with timeout 5000ms
+      - waiting for getByRole('menuitem', { name: 'Account settings', exact: true })
+        14 × locator resolved to <button type="button" role="menuitem">Account settings</button>
+           - unexpected value "inactive"
+
+
+      447 |       await button.focus(); await page.keyboard.press('Space')
+      448 |       for (let i = 0; i < index; i++) await page.keyboard.press('ArrowDown')
+    > 449 |       await expect(page.getByRole('menuitem', { name: label, exact: true })).toBeFocused()
+          |                                                                              ^
+      450 |       await page.keyboard.press('Enter')
+      451 |       await expect(page.getByRole('status')).toContainText(label)
+      452 |       await expect(page.getByRole('menu')).toHaveCount(0); await expect(button).toBeFocused()
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:449:78
+
+    Error Context: test-results/facility-Phase-3-every-pro-39af3-readcrumb-works-by-keyboard-chromium/error-context.md
+
+  4) [firefox] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus
+
+    Error: expect(received).toEqual(expected) // deep equality
+
+    - Expected  -  1
+    + Received  + 12
+
+    - Array []
+    + Array [
+    +   Object {
+    +     "clipped": false,
+    +     "label": "Afterhours workspace",
+    +     "outline": "none",
+    +   },
+    +   Object {
+    +     "clipped": true,
+    +     "label": "Andrew account",
+    +     "outline": "solid",
+    +   },
+    + ]
+
+      398 |   await writeFile(`${output}/keyboard-${info.project.name}.json`, JSON.stringify(focusAudit, null, 2))
+      399 |   expect(focusAudit).toHaveLength(75)
+    > 400 |   expect(focusAudit.filter(item => item.outline !== 'solid' || item.clipped)).toEqual([])
+          |                                                                               ^
+      401 | })
+      402 |
+      403 | for (const reducedMotion of ['no-preference', 'reduce'] as const) test(`Phase 3: full surface sequence and backdrop with motion ${reducedMotion}`, async ({ page }) => {
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:400:79
+
+    Error Context: test-results/facility-Phase-3-complete--e31dd-has-visible-unclipped-focus-firefox/error-context.md
+
+  5) [firefox] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "rgb(247, 247, 247)"
+    Received: "rgba(248, 248, 248, 0.285)"
+
+      166 |   await expect(row.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
+      167 |   expect(await row.evaluate(el => getComputedStyle(el, '::after').width)).toBe('2px')
+    > 168 |   expect(await row.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(247, 247, 247)')
+          |                                                                          ^
+      169 |   await expect(page.locator('.equipment-context')).toContainText(`Selected: ${item.area}`)
+      170 |   await expect(page.locator('.equipment-context')).toContainText(`${item.id} · ${item.equipmentType}`)
+      171 |   await expect(page.locator('.booked-hours')).toHaveText(`Booked hours: ${item.bookedHours}`)
+        at expectSelection (/Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:168:74)
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:433:3
+
+    Error Context: test-results/facility-Phase-3-full-surf-eb41b-p-with-motion-no-preference-firefox/error-context.md
+
+  6) [firefox] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('menuitem', { name: 'Sign out', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('menuitem', { name: 'Sign out', exact: true }) with timeout 5000ms
+      - waiting for getByRole('menuitem', { name: 'Sign out', exact: true })
+        14 × locator resolved to <button type="button" role="menuitem">Sign out</button>
+           - unexpected value "inactive"
+
+
+      447 |       await button.focus(); await page.keyboard.press('Space')
+      448 |       for (let i = 0; i < index; i++) await page.keyboard.press('ArrowDown')
+    > 449 |       await expect(page.getByRole('menuitem', { name: label, exact: true })).toBeFocused()
+          |                                                                              ^
+      450 |       await page.keyboard.press('Enter')
+      451 |       await expect(page.getByRole('status')).toContainText(label)
+      452 |       await expect(page.getByRole('menu')).toHaveCount(0); await expect(button).toBeFocused()
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:449:78
+
+    Error Context: test-results/facility-Phase-3-every-pro-39af3-readcrumb-works-by-keyboard-firefox/error-context.md
+
+  7) [webkit] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  locator('.notification-button')
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" locator('.notification-button') with timeout 5000ms
+      - waiting for locator('.notification-button')
+        14 × locator resolved to <button type="button" aria-expanded="false" aria-haspopup="dialog" aria-label="Notifications" class="notification-button">…</button>
+           - unexpected value "inactive"
+
+
+      371 |   await controls[0].focus() // Establish the Facility entry point; all subsequent navigation uses keys.
+      372 |   for (const [i, control] of controls.entries()) {
+    > 373 |     await expect(control).toBeFocused()
+          |                           ^
+      374 |     const result = await control.evaluate(el => {
+      375 |       const r = el.getBoundingClientRect(), s = getComputedStyle(el)
+      376 |       const outset = Math.max(0, parseFloat(s.outlineWidth) + parseFloat(s.outlineOffset))
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:373:27
+
+    Error Context: test-results/facility-Phase-3-complete--e31dd-has-visible-unclipped-focus-webkit/error-context.md
+
+  8) [webkit] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "rgb(247, 247, 247)"
+    Received: "rgba(0, 0, 0, 0)"
+
+      166 |   await expect(row.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
+      167 |   expect(await row.evaluate(el => getComputedStyle(el, '::after').width)).toBe('2px')
+    > 168 |   expect(await row.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(247, 247, 247)')
+          |                                                                          ^
+      169 |   await expect(page.locator('.equipment-context')).toContainText(`Selected: ${item.area}`)
+      170 |   await expect(page.locator('.equipment-context')).toContainText(`${item.id} · ${item.equipmentType}`)
+      171 |   await expect(page.locator('.booked-hours')).toHaveText(`Booked hours: ${item.bookedHours}`)
+        at expectSelection (/Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:168:74)
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:433:3
+
+    Error Context: test-results/facility-Phase-3-full-surf-eb41b-p-with-motion-no-preference-webkit/error-context.md
+
+  9) [webkit] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard
+
+    Error: expect(locator).toBeFocused() failed
+
+    Locator:  getByRole('menuitem', { name: 'Sign out', exact: true })
+    Expected: focused
+    Received: inactive
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeFocused" getByRole('menuitem', { name: 'Sign out', exact: true }) with timeout 5000ms
+      - waiting for getByRole('menuitem', { name: 'Sign out', exact: true })
+        14 × locator resolved to <button type="button" role="menuitem">Sign out</button>
+           - unexpected value "inactive"
+
+
+      447 |       await button.focus(); await page.keyboard.press('Space')
+      448 |       for (let i = 0; i < index; i++) await page.keyboard.press('ArrowDown')
+    > 449 |       await expect(page.getByRole('menuitem', { name: label, exact: true })).toBeFocused()
+          |                                                                              ^
+      450 |       await page.keyboard.press('Enter')
+      451 |       await expect(page.getByRole('status')).toContainText(label)
+      452 |       await expect(page.getByRole('menu')).toHaveCount(0); await expect(button).toBeFocused()
+        at /Users/themustofano/ChatGPT/expore-17/tests/facility.spec.ts:449:78
+
+    Error Context: test-results/facility-Phase-3-every-pro-39af3-readcrumb-works-by-keyboard-webkit/error-context.md
+
+  9 failed
+    [chromium] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus
+    [chromium] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference
+    [chromium] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard
+    [firefox] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus
+    [firefox] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference
+    [firefox] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard
+    [webkit] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus
+    [webkit] › tests/facility.spec.ts:403:67 › Phase 3: full surface sequence and backdrop with motion no-preference
+    [webkit] › tests/facility.spec.ts:439:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard
+  3 passed (49.7s)

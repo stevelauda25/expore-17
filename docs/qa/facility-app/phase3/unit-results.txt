@@ -1,0 +1,42 @@
+
+> explore-component@0.0.0 test:unit
+> node --test src/components/date-picker/*.test.mjs src/product-usage/*.test.mjs && vitest run
+
+✔ local keys and sameDay use calendar fields rather than hours or UTC dates (0.889542ms)
+✔ day arithmetic handles year boundaries and Gregorian leap years without mutation (0.093292ms)
+✔ month navigation always chooses day 1, including from the 31st (0.073708ms)
+✔ calendar grids contain 42 distinct consecutive local days, Sunday through Saturday (0.683542ms)
+✔ ranges include both boundaries, normalize reversed selections, and allow one day (0.110958ms)
+✔ all presets have exact inclusive lengths and cross month/year boundaries (0.108625ms)
+✔ calendar arithmetic stays local through DST in New York and Los Angeles (101.302875ms)
+✔ every pair of 42 visible dates, including reverse order, produces exact endpoint-inclusive coverage (32.31675ms)
+✔ isolated segments round all corners while aligned neighboring edges remain flush (0.085208ms)
+✔ left, right, and both-side expansion round only the exposed neighboring corners (0.073125ms)
+✔ the requested three-row 5–7, 1–7, 1–6 shape rounds both step transitions (0.1065ms)
+✔ null, same local calendar day, and wholly off-grid selections have no segments (0.119791ms)
+✔ partial rows retain actual endpoints, including Saturday-only and Sunday-only segments (0.224ms)
+✔ clipping compares visible neighboring edges, even when both true endpoints are off-grid (0.220958ms)
+✔ adjacent-month dates share their actual calendar row instead of breaking at month boundaries (0.156375ms)
+✔ year rollover and leap-day ranges use continuous Sunday–Saturday geometry (0.111208ms)
+✔ Last 30 and Last 90 days produce clipped runs when navigating between covered months (0.2065ms)
+✔ non-noon selection boundaries use local calendar days and remain unmodified (0.071583ms)
+✔ activity totals include every feature exactly once in each period (0.8375ms)
+✔ search and category filters combine without altering source data (0.088667ms)
+✔ time-range mock counts are deterministic and Month restores source values (0.063959ms)
+✔ CSV exports only filtered rows, preserves numeric values, and escapes quotes (0.382125ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 169.606167
+
+ RUN  v5.0.3 /Users/themustofano/ChatGPT/expore-17
+
+
+ Test Files  4 passed (4)
+      Tests  21 passed (21)
+   Start at  19:38:22
+   Duration  163ms (transform 47%, import 43%, tests 7%, worker 2%)

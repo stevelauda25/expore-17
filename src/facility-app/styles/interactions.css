@@ -11,6 +11,8 @@
 .facility-app-scope :is(.nav-item, .workspace-button, .notification-button, .account-area, .breadcrumb-bar button) { transition: background-color 140ms ease-out, color 140ms ease-out; }
 .facility-app-scope :is(.nav-item, .workspace-button, .notification-button, .account-area, .breadcrumb-bar button):hover { background-color: rgb(1 128 47 / 5%); }
 .facility-app-scope button:active { filter: brightness(.94); }
+/* The account button touches the viewport edges; keep its focus ring inside. */
+.facility-app-scope .account-area:focus-visible { outline-offset: -3px; }
 .facility-app-scope .control-log-button:focus-visible { outline-offset: -3px; }
 .facility-app-scope .facility-floating-position { z-index: 20; outline: none; }
 .facility-app-scope .facility-popover { min-width: 190px; max-width: 320px; padding: 12px; border: 1px solid #dde2df; border-radius: 8px; background: #fff; color: #17211b; box-shadow: 0 4px 16px rgb(0 0 0 / 10%); line-height: 1.5; }

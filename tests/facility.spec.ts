@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test'
 import { readFile, writeFile } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 const source = 'docs/qa/facility-app/source'
-const output = 'docs/qa/facility-app/phase2'
+const output = process.env.FACILITY_QA_OUTPUT ?? 'docs/qa/facility-app/phase2'
 const tab = (page: Page, name: string) => page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab', { name, exact: true })
 async function activate(page: Page) {
   await tab(page, 'Facility app').click()
@@ -135,7 +135,7 @@ import { equipment, days } from '../src/facility-app/data/equipment'
 const interactionErrors = new WeakMap<Page, string[]>()
 const dependencyWarnings = new WeakMap<Page, string[]>()
 test.beforeEach(async ({ page }, info) => {
-  if (!info.title.startsWith('Phase 2:')) return
+  if (!/^Phase [23]:/.test(info.title)) return
   const errors: string[] = []
   interactionErrors.set(page, errors)
   page.on('pageerror', error => errors.push(error.message))
@@ -165,7 +165,7 @@ async function expectSelection(page: Page, item: typeof equipment[number]) {
   await expect(row).toHaveClass(/is-selected/)
   await expect(row.getByRole('button')).toHaveAttribute('aria-pressed', 'true')
   expect(await row.evaluate(el => getComputedStyle(el, '::after').width)).toBe('2px')
-  expect(await row.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(247, 247, 247)')
+  await expect(row).toHaveCSS('background-color', 'rgb(247, 247, 247)')
   await expect(page.locator('.equipment-context')).toContainText(`Selected: ${item.area}`)
   await expect(page.locator('.equipment-context')).toContainText(`${item.id} · ${item.equipmentType}`)
   await expect(page.locator('.booked-hours')).toHaveText(`Booked hours: ${item.bookedHours}`)
@@ -356,4 +356,113 @@ test('Phase 2: hover, pressed, visible focus and floating bounds remain restrain
   await lastFact.scrollIntoViewIfNeeded(); await expect(lastFact).toBeInViewport()
   await expect(lastFact).toHaveText('SourceManual override')
   await page.keyboard.press('Escape')
+})
+
+// Phase 3 adds uninterrupted keyboard traversal and full surface sequencing.
+test('Phase 3: complete forward/reverse keyboard path has visible, unclipped focus', async ({ page }, info) => {
+  await openFacility(page)
+  await page.mouse.move(1439, 1)
+  const controls = [page.locator('.workspace-button'), page.locator('.notification-button'),
+    ...['Faults', 'Sites', 'Plans', 'Logs'].map(name => page.getByRole('button', { name, exact: true })),
+    page.locator('.account-area'), ...['Afterhours', 'Cedar Campus'].map(name => page.locator('.breadcrumb-bar').getByRole('button', { name, exact: true })),
+    ...equipment.flatMap(item => [page.locator(`[data-equipment="${item.id}"] .equipment-select`), ...days.map((_, i) => page.locator(`[data-equipment="${item.id}"] .runtime-cell`).nth(i))]),
+    page.locator('.control-log-button'), page.locator('.inspect-button')]
+  const focusAudit = []
+  const nextKey = info.project.name === 'webkit' ? 'Alt+Tab' : 'Tab'
+  const previousKey = info.project.name === 'webkit' ? 'Alt+Shift+Tab' : 'Shift+Tab'
+  await page.keyboard.press(nextKey) // Enter keyboard modality before establishing the starting control.
+  await controls[0].focus() // Establish the Facility entry point; all subsequent navigation uses keys.
+  await page.keyboard.press(nextKey); await page.keyboard.press(previousKey)
+  for (const [i, control] of controls.entries()) {
+    await expect(control).toBeFocused()
+    const result = await control.evaluate(el => {
+      const r = el.getBoundingClientRect(), s = getComputedStyle(el)
+      const outset = Math.max(0, parseFloat(s.outlineWidth) + parseFloat(s.outlineOffset))
+      return { label: el.getAttribute('aria-label') ?? el.textContent, outline: s.outlineStyle,
+        clipped: r.x - outset < 0 || r.y - outset < 0 || r.right + outset > innerWidth || r.bottom + outset > innerHeight }
+    })
+    focusAudit.push(result)
+    if (await control.evaluate(el => el.classList.contains('equipment-select'))) {
+      await page.keyboard.press('Space')
+      await expect(control).toHaveAttribute('aria-pressed', 'true')
+    }
+    if (i === 6 && info.project.name === 'chromium') await page.screenshot({ path: `${output}/account-focus-keyboard.png` })
+    await page.keyboard.press('Escape')
+    if (i < controls.length - 1) await page.keyboard.press(nextKey)
+  }
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('dialog', { name: 'AHU-08 · Archives' })).toBeVisible()
+  await page.keyboard.press('Shift+Tab'); await page.keyboard.press('Tab')
+  await page.keyboard.press('Escape'); await expect(controls.at(-1)!).toBeFocused()
+  for (let i = controls.length - 2; i >= 0; i--) {
+    await page.keyboard.press(previousKey); await expect(controls[i]).toBeFocused()
+    await page.keyboard.press('Escape')
+  }
+  await expect(page.locator('.facility-app-scope [aria-disabled="true"]')).toHaveCount(0)
+  await writeFile(`${output}/keyboard-${info.project.name}.json`, JSON.stringify(focusAudit, null, 2))
+  expect(focusAudit).toHaveLength(75)
+  expect(focusAudit.filter(item => item.outline !== 'solid' || item.clipped)).toEqual([])
+})
+
+for (const reducedMotion of ['no-preference', 'reduce'] as const) test(`Phase 3: full surface sequence and backdrop with motion ${reducedMotion}`, async ({ page }) => {
+  await openFacility(page)
+  await page.emulateMedia({ reducedMotion })
+  const geometry = await page.locator('.runtime-card').boundingBox()
+  for (const name of ['Afterhours workspace', 'Notifications', 'Andrew account', 'Control log CL-203']) {
+    await page.getByRole('button', { name, exact: true }).click()
+    await expect(page.locator('.facility-popover')).toHaveCount(1)
+    await expect(page.getByRole('button', { name, exact: true })).toHaveAttribute('aria-expanded', 'true')
+    const content = page.locator('.facility-popover')
+    await expect(content).toBeVisible()
+    if (reducedMotion === 'reduce') {
+      expect(await content.evaluate(el => [getComputedStyle(el).transitionDuration, getComputedStyle(el).transform])).toEqual(['0s', 'none'])
+    }
+  }
+  await page.getByRole('button', { name: 'Inspect AHU-03' }).click()
+  await expect(page.locator('.facility-popover')).toHaveCount(0)
+  const drawer = page.locator('.inspection-drawer')
+  await expect(drawer).toBeVisible()
+  await page.mouse.click(400, 100) // The modal backdrop must block the underlying page.
+  await expect(drawer).toBeVisible()
+  await expect(page.locator('[data-equipment="AHU-03"]')).toHaveClass(/is-selected/)
+  expect(await page.locator('.runtime-card').boundingBox()).toEqual(geometry)
+  await drawer.locator('.inspection-facts > div').last().scrollIntoViewIfNeeded()
+  await expect(drawer.locator('.inspection-facts > div').last()).toBeInViewport()
+  expect(await drawer.evaluate(el => el.scrollWidth <= el.clientWidth)).toBe(true)
+  await page.keyboard.press('Escape'); await expect(drawer).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Inspect AHU-03' })).toBeFocused()
+  await page.keyboard.press('Escape'); await page.keyboard.press('Escape')
+  await expect(page.locator('.facility-popover, .inspection-drawer, .facility-tooltip')).toHaveCount(0)
+  await page.locator('[data-equipment="AHU-08"] .equipment-select').click()
+  await expectSelection(page, equipment[7])
+  await page.locator('[data-equipment="AHU-08"] .runtime-cell').first().hover()
+  await expect(page.getByRole('tooltip')).toContainText('0 hrs')
+  await page.keyboard.press('Escape'); await expect(page.getByRole('tooltip')).toHaveCount(0)
+})
+
+test('Phase 3: every prototype menu action and breadcrumb works by keyboard', async ({ page }) => {
+  await openFacility(page)
+  for (const [trigger, labels] of [
+    ['Afterhours workspace', ['Afterhours', 'Cedar Campus', 'Account settings']],
+    ['Andrew account', ['Profile', 'Preferences', 'Sign out']],
+  ] as const) {
+    const button = page.getByRole('button', { name: trigger, exact: true })
+    for (const [index, label] of labels.entries()) {
+      await button.focus(); await page.keyboard.press('Space')
+      await expect(page.getByRole('menuitem').first()).toBeFocused()
+      for (let i = 0; i < index; i++) await page.keyboard.press('ArrowDown')
+      await expect(page.getByRole('menuitem', { name: label, exact: true })).toBeFocused()
+      await page.keyboard.press('Enter')
+      await expect(page.getByRole('status')).toContainText(label)
+      await expect(page.getByRole('menu')).toHaveCount(0); await expect(button).toBeFocused()
+      await page.getByRole('button', { name: 'Dismiss message' }).click()
+    }
+  }
+  for (const label of ['Afterhours', 'Cedar Campus']) {
+    const button = page.locator('.breadcrumb-bar').getByRole('button', { name: label, exact: true })
+    await button.focus(); await page.keyboard.press('Enter')
+    await expect(page.getByRole('status')).toContainText(`${label} · Facilities overview`)
+    await expect(button).toBeFocused()
+    await page.getByRole('button', { name: 'Dismiss message' }).click()
+  }
 })
