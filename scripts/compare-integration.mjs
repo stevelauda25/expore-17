@@ -24,16 +24,16 @@ function difference(a, b, name, ceiling, masks = [], regions = {}) {
   const result = { name, rawFullFrameFraction: raw / (a.width * a.height), fraction: n / (a.width * a.height), ceiling, masks, crops }
   results.push(result)
 }
-for (const width of [1280, 1440, 1640, 1920]) for (const id of ['header', 'date-picker', 'profile']) difference(read(`${output}/baseline-${id}-${width}.png`), read(`${output}/integrated-${id}-${width}.png`), `isolation-${id}-${width}`, .001, [[width / 2 - 250, (width === 1640 ? 1060 : width === 1920 ? 1080 : 900) - 92, 500, 56]])
+for (const width of [1280, 1440, 1640, 1920]) for (const id of ['header', 'date-picker', 'profile']) difference(read(`${output}/baseline-${id}-${width}.png`), read(`${output}/integrated-${id}-${width}.png`), `isolation-${id}-${width}`, .001, [[width / 2 - 300, (width === 1640 ? 1060 : width === 1920 ? 1080 : 900) - 92, 600, 56]])
 for (const state of ['default', 'annotated', 'selection-explain']) {
   const regions = { header: [100, 100, 1440, 108], document: [412, 278, 816, 682], empty: [1240, 208, 300, 752], ...(state === 'selection-explain' ? { menu: [1194, 235, 394, 770], toolbar: [645, 556, 355, 45] } : {}) }
-  // The fourth-tab switcher is an intentional integration addition in the gray margin.
+  // The expanded five-tab switcher is an intentional integration addition in the gray margin.
   // Keep the original Figma ceilings and cursor mask; report raw full-frame differences too.
-  const masks = [[570, 968, 500, 56], ...(state === 'selection-explain' ? [[794, 651, 26, 25]] : [])]
+  const masks = [[520, 968, 600, 56], ...(state === 'selection-explain' ? [[794, 651, 26, 25]] : [])]
   difference(read(`${output}/reference/figma/${state}.png`), read(`${output}/inherited-phase-3/${state}-1640.png`), `figma-${state}`, .02, masks, regions)
   for (const width of [1640, 1920]) {
     const height = width === 1640 ? 1060 : 1080
-    difference(read(`${output}/reference/phase4/${state}-${width}.png`), read(`${output}/inherited-phase-3/${state}-${width}.png`), `source-${state}-${width}`, .001, [[width / 2 - 250, height - 92, 500, 56]])
+    difference(read(`${output}/reference/phase4/${state}-${width}.png`), read(`${output}/inherited-phase-3/${state}-${width}.png`), `source-${state}-${width}`, .001, [[width / 2 - 300, height - 92, 600, 56]])
   }
 }
 fs.writeFileSync(`${output}/comparison.json`, JSON.stringify({ threshold: .1, includeAA: false, results, shorterViewportNote: 'At 900px height, the shell is deliberately reduced from 860 to 782px and moved to y=16 to reserve the existing switcher. Full screenshots and geometry are reviewed without a misleading same-frame pixel gate.' }, null, 2))

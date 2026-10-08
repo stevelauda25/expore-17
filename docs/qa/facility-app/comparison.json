@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "reference": "phase1-baseline.png",
+      "differentPixels": 131,
+      "fraction": 0.00012394035725098396,
+      "meanAbsoluteChannelDifference": 0.12662825461701482,
+      "percentOver16": 0.06528156221616711
+    },
+    {
+      "reference": "figma-reference.png",
+      "differentPixels": 3337,
+      "fraction": 0.0031571677263094156,
+      "meanAbsoluteChannelDifference": 0.7478289938439803,
+      "percentOver16": 1.389740387526491
+    }
+  ],
+  "note": "Unmasked full app at equivalent dimensions. Source geometry gate remains 0.02px. Figma raster differences are diagnostic and require visual review, as in source closeout."
+}

@@ -1,0 +1,17 @@
+{
+  "family": "Inter",
+  "release": "3.19",
+  "axes": [
+    "wght",
+    "slnt"
+  ],
+  "weightsUsed": [
+    400,
+    500
+  ],
+  "file": "public/fonts/Inter.var.woff2",
+  "sha256": "85f08b5f51e36ca7e961a033c6bb61d7f0e44aa0984646383ecac648e98fdcc8",
+  "source": "https://github.com/rsms/inter/releases/tag/v3.19",
+  "license": "public/fonts/OFL.txt",
+  "reason": "Figma reports weight/slant variation axes. Locally installed Inter 4.001 had different text metrics and schedule wrapping."
+}

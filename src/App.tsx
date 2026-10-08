@@ -7,11 +7,15 @@ import { HeaderDemo } from './components/header/HeaderDemo'
 
 const DocumentEditorDemo = lazy(() => import('./document-editor/DocumentEditorDemo'))
 
+const FacilityAppDemo = lazy(() => import('./facility-app/FacilityAppDemo'))
+
 export default function App() {
   const [exploration, setExploration] = useState<Exploration>('header')
   const [editorVisited, setEditorVisited] = useState(false)
+  const [facilityVisited, setFacilityVisited] = useState(false)
   const switchExploration = (next: Exploration) => {
     if (next === 'document-editor') setEditorVisited(true)
+    if (next === 'facility-app') setFacilityVisited(true)
     setExploration(next)
   }
 
@@ -31,6 +35,9 @@ export default function App() {
       <ProfileDemo active={exploration === 'profile'} />
       <section id="exploration-panel-document-editor" className="exploration-panel document-editor-panel" role="tabpanel" aria-labelledby="exploration-tab-document-editor" hidden={exploration !== 'document-editor'} inert={exploration !== 'document-editor'} tabIndex={0}>
         {editorVisited && <Suspense fallback={<p className="document-editor-loading" role="status">Loading document editor…</p>}><DocumentEditorDemo active={exploration === 'document-editor'} /></Suspense>}
+      </section>
+      <section id="exploration-panel-facility-app" className="exploration-panel facility-app-panel" role="tabpanel" aria-labelledby="exploration-tab-facility-app" hidden={exploration !== 'facility-app'} inert={exploration !== 'facility-app'} tabIndex={0}>
+        {facilityVisited && <Suspense fallback={<p className="facility-app-loading" role="status">Loading Facility app…</p>}><FacilityAppDemo active={exploration === 'facility-app'} /></Suspense>}
       </section>
       <ExplorationSwitcher value={exploration} onChange={switchExploration} />
     </main>

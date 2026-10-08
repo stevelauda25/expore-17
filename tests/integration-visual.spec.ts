@@ -7,6 +7,9 @@ for (const width of [1280, 1440, 1640, 1920]) test(`playground isolation and edi
   await page.setViewportSize({ width, height })
   await page.clock.install({ time: new Date('2026-10-08T08:00:00Z') })
   await openEditor(page)
+  await page.getByRole('tab', { name: 'Facility app', exact: true }).click()
+  await expect(page.locator('.facility-app-scope')).toBeVisible()
+  await page.getByRole('tab', { name: 'Document editor', exact: true }).click()
   await mkdir(output, { recursive: true })
   const shell = (await page.getByTestId('app-shell').boundingBox())!
   const switcher = (await page.getByRole('tablist', { name: 'UI explorations' }).boundingBox())!
@@ -30,6 +33,9 @@ for (const width of [1280, 1440, 1640, 1920]) test(`playground isolation and edi
 test('resizing a live floating surface reserves the switcher and scrolls the editor internally', async ({ page }) => {
   await page.setViewportSize({ width: 1640, height: 1060 })
   await openEditor(page)
+  await page.getByRole('tab', { name: 'Facility app', exact: true }).click()
+  await expect(page.locator('.facility-app-scope')).toBeVisible()
+  await page.getByRole('tab', { name: 'Document editor', exact: true }).click()
   await selectText(page, 'Acme Studio')
   await page.getByRole('button', { name: 'Ask AI', exact: true }).click()
   for (const height of [900, 640, 480, 1060]) {

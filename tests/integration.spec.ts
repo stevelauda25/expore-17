@@ -4,12 +4,12 @@ import { activateEditor, documentJSON, openEditor, selectText, stored } from './
 const outerTab = (page: import('@playwright/test').Page, name: string) => page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab', { name, exact: true })
 test.beforeEach(async ({ page }) => { await page.setViewportSize({ width: 1640, height: 1060 }) })
 
-test('Header remains initial; four lazy tabs keep switcher semantics, indicator and keyboard focus', async ({ page }) => {
+test('Header remains initial; five lazy tabs keep switcher semantics, indicator and keyboard focus', async ({ page }) => {
   const editorRequests: string[] = []
   page.on('request', request => { if (request.url().includes('/src/document-editor/')) editorRequests.push(request.url()) })
   await page.goto('/')
   await expect(outerTab(page, 'Header')).toHaveAttribute('aria-selected', 'true')
-  await expect(page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab')).toHaveText(['Header', 'Date picker', 'Profile', 'Document editor'])
+  await expect(page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab')).toHaveText(['Header', 'Date picker', 'Profile', 'Document editor', 'Facility app'])
   await expect(page.getByTestId('document-editor')).toHaveCount(0)
   expect(editorRequests).toEqual([])
   await outerTab(page, 'Header').focus()
@@ -24,9 +24,9 @@ test('Header remains initial; four lazy tabs keep switcher semantics, indicator 
   expect(editorRequests.length).toBeGreaterThan(0)
   await expect(outerTab(page, 'Document editor')).toBeFocused()
   await page.keyboard.press('Home'); await expect(outerTab(page, 'Header')).toBeFocused()
-  await page.keyboard.press('End'); await expect(outerTab(page, 'Document editor')).toBeFocused()
+  await page.keyboard.press('End'); await expect(outerTab(page, 'Facility app')).toBeFocused()
   await expect(async () => {
-    const tab = (await outerTab(page, 'Document editor').boundingBox())!, indicator = (await page.locator('.exploration-switcher__indicator').boundingBox())!
+    const tab = (await outerTab(page, 'Facility app').boundingBox())!, indicator = (await page.locator('.exploration-switcher__indicator').boundingBox())!
     expect(Math.abs(tab.x - indicator.x)).toBeLessThanOrEqual(1)
     expect(Math.abs(tab.width - indicator.width)).toBeLessThanOrEqual(1)
   }).toPass()
@@ -85,7 +85,7 @@ test('hidden editor releases shortcuts, removes floating surfaces and cancels pe
   expect(cancelled).toEqual([false, false, false, false, false])
   await expect(outerTab(page, 'Header')).toBeFocused()
   await page.waitForTimeout(700)
-  await page.keyboard.press('End')
+  await page.keyboard.press('End'); await page.keyboard.press('ArrowLeft')
   await expect(outerTab(page, 'Document editor')).toBeFocused()
   await expect(page.getByText('Response cancelled.', { exact: true })).toBeVisible()
   await expect(page.getByTestId('explain-result')).toHaveCount(0)
@@ -93,7 +93,7 @@ test('hidden editor releases shortcuts, removes floating surfaces and cancels pe
   await page.getByRole('button', { name: 'Retry', exact: true }).click()
   await expect(page.getByTestId('explain-result')).toBeVisible()
   const result = await page.getByTestId('explain-result').innerText()
-  await outerTab(page, 'Header').click(); await page.keyboard.press('End')
+  await outerTab(page, 'Header').click(); await page.keyboard.press('End'); await page.keyboard.press('ArrowLeft')
   await expect(outerTab(page, 'Document editor')).toBeFocused()
   await expect(page.getByTestId('explain-result')).toHaveText(result)
   await page.getByTestId('explain-menu').press('Escape')
@@ -110,7 +110,7 @@ test('hidden editor releases shortcuts, removes floating surfaces and cancels pe
   await page.getByRole('button', { name: 'Ask AI', exact: true }).click()
   await page.getByTestId('explain-menu').getByRole('button', { name: /^Ask a question/ }).click()
   await page.getByLabel('Ask anything about this text').fill('Retained question draft')
-  await outerTab(page, 'Header').click(); await page.keyboard.press('End')
+  await outerTab(page, 'Header').click(); await page.keyboard.press('End'); await page.keyboard.press('ArrowLeft')
   await expect(outerTab(page, 'Document editor')).toBeFocused()
   await expect(page.getByLabel('Ask anything about this text')).toHaveValue('Retained question draft')
 })

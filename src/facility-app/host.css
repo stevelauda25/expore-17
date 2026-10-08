@@ -1,0 +1,8 @@
+.facility-app-scope {
+  height: 100%;
+  min-width: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  isolation: isolate;
+}
+.facility-app-scope button { cursor: default; }

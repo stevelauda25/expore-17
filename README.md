@@ -1,6 +1,6 @@
 # UI exploration playground
 
-React, TypeScript and Vite playground with four explorations: **Header**, **Date picker**, **Profile**, and **Document editor**. Header is selected initially. The existing switcher supports Arrow Left/Right, Home/End, linked tab panels, roving focus and its moving indicator.
+React, TypeScript and Vite playground with five explorations: **Header**, **Date picker**, **Profile**, **Document editor**, and **Facility app**. Header is selected initially. The existing switcher supports Arrow Left/Right, Home/End, linked tab panels, roving focus and its moving indicator.
 
 ## Run and verify
 
@@ -19,7 +19,7 @@ npm run build
 npm run preview
 # Install browser binaries once when needed:
 npx playwright install chromium firefox webkit
-# Complete integration acceptance gate (local test server uses port 5180):
+# Complete integration acceptance gate (local test server uses port 5190):
 npm run audit:integration
 ```
 
@@ -78,3 +78,11 @@ The menu is centered relative to the Header container, matching its Figma CENTER
 Products opens on mouse hover; clicking toggles its current state. A pointer bridge and 150ms close grace period allow travel into the menu. Outside pointer presses, Escape, and focus leaving the disclosure close it. Enter/Space toggle; ArrowDown opens and focuses the first link. Tab follows every link normally without a focus trap. Escape and prototype link activation return focus safely when needed. The nonmodal popup uses matching `aria-haspopup="dialog"` and `role="dialog"` semantics, `aria-expanded`, `aria-controls`, and `inert` while closed.
 
 Motion uses 160ms entry, 120ms exit, and 140ms hover transitions. Reduced-motion preferences remove the dropdown transition. At narrower widths, the navigation wraps into a second row and product columns stack; no hamburger navigation is introduced. The menu is viewport-constrained and scrolls on small/short screens, reserving space for the switcher.
+
+## Facility app — Phase 1
+
+The fifth tab is the actual Phase 1 Afterhours / Cedar Campus application, imported from source commit `c0721e579d703765312372213c1ec7daed5e6b2e`. It loads on first activation and remains mounted, including its internal scroll position. Its source layout stays at least 1440 × 734; narrower/shorter hosts scroll inside the panel. A separate bottom area keeps the shared switcher clear of Facility controls.
+
+AHU-03 / Library East and Sites remain the static defaults. Selection, menus, navigation, inspection/control-log panels and additional keyboard behavior belong to a later Phase 2 task. Original local artwork and Inter 3.19/OFL are preserved under `public/facility-app`; production has no source dev entry point or fixture.
+
+[Facility handoff](docs/handoffs/facility-app-integration.md) includes the source mapping and future update path. [Facility QA](docs/qa/facility-app/README.md) records the gate, screenshots and deployment verification.

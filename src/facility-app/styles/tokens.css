@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "Facility Inter";
+  src: url('/facility-app/fonts/Inter.var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+
+.facility-app-scope {
+  font-family: "Facility Inter", sans-serif;
+  color-scheme: light;
+  text-rendering: auto;
+  letter-spacing: normal;
+  font-optical-sizing: none;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 400;
+  color: #000;
+  background: #fcfcfc;
+  --facility-canvas: #fcfcfc;
+  --facility-card: #fff;
+  --facility-secondary: #5f6b69;
+  --facility-nav-muted: #626c6b;
+  --facility-green: #01802f;
+  --facility-selected: #f7f7f7;
+  --facility-divider: rgb(0 0 0 / 10%);
+  --facility-card-radius: 8px;
+  --facility-button-radius: 6px;
+  --facility-cell-radius: 4px;
+  --facility-sidebar-width: 180px;
+  --facility-topbar-height: 36px;
+  --facility-bottom-bar-height: 48px;
+  --facility-green-gradient: linear-gradient(180deg, transparent, rgb(0 0 0 / 20%)), var(--facility-green);
+  --facility-raised-shadow: 0 2px 4px -2px rgb(0 0 0 / 10%), 0 4px 8px -2px rgb(0 0 0 / 8%);
+  --facility-surface-inset: inset 0 .5px .5px rgb(255 255 255 / 10%), inset 0 -.5px .5px rgb(0 0 0 / 10%);
+  --facility-cell-inset: var(--facility-surface-inset), inset 0 0 0 .5px rgb(0 0 0 / 10%);
+  --facility-card-shadow: 0 .5px 1px -1px rgb(0 0 0 / 4%), 0 1px 2px -2px rgb(0 0 0 / 2%);
+}

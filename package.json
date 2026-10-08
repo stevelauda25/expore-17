@@ -11,7 +11,7 @@
     "preview": "vite preview",
     "test:unit": "node --test src/components/date-picker/*.test.mjs && vitest run",
     "test:browser": "playwright test",
-    "audit:integration": "npm run lint && npm run typecheck && npm run test:unit && npm run build && node scripts/check-production.mjs && npm run test:browser && node scripts/compare-integration.mjs"
+    "audit:integration": "npm run lint && npm run typecheck && npm run test:unit && npm run build && node scripts/check-production.mjs && npm run test:browser && node scripts/compare-integration.mjs && node scripts/compare-facility.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",

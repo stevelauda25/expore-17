@@ -1,0 +1,384 @@
+{
+  "figmaFile": "GdagXhVqcEZsgr2PAskZh6",
+  "frame": "3061:6417",
+  "assets": [
+    {
+      "file": "public/assets/figma/finding-ring-outer.png",
+      "nodeId": "3061:6515",
+      "sourceFile": "fa238.png",
+      "bytes": 138974,
+      "sha256": "9565e0000529a262d189e1cb7a3665b9e3728c8ceaf60a66ba511a15eb8c78bc",
+      "expectedSlots": [
+        [
+          1056.137,
+          15.137,
+          417.726,
+          417.726
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/finding-ring-middle.png",
+      "nodeId": "3061:6516",
+      "sourceFile": "98e20.png",
+      "bytes": 110498,
+      "sha256": "aa2d0c8fc7d538b0cefe8827ec6880176dca9fc0953daac11d1fee3fddabcdfb",
+      "expectedSlots": [
+        [
+          1086.084,
+          45.387,
+          357.246,
+          357.246
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/finding-ring-inner.png",
+      "nodeId": "3061:6517",
+      "sourceFile": "17f5e.png",
+      "bytes": 90946,
+      "sha256": "f35b735718624b13bb2cee6181096db3f8b479485cf6ec6666a04802ae08e569",
+      "expectedSlots": [
+        [
+          1110.746,
+          74.746,
+          308.509,
+          308.509
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/finding-ring-center.png",
+      "nodeId": "3061:6518",
+      "sourceFile": "df477.png",
+      "bytes": 68078,
+      "sha256": "45860d888623c361738f863399d54aa760ee6136a1256e106fe96f18443f8083",
+      "expectedSlots": [
+        [
+          1136.582,
+          100.582,
+          256.249,
+          256.249
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/nav-faults.svg",
+      "nodeId": "3061:6420",
+      "sourceFile": "99916.svg",
+      "bytes": 1123,
+      "sha256": "544a6234845e38802e808e7a48063dd29f9a740887b9df1c6b7e1d3e1c000662",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          12,
+          48,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/nav-sites.svg",
+      "nodeId": "3061:6426",
+      "sourceFile": "a9752.svg",
+      "bytes": 1787,
+      "sha256": "ebf6689afb0cdac74cd524cf1b99d6d0b663e7c424e270fc9b466aef517cb5c6",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          12,
+          74,
+          12,
+          12
+        ],
+        [
+          1112,
+          352,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/nav-plans.svg",
+      "nodeId": "3061:6440",
+      "sourceFile": "84082.svg",
+      "bytes": 1164,
+      "sha256": "16ad4744f039d59196e03204ff1d56075b69465bbf99a78e43a41dcdfe689633",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          12,
+          100,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/nav-logs.svg",
+      "nodeId": "3061:6446",
+      "sourceFile": "ae09e.svg",
+      "bytes": 1175,
+      "sha256": "4a2d6a0d4d95675b14f23ca22b452111619dadd0a86fe18990b3b2cdcdebf84f",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          12,
+          126,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/breadcrumb-chevron.svg",
+      "nodeId": "3061:6460",
+      "sourceFile": "18a73.svg",
+      "bytes": 300,
+      "sha256": "31f42587a047a80401c2e227cdbf7b4b287191c74c81b49269f3631798878bf0",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          265,
+          12,
+          12,
+          12
+        ],
+        [
+          366,
+          12,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/inspect-arrow.svg",
+      "nodeId": "3061:6470",
+      "sourceFile": "b8ffb.svg",
+      "bytes": 419,
+      "sha256": "94cbe6d17fdbf9e16481110f740b0b7d823c79d85022e5a93600a76ae8e4bd09",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          1410,
+          704,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/afterhours-logomark.svg",
+      "nodeId": "I3061:6475;1294:160455",
+      "sourceFile": "66932.svg",
+      "bytes": 872,
+      "sha256": "adc99fb843e7309624b2030fc3cfd1c7de7ab5bf0e4dbee0a69e1f6a32250046",
+      "intrinsicWidth": 10.9091,
+      "intrinsicHeight": 11.0,
+      "expectedSlots": [
+        [
+          12.54545,
+          12.5,
+          10.9091,
+          11
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/notifications.svg",
+      "nodeId": "3061:6477",
+      "sourceFile": "71ccd.svg",
+      "bytes": 1410,
+      "sha256": "2ad4123543e3bd44bd2e5d11503e9c14d717f954dd94c610aec4763683de9fb8",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          160,
+          12,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/metric-energy.svg",
+      "nodeId": "3061:6491",
+      "sourceFile": "15415.svg",
+      "bytes": 1515,
+      "sha256": "161539e983500c9c71ca4f5f6a823cdaebf233537f11ba06afce4eebaabdd868",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          202,
+          132,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/metric-anomaly.svg",
+      "nodeId": "3061:6498",
+      "sourceFile": "b1a5c.svg",
+      "bytes": 503,
+      "sha256": "5f24d1a9caa2ba598ca742b365f539bf4144729e623b3629812e5ad0d369acf5",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          502,
+          132,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/metric-clock.svg",
+      "nodeId": "3061:6507",
+      "sourceFile": "b1e18.svg",
+      "bytes": 717,
+      "sha256": "a364353a3b620c97f29dd0068fb9bb7cda538a8ed68e958ee6102937184bf965",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          802,
+          132,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/finding-sparkles.svg",
+      "nodeId": "3061:6520",
+      "sourceFile": "3e690.svg",
+      "bytes": 2117,
+      "sha256": "8b00e946e2c1394165306171aa24f8e2bb24847739a0891798076ec39f2189b4",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          1112,
+          132,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/control-log.svg",
+      "nodeId": "3061:6532",
+      "sourceFile": "3112c.svg",
+      "bytes": 1139,
+      "sha256": "37445529752eba9a0967ba7573930b0a34eccec38c17a84a974720051594f865",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          1112,
+          306,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/expand.svg",
+      "nodeId": "3061:6537",
+      "sourceFile": "3d0fa.svg",
+      "bytes": 632,
+      "sha256": "83af2cf049a7f1c5a37b2118fd90a6442df43c0ac036a49f8dada58a72b05a19",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          1406,
+          306,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/coverage.svg",
+      "nodeId": "3061:6561",
+      "sourceFile": "748cd.svg",
+      "bytes": 509,
+      "sha256": "bd4704a321699ca2397ad64320b0bc2f2050c9de9f28afbb4e2825a51fc3f52f",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          1112,
+          464,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/review-context.svg",
+      "nodeId": "3061:6568",
+      "sourceFile": "e23b1.svg",
+      "bytes": 1378,
+      "sha256": "559dd34e771c9ff200e11cc40ea98877e5bff46ae859cce75b72677a80cad8b8",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          1112,
+          510,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/weather.svg",
+      "nodeId": "3061:6578",
+      "sourceFile": "bea0a.svg",
+      "bytes": 1737,
+      "sha256": "1adfed995a4ea8fcff67bc69e1ddb798795e398c08e5adb2a06db60a1bc6feed",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          1112,
+          546,
+          12,
+          12
+        ]
+      ]
+    },
+    {
+      "file": "public/assets/figma/unverified.svg",
+      "nodeId": "3061:6596",
+      "sourceFile": "527a3.svg",
+      "bytes": 836,
+      "sha256": "39e1451a3169689460323da4c008ef916276342af0d68421f7852b25d2c7ec6a",
+      "intrinsicWidth": 12.0,
+      "intrinsicHeight": 12.0,
+      "expectedSlots": [
+        [
+          1112,
+          611,
+          12,
+          12
+        ]
+      ]
+    }
+  ]
+}

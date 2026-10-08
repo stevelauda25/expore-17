@@ -90,3 +90,10 @@ a {
 @media (max-width: 460px) {
   .exploration-switcher { max-width: calc(100vw - 24px); height: auto; flex-wrap: wrap; justify-content: center; }
 }
+
+/* Facility preserves its 1440 × 734 minimum canvas inside a scrollable host.
+   Reserve 118px for the existing bottom switcher, including its clear space. */
+.exploration-page--facility-app { height: 100dvh; min-height: 100dvh; background: #ebebeb; color-scheme: light; }
+.facility-app-panel { bottom: 118px; }
+.facility-app-loading { color: #5f6b69; text-align: center; margin: 80px 16px; }
+@media (max-height: 500px) { .facility-app-panel { bottom: 86px; } }

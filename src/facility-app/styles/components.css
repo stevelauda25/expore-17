@@ -1,0 +1,54 @@
+/* Figma strokes are drawn inside the bounds; they must not consume layout space. */
+.facility-app-scope .card { position: relative; background: var(--facility-card); border-radius: var(--facility-card-radius); box-shadow: var(--facility-card-shadow); overflow: hidden; }
+.facility-app-scope .card::after { content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; box-shadow: inset 0 0 0 .5px var(--facility-divider), var(--facility-surface-inset); }
+.facility-app-scope .raised-surface { position: relative; box-shadow: var(--facility-raised-shadow); }
+.facility-app-scope .raised-surface::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: var(--facility-cell-inset); }
+.facility-app-scope .metric-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); height: 88px; }
+.facility-app-scope .metric { display: flex; flex-direction: column; gap: 10px; padding: 14px 12px; white-space: nowrap; }
+.facility-app-scope .metric:not(:last-child) { box-shadow: inset -.5px 0 var(--facility-divider); }
+.facility-app-scope .metric-value { font-size: 16px; font-weight: 500; }
+.facility-app-scope .runtime-card { padding-bottom: 4px; }
+.facility-app-scope .runtime-intro { display: flex; flex-direction: column; gap: 8px; padding: 14px 12px; height: 60px; box-shadow: inset 0 -.5px var(--facility-divider); }
+.facility-app-scope .runtime-table { display: block; width: 100%; border-spacing: 0; font-weight: 500; }
+.facility-app-scope .runtime-table thead, .facility-app-scope .runtime-table tbody { display: block; }
+.facility-app-scope .runtime-row { display: grid; grid-template-columns: 89px 108px repeat(7, minmax(0, 1fr)) 120px; gap: 8px; padding: 4px; height: 44px; position: relative; align-items: center; }
+.facility-app-scope .runtime-row th, .facility-app-scope .runtime-row td { border: 0; font: inherit; min-width: 0; white-space: nowrap; }
+.facility-app-scope .equipment-cell { padding: 12px 8px; text-align: left; }
+.facility-app-scope .area-cell { padding: 12px; text-align: left; }
+.facility-app-scope .day-heading, .facility-app-scope .total-cell { padding: 12px; text-align: center; }
+.facility-app-scope .total-heading { padding: 12px 8px; text-align: center; }
+.facility-app-scope .column-headings { color: var(--facility-secondary); }
+.facility-app-scope .runtime-row.is-selected { background: var(--facility-selected); }
+.facility-app-scope .runtime-row.is-selected::after { content: ''; position: absolute; top: -1px; left: 0; width: 2px; height: 46px; background: var(--facility-green); border-radius: 0 9px 9px 0; }
+.facility-app-scope .runtime-cell { display: grid; place-items: center; height: 36px; padding: 12px; border-radius: 4px; background: white; text-shadow: 0 .5px 2px rgb(0 0 0 / 10%); }
+.facility-app-scope .runtime-cell[data-runtime='0.5'] { background: #f2f9f5; }
+.facility-app-scope .runtime-cell[data-runtime='1'] { background: #e6f2ea; }
+.facility-app-scope .runtime-cell[data-runtime='2'] { background: #cce6d5; }
+.facility-app-scope .runtime-cell[data-runtime='3'] { background: #b3d9c1; }
+.facility-app-scope .runtime-cell[data-runtime='4'] { background: #99ccac; }
+.facility-app-scope .runtime-cell[data-runtime='5'] { background: #80bf97; }
+.facility-app-scope .runtime-cell[data-runtime='10'] { background: var(--facility-green-gradient); color: #fff; text-shadow: 0 1px 2px rgb(0 0 0 / 25%); }
+.facility-app-scope .finding-card { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: stretch; gap: 10px; height: 212px; padding: 14px 2px 2px; border-radius: 8px; overflow: hidden; color: #fff; background: linear-gradient(180deg, transparent, rgb(0 0 0 / 30%)), var(--facility-green); box-shadow: var(--facility-raised-shadow); }
+.facility-app-scope .finding-card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 .5px .5px rgb(255 255 255 / 25%), inset 0 -.5px .5px rgb(0 0 0 / 15%), inset 0 0 0 .5px var(--facility-divider); }
+.facility-app-scope .finding-rings { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .12; }
+/* Each original PNG already contains the ellipse's 40% opacity. The Figma
+   parent group applies 12% to the composited stack, not 5% to each export. */
+.facility-app-scope .finding-ring { position: absolute; }
+/* Original blurred PNG extents include a 43.863px outset around each ellipse. */
+.facility-app-scope .ring-outer { width: 417.726px; height: 417.726px; left: -43.863px; top: -102.863px; }
+.facility-app-scope .ring-middle { width: 357.246px; height: 357.246px; left: -13.916px; top: -72.613px; }
+.facility-app-scope .ring-inner { width: 308.509px; height: 308.509px; left: 10.746px; top: -43.254px; }
+.facility-app-scope .ring-center { width: 256.249px; height: 256.249px; left: 36.582px; top: -17.418px; }
+.facility-app-scope .finding-eyebrow { padding-left: 10px; font-weight: 500; }
+.facility-app-scope .finding-card h2 { padding-left: 10px; font-size: 16px; }
+.facility-app-scope .finding-description { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 0 10px; color: rgb(255 255 255 / 80%); }
+.facility-app-scope .finding-description p { white-space: nowrap; }
+.facility-app-scope .control-log-button { position: relative; display: flex; align-items: center; gap: 6px; height: 32px; flex: none; padding: 10px; border-radius: 6px; background: #fff; color: #000; font-weight: 500; box-shadow: inset 0 0 0 .5px rgb(0 0 0 / 20%), var(--facility-surface-inset), 0 .5px .5px rgb(0 0 0 / 4%), 0 1px 1px rgb(0 0 0 / 2%); }
+.facility-app-scope .control-log-button span { flex: 1; }
+.facility-app-scope .context-heading { padding: 12px; height: 36px; color: var(--facility-secondary); box-shadow: inset 0 -.5px var(--facility-divider); }
+.facility-app-scope .equipment-details { display: flex; flex-direction: column; gap: 6px; padding: 12px 12px 10px; box-shadow: inset 0 -.5px var(--facility-divider); }
+.facility-app-scope .booked-hours { line-height: 1.5; }
+.facility-app-scope .coverage { height: 36px; padding: 12px; color: var(--facility-secondary); background: var(--facility-canvas); font-weight: 500; }
+.facility-app-scope .review-details { display: flex; flex-direction: column; gap: 12px; padding: 12px; }
+.facility-app-scope .review-item { display: flex; flex-direction: column; gap: 5px; }
+.facility-app-scope .review-item p { padding-left: 18px; line-height: 1.5; }

@@ -4,14 +4,14 @@
   "results": [
     {
       "name": "isolation-header-1280",
-      "rawFullFrameFraction": 0.006892361111111111,
+      "rawFullFrameFraction": 0.010084201388888889,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          390,
+          340,
           808,
-          500,
+          600,
           56
         ]
       ],
@@ -19,14 +19,14 @@
     },
     {
       "name": "isolation-date-picker-1280",
-      "rawFullFrameFraction": 0.009017361111111111,
+      "rawFullFrameFraction": 0.012526909722222222,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          390,
+          340,
           808,
-          500,
+          600,
           56
         ]
       ],
@@ -34,14 +34,14 @@
     },
     {
       "name": "isolation-profile-1280",
-      "rawFullFrameFraction": 0.008626736111111111,
+      "rawFullFrameFraction": 0.011840277777777778,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          390,
+          340,
           808,
-          500,
+          600,
           56
         ]
       ],
@@ -49,14 +49,14 @@
     },
     {
       "name": "isolation-header-1440",
-      "rawFullFrameFraction": 0.006125771604938272,
+      "rawFullFrameFraction": 0.008947530864197532,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          470,
+          420,
           808,
-          500,
+          600,
           56
         ]
       ],
@@ -64,14 +64,14 @@
     },
     {
       "name": "isolation-date-picker-1440",
-      "rawFullFrameFraction": 0.008014660493827161,
+      "rawFullFrameFraction": 0.01113888888888889,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          470,
+          420,
           808,
-          500,
+          600,
           56
         ]
       ],
@@ -79,14 +79,14 @@
     },
     {
       "name": "isolation-profile-1440",
-      "rawFullFrameFraction": 0.00767283950617284,
+      "rawFullFrameFraction": 0.010526234567901235,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          470,
+          420,
           808,
-          500,
+          600,
           56
         ]
       ],
@@ -94,14 +94,14 @@
     },
     {
       "name": "isolation-header-1640",
-      "rawFullFrameFraction": 0.0045679935572940636,
+      "rawFullFrameFraction": 0.006682581684307409,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ]
       ],
@@ -109,14 +109,14 @@
     },
     {
       "name": "isolation-date-picker-1640",
-      "rawFullFrameFraction": 0.005985388863322595,
+      "rawFullFrameFraction": 0.008303612517257248,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ]
       ],
@@ -124,14 +124,14 @@
     },
     {
       "name": "isolation-profile-1640",
-      "rawFullFrameFraction": 0.0057184767602393004,
+      "rawFullFrameFraction": 0.00784687068568799,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ]
       ],
@@ -139,14 +139,14 @@
     },
     {
       "name": "isolation-header-1920",
-      "rawFullFrameFraction": 0.003833912037037037,
+      "rawFullFrameFraction": 0.00560474537037037,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          710,
+          660,
           988,
-          500,
+          600,
           56
         ]
       ],
@@ -154,14 +154,14 @@
     },
     {
       "name": "isolation-date-picker-1920",
-      "rawFullFrameFraction": 0.0050053047839506174,
+      "rawFullFrameFraction": 0.006957465277777778,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          710,
+          660,
           988,
-          500,
+          600,
           56
         ]
       ],
@@ -169,14 +169,14 @@
     },
     {
       "name": "isolation-profile-1920",
-      "rawFullFrameFraction": 0.004794077932098765,
+      "rawFullFrameFraction": 0.006577449845679012,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          710,
+          660,
           988,
-          500,
+          600,
           56
         ]
       ],
@@ -184,14 +184,14 @@
     },
     {
       "name": "figma-default",
-      "rawFullFrameFraction": 0.01815922687528762,
+      "rawFullFrameFraction": 0.02025483202945237,
       "fraction": 0.010179475379659457,
       "ceiling": 0.02,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ]
       ],
@@ -215,14 +215,14 @@
     },
     {
       "name": "source-default-1640",
-      "rawFullFrameFraction": 0.007979751495628164,
+      "rawFullFrameFraction": 0.010075356649792913,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ]
       ],
@@ -230,14 +230,14 @@
     },
     {
       "name": "source-default-1920",
-      "rawFullFrameFraction": 0.006687885802469136,
+      "rawFullFrameFraction": 0.00845582561728395,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          710,
+          660,
           988,
-          500,
+          600,
           56
         ]
       ],
@@ -245,14 +245,14 @@
     },
     {
       "name": "figma-annotated",
-      "rawFullFrameFraction": 0.018259318913943855,
+      "rawFullFrameFraction": 0.020354924068108605,
       "fraction": 0.010279567418315693,
       "ceiling": 0.02,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ]
       ],
@@ -276,14 +276,14 @@
     },
     {
       "name": "source-annotated-1640",
-      "rawFullFrameFraction": 0.007979751495628164,
+      "rawFullFrameFraction": 0.010075356649792913,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ]
       ],
@@ -291,14 +291,14 @@
     },
     {
       "name": "source-annotated-1920",
-      "rawFullFrameFraction": 0.006687885802469136,
+      "rawFullFrameFraction": 0.00845582561728395,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          710,
+          660,
           988,
-          500,
+          600,
           56
         ]
       ],
@@ -306,14 +306,14 @@
     },
     {
       "name": "figma-selection-explain",
-      "rawFullFrameFraction": 0.020238150023009664,
+      "rawFullFrameFraction": 0.022333755177174414,
       "fraction": 0.012200874367234238,
       "ceiling": 0.02,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ],
         [
@@ -353,14 +353,14 @@
     },
     {
       "name": "source-selection-explain-1640",
-      "rawFullFrameFraction": 0.007979751495628164,
+      "rawFullFrameFraction": 0.010075356649792913,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          570,
+          520,
           968,
-          500,
+          600,
           56
         ]
       ],
@@ -368,14 +368,14 @@
     },
     {
       "name": "source-selection-explain-1920",
-      "rawFullFrameFraction": 0.006687885802469136,
+      "rawFullFrameFraction": 0.00845582561728395,
       "fraction": 0,
       "ceiling": 0.001,
       "masks": [
         [
-          710,
+          660,
           988,
-          500,
+          600,
           56
         ]
       ],
