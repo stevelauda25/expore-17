@@ -1,0 +1,29 @@
+
+> explore-component@0.0.0 build
+> tsc -b && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 592 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                      0.45 kB │ gzip:   0.29 kB
+dist/assets/inter-latin-400-normal-C38fXH4l.woff2   23.66 kB
+dist/assets/inter-latin-500-normal-Cerq10X2.woff2   24.27 kB
+dist/assets/inter-latin-400-normal-CyCys3Eg.woff    30.70 kB
+dist/assets/inter-latin-500-normal-BL9OpVg8.woff    31.28 kB
+dist/assets/FacilityAppDemo-CSngTdYg.css            15.19 kB │ gzip:   3.41 kB
+dist/assets/ProductUsageDemo-D8IFZlvG.css           18.44 kB │ gzip:   3.87 kB
+dist/assets/DocumentEditorDemo-DAbv7Usb.css         21.21 kB │ gzip:   4.90 kB
+dist/assets/index-CIkTslP9.css                      25.78 kB │ gzip:   5.60 kB
+dist/assets/FacilityAppDemo-DS7UA0eb.js             19.57 kB │ gzip:   5.62 kB
+dist/assets/ProductUsageDemo-kowe6edD.js            21.01 kB │ gzip:   6.63 kB
+dist/assets/floating-ui.react-BgW9X7J1.js           62.60 kB │ gzip:  22.21 kB
+dist/assets/index-D7NgDaSS.js                      339.34 kB │ gzip:  98.12 kB
+dist/assets/DocumentEditorDemo-CFFZaOKd.js         618.19 kB │ gzip: 196.68 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.15s
