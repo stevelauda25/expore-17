@@ -1,0 +1,477 @@
+[
+  {
+    "file": "docs/qa/facility-app/phase3/account-focus-before.png",
+    "bytes": 178446,
+    "sha256": "cd8b96f0d208a511d94906ce0dcf6d1c2a1f78399ab8824232ba7ae8a4b1d0a8"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/account-focus-keyboard.png",
+    "bytes": 175098,
+    "sha256": "2c1b20abb2b17d1da63cf2f4225be9f77525a6099196a14846d31710448ab6cd"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/additional-before-results.txt",
+    "bytes": 16366,
+    "sha256": "56c74287ab1701826f7d1be9f62ed34c86e4e767cfd0ae2a17de476097274db3"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/additional-confirmation-results.txt",
+    "bytes": 6661,
+    "sha256": "cee3daf6a3d3873055a84d76fe46d079d4daa6438e5c14e66a1a84b9146dbba5"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/browser-final-results.txt",
+    "bytes": 7959,
+    "sha256": "3e7156393c9780c7c8fe4f64a172cc91c50b2212eca737ca936d7bdaab9bf0c4"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/browser-results.txt",
+    "bytes": 6344,
+    "sha256": "51add986ac844d5036b8388885a8214b1af4da0731b26f275c33e83d92ec39b7"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/build-final.txt",
+    "bytes": 1608,
+    "sha256": "188689445569565c9bfc7bb862e87270b1c5200961636ff18dd984787de0ec4b"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/build-results.txt",
+    "bytes": 1608,
+    "sha256": "79bcdb45da31cb9e61a76175b03a71d958862faae62bedd8dcb94d6a016a6079"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr1-firefox.json",
+    "bytes": 15136,
+    "sha256": "f884b8ad6ec6e409ae4dd211d40df2754af706e931c68cbb5518ef21d83892a9"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr1-firefox.png",
+    "bytes": 216424,
+    "sha256": "6f8427348cb35d86e8d2fa1a58cdfaa405c7e057bbc4c6b9afca0494e47a2ce7"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr1-webkit.json",
+    "bytes": 14306,
+    "sha256": "efa5db8bd9f2a39bf344a9f8bb959c9c2bc373dc217d7bc87f488ed8f41e0958"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr1-webkit.png",
+    "bytes": 228845,
+    "sha256": "dfa20fb29b6f0a1ce661ce8926b95fdc000d15dba4b27efd48b9b2fa59750158"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr1.json",
+    "bytes": 14310,
+    "sha256": "5e06a19ac78b79bae900c6f0e65043d05da62078615d27e1cc2d861991f5b177"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr1.png",
+    "bytes": 175072,
+    "sha256": "4d99965009f36420839ce5d7e43530207e5ffb7a58a0ea8e272338858f3be395"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr2-firefox.json",
+    "bytes": 15136,
+    "sha256": "f884b8ad6ec6e409ae4dd211d40df2754af706e931c68cbb5518ef21d83892a9"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr2-firefox.png",
+    "bytes": 593935,
+    "sha256": "e2a64909275324df9a246ea292335541decd911fec27401396611e41af002661"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr2-webkit.json",
+    "bytes": 14306,
+    "sha256": "efa5db8bd9f2a39bf344a9f8bb959c9c2bc373dc217d7bc87f488ed8f41e0958"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr2-webkit.png",
+    "bytes": 615277,
+    "sha256": "318db60ea86c6b5c7e7799b9782a0c672db2d8dea9721f15628823852541c35b"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr2.json",
+    "bytes": 14310,
+    "sha256": "5e06a19ac78b79bae900c6f0e65043d05da62078615d27e1cc2d861991f5b177"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-dpr2.png",
+    "bytes": 481721,
+    "sha256": "ce344f9a49869270c33f4ffdcf809c283f32febc9c16578a3dd0078c05b97604"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-host-dpr1-firefox.png",
+    "bytes": 220657,
+    "sha256": "63bc8fef4e4ab2581ef79e21b9938fee4dab9eff8f88ad04e6c1cf7150714182"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-host-dpr1-webkit.png",
+    "bytes": 234129,
+    "sha256": "68c21b2a49671bdf90a0dc4ab18da37ea32944976ca51a71f50997f783b43ff3"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-host-dpr1.png",
+    "bytes": 180493,
+    "sha256": "f9913d4dc3256f35508cbdcbc0a7a032636daffe4b46594cbdeb4fea954eabc6"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-host-dpr2-firefox.png",
+    "bytes": 601622,
+    "sha256": "ef4698a42ecc70a24846fe413454690015d8454f14b9d96806773fc597781fd2"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-host-dpr2-webkit.png",
+    "bytes": 626059,
+    "sha256": "6a8c76730f6df14173c6a97d3df3d6c09ed4a158012bec1def2c8102b858d4eb"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/canonical-host-dpr2.png",
+    "bytes": 492770,
+    "sha256": "6badb20d79502c1d49bb4ee3093d43d3677d73b10632ec5f1a7084a6d05a791a"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/command-exit-codes.json",
+    "bytes": 65,
+    "sha256": "65806d7b5034aa0c3f95dfb34bf9475f8d43709f1a582aeba2bebb0f8fbf6a0b"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/comparison-results.txt",
+    "bytes": 701,
+    "sha256": "4178b3eda8e5f8a1a89751a54d32337680ad7345e051f594d200a32849de51e9"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/dependency-warnings-firefox.json",
+    "bytes": 213,
+    "sha256": "ff4ffd505496c4dee0ee84ea88b15f763e8c8b1c5df6d6b4d68e005ceeee27f4"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/figma-diff.png",
+    "bytes": 154777,
+    "sha256": "bbab93a95e441ab851a3174ae9a2b3cb4beb2ba9e06905c0d98ba09d80101bc3"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/figma-overlay.png",
+    "bytes": 337537,
+    "sha256": "b6312eb2a9be71622309f36e5bc85fa21046a1e753280a724a4e124e08d8e093"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/figma-reference.png",
+    "bytes": 240420,
+    "sha256": "9e5849f1f470f655d452947af81674f645e062cbc1ba57f9a452fe4d945ed7d6"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/figma-side-by-side.png",
+    "bytes": 639780,
+    "sha256": "5ad8731d9512d2a6f681223003188f6e29416ffb5a3fcb76986adc66204d6a0f"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/font-audit.json",
+    "bytes": 1443,
+    "sha256": "e08792f1fba7b9b9e0a4d55caa9eaab4c31403b404fece31e2b7296ee2815714"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/gate-summary.json",
+    "bytes": 582,
+    "sha256": "ce7a208300b128a0d08dc7cf38cecc630b81d34d2ab4885cf279a4252008b73b"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-480-firefox.json",
+    "bytes": 390,
+    "sha256": "d8876b16c9a78abb00e3acbaf7c9f681cd88c5c920cfd740339a92412b3ec5e6"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-480-firefox.png",
+    "bytes": 134552,
+    "sha256": "cd06749a8534b9bbe8d75970cf8c9275006370d224efa42f37fa01234e97a85e"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-480-webkit.json",
+    "bytes": 366,
+    "sha256": "a2d0f0bf9be5c2000f91e3ccfcb5352e06ecd8fd135301a1f71e3e5b4f86cebd"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-480-webkit.png",
+    "bytes": 143050,
+    "sha256": "822870726c4c8075ac975cfbfb2e28b91b178ba530f0fa36c96632ef4a22654f"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-480.json",
+    "bytes": 371,
+    "sha256": "f991548134746e25960718c60430f970a4f12e11bb63b6d95bab02230cb33867"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-480.png",
+    "bytes": 112712,
+    "sha256": "4e2b152ff04fe4a244f12054616b5f4c44ddd28c39acfa918c5dd81bd91579d2"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-900-firefox.json",
+    "bytes": 390,
+    "sha256": "6843058fce353694ac1af57c27e85aa8a5ca643c85bb31d7e193562ac0b0d3b0"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-900-firefox.png",
+    "bytes": 190424,
+    "sha256": "743942826225eae8c8ea91305f6c5dac029335d261e2f7937137005bb594d0ef"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-900-webkit.json",
+    "bytes": 366,
+    "sha256": "934bf346eda2b8dfd3d082bec7536e8262b7991b2b9cda3964fffc1fae7f4db6"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-900-webkit.png",
+    "bytes": 204074,
+    "sha256": "66592abbf05aaabf5566dd73af3c5112604a5b34dd21fe87093bfb3afb7e701b"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-900.json",
+    "bytes": 371,
+    "sha256": "ab0b78a38ffa97cc4cf8c274005822ae54ee3e9f01b8fda542b8fd393fa4dfb2"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1280-900.png",
+    "bytes": 155352,
+    "sha256": "1a00cff4a8ff1fd78ac3cccd96a58f9eff80a36ee371a3ec11d182be3dd7a23b"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1440-900-firefox.json",
+    "bytes": 390,
+    "sha256": "e155d325b93f178d04ec971188ae157c2276492e3018c49ce190129b0a42e7c7"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1440-900-firefox.png",
+    "bytes": 227076,
+    "sha256": "6fa21351b682a42412f7e564bf0781f2d9ddb0bab3bbaf1c727c1799aa931cfa"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1440-900-webkit.json",
+    "bytes": 366,
+    "sha256": "41aa5ca3ff79de0e1786484c117ef7badb9732a0dd6a37dab75e84aff84d77b9"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1440-900-webkit.png",
+    "bytes": 242965,
+    "sha256": "74500a070f7358ad3a8327c3c0bbf3d1ff3c203b19dbaa5d7125f82d940520bf"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1440-900.json",
+    "bytes": 371,
+    "sha256": "4ca018f0e95edbb2307782248c3d8177c1a65af0536682e9466550c5c0eecde5"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1440-900.png",
+    "bytes": 184914,
+    "sha256": "5cbdf1efeb6cd403a90225e5392ff39bf5188d7e252b6765c4fe0c286e3946f4"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1640-1060-firefox.json",
+    "bytes": 395,
+    "sha256": "5093f62afeae5678c7e1e7cf9036dff3a82fda14050ebe2b599bfab0778b0fa8"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1640-1060-firefox.png",
+    "bytes": 234811,
+    "sha256": "7557f84414efd1c9a2ad17f14bce017a2ac4d3dfba39b4bfd115cb8c51395cda"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1640-1060-webkit.json",
+    "bytes": 371,
+    "sha256": "12a4465e1f6264e278d5956706e1cc7f74db84f20fd934f683099b728afbab3d"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1640-1060-webkit.png",
+    "bytes": 259986,
+    "sha256": "def8b84c310e8339c14796531b2fa983a1360355e33084ed5ea98936091de20d"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1640-1060.json",
+    "bytes": 376,
+    "sha256": "408027d436361c2fdd100dcb9182e2a8d5edd55b031f2e8435bd184f50f4cd50"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1640-1060.png",
+    "bytes": 190761,
+    "sha256": "c1bc2e85303c99c4c758454542251fce578402f43da76646b4f132ce4d9de36f"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1920-1080-firefox.json",
+    "bytes": 395,
+    "sha256": "4f98a4264be904cc33f16dac75c5d2ebf91934e87b90f7450ec1174644cb8e81"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1920-1080-firefox.png",
+    "bytes": 236792,
+    "sha256": "2d75434ed8e759611c9c628c526334dd27e56ee446f415ab1280810dae772edb"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1920-1080-webkit.json",
+    "bytes": 371,
+    "sha256": "3e09dee3cb89064d5c7fd31aa42af8d629d85a2d7430bf432a2b99b840ed103c"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1920-1080-webkit.png",
+    "bytes": 269428,
+    "sha256": "491351596a493baea1bbda302ed5ac8b70e16a9c7f864905885b1778727c2509"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1920-1080.json",
+    "bytes": 376,
+    "sha256": "5e1ab3b87ba6d55a956efece680c3e58d919e68f476db5addb8883cd69e6d03f"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/host-1920-1080.png",
+    "bytes": 193434,
+    "sha256": "e9fe540ff482e16e985aa329c7fbe269edbd7508efc2ee5653840ed952573fa4"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/inspect-AHU-03.png",
+    "bytes": 144620,
+    "sha256": "959045cf487fd678314f88324f8bd51b9ce0301afe36a24a838c657f8a5f57cc"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/inspect-AHU-07.png",
+    "bytes": 137895,
+    "sha256": "f499690731ecc16eaba7b225e778187463f3d0090de0697d178dae0391e642ea"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/keyboard-before-chromium.json",
+    "bytes": 7803,
+    "sha256": "a23e8c5329ecb6a064b136d185b3f5c91df2064e6b21fd175666aa547bfd2ebf"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/keyboard-before-firefox.json",
+    "bytes": 7803,
+    "sha256": "a23e8c5329ecb6a064b136d185b3f5c91df2064e6b21fd175666aa547bfd2ebf"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/keyboard-before-webkit.json",
+    "bytes": 7802,
+    "sha256": "138c55dd73f4241dd891a8139a9e065288c1ecf0a2263e6fdd85fa0fb7876186"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/keyboard-chromium.json",
+    "bytes": 7804,
+    "sha256": "347df8c459679d6bd86a5fa165dc178e40eb1b75dbe1b6d523078a92110ebdb9"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/keyboard-firefox.json",
+    "bytes": 7804,
+    "sha256": "347df8c459679d6bd86a5fa165dc178e40eb1b75dbe1b6d523078a92110ebdb9"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/keyboard-webkit.json",
+    "bytes": 7804,
+    "sha256": "347df8c459679d6bd86a5fa165dc178e40eb1b75dbe1b6d523078a92110ebdb9"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/lint-final.txt",
+    "bytes": 43,
+    "sha256": "a7d7768322e90355996c2c05a63b770a09d5926a3639908f2cfeb69cbf9a73df"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/lint-results.txt",
+    "bytes": 43,
+    "sha256": "a7d7768322e90355996c2c05a63b770a09d5926a3639908f2cfeb69cbf9a73df"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/phase1-diff.png",
+    "bytes": 143414,
+    "sha256": "e31f1f40043e75ebc32a69bc32839bb082b74255f1a2d542e0e8560b129aa399"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/phase1-overlay.png",
+    "bytes": 302280,
+    "sha256": "219df88935c1adce12831bb87d520b6c0ac6bca99ba2eb76225ff8c0f1dec102"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/phase1-side-by-side.png",
+    "bytes": 594702,
+    "sha256": "83791bc9e205a2b951be198535f9c4e272e77711f652effe602b9c7a2676c937"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/phase2-diff.png",
+    "bytes": 144950,
+    "sha256": "b32717d907e5c7ee10700d0f20981c38dbacf5809826b978388614fce4740b6e"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/phase2-overlay.png",
+    "bytes": 304302,
+    "sha256": "1ce7d7aebec71306b11866fddebb38289d646b55ac09e4098d4c4c8b4e29d34b"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/phase2-side-by-side.png",
+    "bytes": 597120,
+    "sha256": "c7ec2482708bb3dbcda4960b1e2629503b1b877c5b90c6449aa26ddbbc0e229a"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/pre-phase2-diff.png",
+    "bytes": 144950,
+    "sha256": "b32717d907e5c7ee10700d0f20981c38dbacf5809826b978388614fce4740b6e"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/pre-phase2-overlay.png",
+    "bytes": 304302,
+    "sha256": "1ce7d7aebec71306b11866fddebb38289d646b55ac09e4098d4c4c8b4e29d34b"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/pre-phase2-side-by-side.png",
+    "bytes": 597120,
+    "sha256": "c7ec2482708bb3dbcda4960b1e2629503b1b877c5b90c6449aa26ddbbc0e229a"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/source-asset-baseline-audit.json",
+    "bytes": 333,
+    "sha256": "7f9d2b73360916a99fe4d29f0205f22b44a3afb0c5c47ddebc6e1d1da4849dcc"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/surface-Afterhours-workspace.png",
+    "bytes": 178091,
+    "sha256": "7bb98bfed083de4d7016ade92e96e0720858bd29c46d6e0f5288d2230d53aea4"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/surface-Andrew-account.png",
+    "bytes": 180220,
+    "sha256": "04067be34aa729ae63bb5e3b412d6edb8b1a29e49e7ecda590d0a34dd5a25384"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/surface-Control-log-CL-203.png",
+    "bytes": 184658,
+    "sha256": "efca147035412ee6a6ef0a0cf87854de95cb8f733090d7e822ffc2dd681a7f32"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/surface-Notifications.png",
+    "bytes": 176886,
+    "sha256": "45933c9a7120ffe602275546f0caad4979b46421decfa80c59379c357941df00"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/targeted-recheck-results.txt",
+    "bytes": 2161,
+    "sha256": "49e6b3a99d00d5658c0388dd95e42a568495b3d6dc6cd23f2fa0aceef012cf43"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/test-unit-final.txt",
+    "bytes": 2554,
+    "sha256": "618b54808ec1f1b9665a19ee7a9dfd784dbd628e623c4addd62763d5fab1d316"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/typecheck-final.txt",
+    "bytes": 106,
+    "sha256": "997b042500c622ccf57dff9c4c751cde4b41651e5414be7dd67444e515679923"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/typecheck-results.txt",
+    "bytes": 106,
+    "sha256": "997b042500c622ccf57dff9c4c751cde4b41651e5414be7dd67444e515679923"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/unit-results.txt",
+    "bytes": 2548,
+    "sha256": "763e5441434b6552055b9551a8a428aa1105d11a65ec45608db31e313b72c0fa"
+  },
+  {
+    "file": "docs/qa/facility-app/phase3/visual-comparison.json",
+    "bytes": 839,
+    "sha256": "2e5f6a0ef228c8975f774cd74e27a9d739c982ab4d1272f22060a23cf371e728"
+  }
+]

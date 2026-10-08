@@ -1,0 +1,65 @@
+{
+  "fontHash": "85f08b5f51e36ca7e961a033c6bb61d7f0e44aa0984646383ecac648e98fdcc8",
+  "results": [
+    {
+      "selector": ".facility-app-scope h1",
+      "fonts": [
+        {
+          "familyName": "Inter",
+          "postScriptName": "Inter_Medium",
+          "isCustomFont": true,
+          "glyphCount": 39
+        }
+      ],
+      "computed": {
+        "family": "\"Facility Inter\", sans-serif",
+        "weight": "500"
+      }
+    },
+    {
+      "selector": ".booked-hours",
+      "fonts": [
+        {
+          "familyName": "Inter",
+          "postScriptName": "Inter",
+          "isCustomFont": true,
+          "glyphCount": 61
+        }
+      ],
+      "computed": {
+        "family": "\"Facility Inter\", sans-serif",
+        "weight": "400"
+      }
+    },
+    {
+      "selector": ".equipment-select",
+      "fonts": [
+        {
+          "familyName": "Inter",
+          "postScriptName": "Inter_Medium",
+          "isCustomFont": true,
+          "glyphCount": 6
+        }
+      ],
+      "computed": {
+        "family": "\"Facility Inter\", sans-serif",
+        "weight": "500"
+      }
+    },
+    {
+      "selector": ".metric-value",
+      "fonts": [
+        {
+          "familyName": "Inter",
+          "postScriptName": "Inter_Medium",
+          "isCustomFont": true,
+          "glyphCount": 7
+        }
+      ],
+      "computed": {
+        "family": "\"Facility Inter\", sans-serif",
+        "weight": "500"
+      }
+    }
+  ]
+}

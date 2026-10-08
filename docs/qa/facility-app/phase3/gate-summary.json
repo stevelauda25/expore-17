@@ -1,0 +1,22 @@
+{
+  "phase": 3,
+  "date": "2026-10-08",
+  "timezone": "Asia/Jakarta",
+  "gate": "PASS",
+  "status": "READY FOR REVIEW",
+  "baseCommit": "e8566ea",
+  "branch": "feat/facility-phase-2",
+  "productFix": "Inset Andrew account focus outline to avoid viewport clipping",
+  "unitTests": 43,
+  "browserTests": 57,
+  "targetedRecheckTests": 12,
+  "lint": "PASS",
+  "typecheck": "PASS",
+  "build": "PASS",
+  "defaultExactChangedPixels": 0,
+  "figmaDiagnosticChangedPixels": 3337,
+  "phase1DiagnosticChangedPixels": 131,
+  "pushed": false,
+  "deployed": false,
+  "pullRequestCreated": false
+}

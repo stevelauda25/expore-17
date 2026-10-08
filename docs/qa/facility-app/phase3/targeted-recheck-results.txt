@@ -1,0 +1,23 @@
+
+Running 12 tests using 1 worker
+
+(node:25279) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus (1.7s)
+  ✓   2 [chromium] › tests/facility.spec.ts:407:67 › Phase 3: full surface sequence and backdrop with motion no-preference (2.3s)
+  ✓   3 [chromium] › tests/facility.spec.ts:407:67 › Phase 3: full surface sequence and backdrop with motion reduce (2.1s)
+  ✓   4 [chromium] › tests/facility.spec.ts:443:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard (2.7s)
+(node:25304) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   5 [firefox] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus (2.5s)
+  ✓   6 [firefox] › tests/facility.spec.ts:407:67 › Phase 3: full surface sequence and backdrop with motion no-preference (2.6s)
+  ✓   7 [firefox] › tests/facility.spec.ts:407:67 › Phase 3: full surface sequence and backdrop with motion reduce (2.4s)
+  ✓   8 [firefox] › tests/facility.spec.ts:443:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard (3.0s)
+(node:25316) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [webkit] › tests/facility.spec.ts:362:1 › Phase 3: complete forward/reverse keyboard path has visible, unclipped focus (2.6s)
+  ✓  10 [webkit] › tests/facility.spec.ts:407:67 › Phase 3: full surface sequence and backdrop with motion no-preference (1.9s)
+  ✓  11 [webkit] › tests/facility.spec.ts:407:67 › Phase 3: full surface sequence and backdrop with motion reduce (2.2s)
+  ✓  12 [webkit] › tests/facility.spec.ts:443:1 › Phase 3: every prototype menu action and breadcrumb works by keyboard (2.7s)
+
+  12 passed (30.4s)
