@@ -22,7 +22,10 @@ export async function productionSmoke(url, { local = false } = {}) {
     await page.keyboard.press('ArrowRight')
     await expect(page.getByRole('tab', { name: 'Facility app', exact: true })).toBeFocused()
     await expect(page.locator('.facility-app-scope')).toBeVisible()
-    await page.evaluate(() => document.fonts.ready)
+    await page.evaluate(async () => {
+      await document.fonts.ready
+      await Promise.all([...document.querySelectorAll('.facility-app-scope img')].map(img => img.decode()))
+    })
     expect(await page.locator('.facility-app-scope img').evaluateAll(images => images.every(img => img.complete && img.naturalWidth > 0))).toBe(true)
     expect(await page.evaluate(() => [...document.fonts].some(f => f.family === 'Facility Inter' && f.status === 'loaded'))).toBe(true)
     await expect(page.locator('.facility-app-scope .runtime-row.is-selected')).toHaveAttribute('data-equipment', 'AHU-03')

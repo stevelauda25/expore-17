@@ -55,3 +55,5 @@ Retain the scoped font/assets/tokens and host-relative layout when porting chang
 ## Deployment and evidence
 
 Use only the existing `expore-17` GitHub → Vercel production pipeline on main, without force push or project setting changes. See [QA report](../qa/facility-app/README.md) and its deployment verification JSON/screenshots for the final public verification. This integration stops at Phase 1.
+
+Public verification completed on 8 October 2026 at 16:16:37 Asia/Jakarta for implementation commit `6241e0651e3b07dc962d0a2c4e020b19ac5f2142`: five tabs, Phase 1 Facility assets/font/default state, and functional Document editor editing/persistence/Comments/History/Explain all passed on https://expore-17.vercel.app/. GitHub deployment `6931712663` reports success. No remaining blockers. The follow-up evidence/test commit leaves the verified production runtime unchanged.

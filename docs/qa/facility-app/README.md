@@ -14,7 +14,7 @@ Integration date: 8 October 2026 (Asia/Jakarta). Source: `c0721e579d703765312372
 | `npm run build` | PASS; Facility lazy JS 9.52 kB (2.71 kB gzip), CSS 11.20 kB (2.57 kB gzip) |
 | `node scripts/check-production.mjs` | PASS; all chunks free of test adapters/fixtures/localhost; browser production smoke passed |
 | `npm run test:browser` | All 66 inherited tests pass across Chromium, Firefox and WebKit; Facility suite resolved in the focused final run below |
-| `npm run test:browser -- tests/facility.spec.ts` | Final Facility gate: 24 cases across Chromium, Firefox and WebKit; see `browser-final.txt` |
+| `npm run test:browser -- tests/facility.spec.ts` | PASS final Facility gate: 24/24 cases across Chromium, Firefox and WebKit; see `browser-final.txt` |
 | `node scripts/compare-integration.mjs` | PASS; unchanged Document editor thresholds and all existing-view isolation comparisons |
 | `node scripts/compare-facility.mjs` | PASS; unmasked canonical source comparison |
 | Source `npm run typecheck` | PASS without writing source files |
@@ -58,3 +58,13 @@ These host-height differences are intentional. No scaling or stretching of typog
 Release uses the existing `expore-17` GitHub–Vercel Production pipeline from `main` and the existing alias [expore-17.vercel.app](https://expore-17.vercel.app/). No dashboard login, project setting change, new repository/project or force push is used. Public verification results and deployment identity are appended after the Git-triggered release; screenshots and JSON are recorded in this directory.
 
 Phase boundary: **deployed Facility is Phase 1 only**. Phase 2 selection, menus, navigation, inspection/control-log panels and extra keyboard behavior remain for a later task. Product usage is not integrated.
+
+### Verified public release
+
+- Integration commit pushed without force: `6241e0651e3b07dc962d0a2c4e020b19ac5f2142`.
+- Existing Vercel project: `expore-17`, deployment `9nyGPez9ZNLLv9GbFUAmn2cnqpv1`; GitHub Production deployment `6931712663`, status **success**. See `git-deployment.json`.
+- Public URL **https://expore-17.vercel.app/** verified 8 October 2026, **16:16:37 Asia/Jakarta**. `node scripts/production-smoke.mjs https://expore-17.vercel.app/` passed with zero runtime errors and zero HTTP asset failures.
+- The actual public page exposes Facility app as the fifth tab, loads its local font/artwork and shows AHU-03. Document editor native editing, save/reload persistence, Comments, History, retained drafts/scroll, inactive shortcuts and Explain result all passed on the same public deployment.
+- [Public Facility screenshot](deployed-verified.png); [public verification JSON](deployment-verification.json); [public Document editor screenshot](../document-editor/deployed-verified.png).
+- Initial Git push selected a read-only local account and returned 403; the already-authenticated repository owner's credential was used for the successful push without changing the active account or Git configuration. A public smoke assertion was corrected to await image decoding on cold network loads; the verified rerun above passed. No unresolved blockers remain.
+- This report and the cold-network readiness correction are a follow-up documentation/test commit; production runtime files and build output are unchanged from the verified integration commit.

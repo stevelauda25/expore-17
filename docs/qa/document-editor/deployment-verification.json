@@ -1,0 +1,21 @@
+{
+  "url": "https://expore-17.vercel.app/",
+  "checkedAt": "2026-10-08T09:16:37.784Z",
+  "errors": [],
+  "failed": [],
+  "passed": true,
+  "checks": [
+    "Header initial",
+    "five keyboard tabs",
+    "Phase 1 Facility visible with AHU-03 and local font/assets",
+    "lazy production chunk",
+    "native editing",
+    "save/reload",
+    "Comments and History",
+    "draft and scroll retention",
+    "hidden shortcuts",
+    "Explain result",
+    "source assets/font",
+    "inert test adapter"
+  ]
+}
