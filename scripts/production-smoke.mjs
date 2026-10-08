@@ -12,8 +12,8 @@ export async function productionSmoke(url, { local = false } = {}) {
     await page.goto(url)
     await expect(page.getByRole('tab', { name: 'Header', exact: true })).toHaveAttribute('aria-selected', 'true')
     await expect(page.getByTestId('document-editor')).toHaveCount(0)
-    expect(requests.some(url => /(?:DocumentEditorDemo|FacilityAppDemo).*\.js/.test(url))).toBe(false)
-    await expect(page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab')).toHaveText(['Header', 'Date picker', 'Profile', 'Document editor', 'Facility app'])
+    expect(requests.some(url => /(?:DocumentEditorDemo|FacilityAppDemo|ProductUsageDemo).*\.js/.test(url))).toBe(false)
+    await expect(page.getByRole('tablist', { name: 'UI explorations' }).getByRole('tab')).toHaveText(['Header', 'Date picker', 'Profile', 'Document editor', 'Facility app', 'Product usage'])
     await page.getByRole('tab', { name: 'Header', exact: true }).focus()
     for (const name of ['Date picker', 'Profile', 'Document editor']) {
       await page.keyboard.press('ArrowRight')
@@ -30,6 +30,9 @@ export async function productionSmoke(url, { local = false } = {}) {
     expect(await page.evaluate(() => [...document.fonts].some(f => f.family === 'Facility Inter' && f.status === 'loaded'))).toBe(true)
     await expect(page.locator('.facility-app-scope .runtime-row.is-selected')).toHaveAttribute('data-equipment', 'AHU-03')
     await page.screenshot({ path: `docs/qa/facility-app/${local ? 'production-local' : 'deployed'}-verified.png` })
+    await page.getByRole('tab', { name: 'Product usage', exact: true }).click()
+    await expect(page.locator('.product-usage-demo')).toBeVisible()
+    await expect(page.locator('.product-usage-demo tbody tr')).toHaveCount(6)
     await page.getByRole('tab', { name: 'Document editor', exact: true }).click()
     const editor = page.getByTestId('document-editor')
     await expect(editor).toBeVisible()
@@ -81,7 +84,7 @@ export async function productionSmoke(url, { local = false } = {}) {
     }
     expect(errors).toEqual([])
     expect(failed).toEqual([])
-    const result = { url, checkedAt: new Date().toISOString(), errors, failed, passed: true, checks: ['Header initial', 'five keyboard tabs', 'Phase 1 Facility visible with AHU-03 and local font/assets', 'lazy production chunk', 'native editing', 'save/reload', 'Comments and History', 'draft and scroll retention', 'hidden shortcuts', 'Explain result', 'source assets/font', 'inert test adapter'] }
+    const result = { url, checkedAt: new Date().toISOString(), errors, failed, passed: true, checks: ['Header initial', 'six keyboard tabs', 'Phase 1 Facility visible with AHU-03 and local font/assets', 'lazy production chunk', 'native editing', 'save/reload', 'Comments and History', 'draft and scroll retention', 'hidden shortcuts', 'Explain result', 'source assets/font', 'inert test adapter'] }
     fs.writeFileSync(`docs/qa/document-editor/${local ? 'production-local' : 'deployment'}-verification.json`, JSON.stringify(result, null, 2))
     fs.writeFileSync(`docs/qa/facility-app/${local ? 'production-local' : 'deployment'}-verification.json`, JSON.stringify(result, null, 2))
     console.log(JSON.stringify(result, null, 2))

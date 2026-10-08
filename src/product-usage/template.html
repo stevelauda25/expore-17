@@ -1,0 +1,51 @@
+<div class="usage-page">
+    <header class="usage-header">
+      <div class="page-heading"><h1>Product usage</h1><p>Where users explore, by feature and category.</p></div>
+      <div class="segmented time-range" role="group" aria-label="Time range">
+        <button type="button" data-range="Day" aria-pressed="false">Day</button>
+        <button type="button" data-range="Week" aria-pressed="false">Week</button>
+        <button type="button" data-range="Month" aria-pressed="true">Month</button>
+      </div>
+    </header>
+
+    <section class="activity-card surface" aria-labelledby="activity-heading">
+      <div class="activity-top">
+        <div class="activity-header">
+          <div class="activity-heading"><h2 id="activity-heading">Product activity</h2><p id="activity-subtitle"></p></div>
+          <button class="pill manage-button" id="manage" type="button" aria-haspopup="dialog" aria-expanded="false">Manage product</button>
+        </div>
+        <div class="distribution" aria-label="Product activity by feature" id="distribution"></div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <dl class="summary" id="summary"></dl>
+    </section>
+
+    <section class="content" aria-label="Usage details">
+      <div class="content-toolbar">
+        <div class="segmented view-tabs" role="tablist" aria-label="Usage view">
+          <button type="button" id="features-tab" role="tab" aria-selected="true" aria-controls="usage-panel" data-tab="features">Features</button>
+          <button type="button" id="segments-tab" role="tab" aria-selected="false" aria-controls="usage-panel" tabindex="-1" data-tab="segments">User segments</button>
+        </div>
+        <div class="toolbar-actions">
+          <label class="search-field pill"><img id="search-icon" width="14" height="14" alt=""><input id="search" type="search" aria-label="Search features" placeholder="Search" autocomplete="off"></label>
+          <button class="pill icon-button" id="export" type="button"><img id="export-icon" width="14" height="14" alt="">Export</button>
+          <button class="pill icon-button" id="filter" type="button" aria-haspopup="dialog" aria-expanded="false"><img id="filter-icon" width="14" height="14" alt="">Filter<span class="filter-indicator" hidden></span></button>
+        </div>
+      </div>
+      <div id="usage-panel" role="tabpanel" aria-labelledby="features-tab">
+        <div class="table-scroll"><div class="table-surface surface">
+          <table aria-label="Feature usage"><colgroup><col style="width:207px"><col style="width:140px"><col style="width:99px"><col style="width:126px"><col style="width:144px"><col style="width:144px"></colgroup>
+            <thead><tr><th scope="col">Feature</th><th scope="col">Category</th><th scope="col">Actions</th><th scope="col">Users</th><th scope="col">Avg. time</th><th scope="col">Share</th></tr></thead>
+            <tbody id="feature-rows"></tbody>
+          </table>
+          <div id="no-results" class="empty-state" hidden>No features match your search.</div>
+        </div></div>
+        <div id="segments-empty" class="surface empty-state" hidden>No user segments yet.</div>
+      </div>
+    </section>
+  </div>
+  <div id="tooltip" class="usage-tooltip" role="tooltip" hidden></div>
+  <section id="feature-detail" class="detail-popover" role="dialog" aria-modal="false" aria-labelledby="detail-title" tabindex="-1" hidden></section>
+  <section id="filter-menu" class="small-popover" role="dialog" aria-modal="false" aria-labelledby="filter-title" hidden><h2 id="filter-title">Category</h2><div id="category-options"></div></section>
+  <section id="manage-menu" class="small-popover" role="dialog" aria-modal="false" aria-labelledby="manage-title" hidden><h2 id="manage-title">Manage product</h2><p>6 tracked features</p><button type="button" class="pill" id="view-features">View features</button></section>
+  <div id="status" class="toast" role="status" aria-live="polite" hidden></div>

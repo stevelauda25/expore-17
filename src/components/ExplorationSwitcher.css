@@ -1,6 +1,6 @@
 .exploration-switcher {
-  position: absolute;
-  z-index: 10;
+  position: fixed;
+  z-index: 41;
   bottom: 48px;
   left: 50%;
   display: flex;

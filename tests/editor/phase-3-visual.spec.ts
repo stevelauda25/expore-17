@@ -35,7 +35,7 @@ for (const viewport of viewports) test(`Explain visual and edge positioning at $
   }
   await expect(assertVisible).toPass()
   const geometry = await assertVisible()
-  if (viewport.width === 1640) { expect(geometry.x).toBe(1199); expect(geometry.y).toBe(240) }
+  if (viewport.width === 1640) { expect(geometry.x).toBe(1199); expect(geometry.y).toBe(140) }
   await page.screenshot({ path: `${output}/selection-explain-${viewport.width}.png`, animations: 'disabled' })
   const assets = await page.evaluate(() => Array.from(document.querySelectorAll<HTMLImageElement>('[data-clause-marker] img, [data-testid="explain-menu"] img')).map(img => ({ src: img.getAttribute('src'), natural: [img.naturalWidth, img.naturalHeight], width: img.getBoundingClientRect().width, height: img.getBoundingClientRect().height })))
   expect(assets.length).toBeGreaterThanOrEqual(9)
@@ -68,7 +68,7 @@ test('short viewport menu scrolls internally and keyboard focus reveals edge chi
   await expect(last).toBeInViewport()
   expect(await menu.evaluate(el => el.scrollTop)).toBeGreaterThan(100)
   const box = (await menu.boundingBox())!
-  expect(box.y).toBe(12); expect(box.height).toBe(526)
+  expect(box.y).toBe(12); expect(box.height).toBe(616)
   await page.screenshot({ path: `${output}/short-viewport-keyboard.png`, animations: 'disabled' })
   await page.keyboard.press('Enter')
   await expect(page.getByText('Prototype response', { exact: true })).toBeVisible()

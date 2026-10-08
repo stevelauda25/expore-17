@@ -46,7 +46,7 @@ for (const viewport of [{ width: 1640, height: 1060 }, { width: 1280, height: 90
     expect(geometry['paper'].width).toBeLessThanOrEqual(816)
     expect(geometry['text-column'].width).toBeLessThanOrEqual(550)
     expect(geometry['app-shell'].width).toBe(Math.min(1440, viewport.width - 32))
-    expect(geometry['app-shell'].height).toBe(Math.min(860, viewport.height - 118))
+    expect(geometry['app-shell'].height).toBe(viewport.height)
     for (const [name, value] of Object.entries(geometry)) expect(value.overflow, `${name}: ${JSON.stringify(value)}`).toBe(false)
     const preview = page.getByLabel('Preview document', { exact: true })
     await preview.evaluate(el => { el.scrollTop = el.scrollHeight })

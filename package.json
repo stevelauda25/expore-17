@@ -9,7 +9,7 @@
     "typecheck": "tsc -b --pretty false && tsc -p tsconfig.tests.json --pretty false",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test:unit": "node --test src/components/date-picker/*.test.mjs && vitest run",
+    "test:unit": "node --test src/components/date-picker/*.test.mjs src/product-usage/*.test.mjs && vitest run",
     "test:browser": "playwright test",
     "audit:integration": "npm run lint && npm run typecheck && npm run test:unit && npm run build && node scripts/check-production.mjs && npm run test:browser && node scripts/compare-integration.mjs && node scripts/compare-facility.mjs"
   },

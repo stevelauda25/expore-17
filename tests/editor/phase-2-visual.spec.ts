@@ -17,7 +17,7 @@ for (const viewport of viewports) {
       return Object.fromEntries(Object.entries(selectors).map(([key, selector]) => { const { x, y, width, height } = document.querySelector(selector)!.getBoundingClientRect(); return [key, { x, y, width, height }] }))
     })
     if (viewport.width === 1640) {
-      const anchors = { shell: [100, 100, 1440, 860], paper: [412, 278, 816], text: [545, 358, 550], title: [545, 358, 550, 18], date: [545, 396, 550, 21], summary: [545, 566, 550, 21], background: [545, 703, 550, 21], objectives: [545, 840, 550, 21] }
+      const anchors = { shell: [100, 0, 1440, 1060], paper: [412, 178, 816], text: [545, 258, 550], title: [545, 258, 550, 18], date: [545, 296, 550, 21], summary: [545, 466, 550, 21], background: [545, 603, 550, 21], objectives: [545, 740, 550, 21] }
       for (const [name, expected] of Object.entries(anchors)) for (const [i, dimension] of ['x', 'y', 'width', 'height'].entries()) {
         if (expected[i] !== undefined) expect(Math.abs(geometry[name][dimension as 'x'] - expected[i]), `${name}.${dimension}`).toBeLessThanOrEqual(1)
       }

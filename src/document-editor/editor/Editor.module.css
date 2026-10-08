@@ -33,3 +33,9 @@
 .notice { position: fixed; z-index: 40; bottom: 24px; left: 50%; transform: translateX(-50%); max-width: min(640px, calc(100vw - 48px)); padding: 14px 18px; background: white; border: 1px solid var(--paper-border); box-shadow: var(--popover-shadow); border-radius: 10px; line-height: 21px; display: flex; gap: 16px; align-items: center; }
 .notice button { color: var(--blue); white-space: nowrap; }
 .error { color: #9d3d26; }
+
+/* Keep recovery actions reachable above the independent navigation overlay. */
+:global(.exploration-page:has(> .exploration-switcher)) .notice { bottom: calc(var(--exploration-switcher-height, 38px) + 60px); }
+@media (max-height: 500px) {
+  :global(.exploration-page:has(> .exploration-switcher)) .notice { bottom: calc(var(--exploration-switcher-height, 38px) + 28px); }
+}

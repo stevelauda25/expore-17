@@ -65,6 +65,3 @@
 :where(.document-editor-scope) button:not(:disabled):not([aria-disabled='true']):hover { background-color: var(--hover); }
 :where(.document-editor-scope) button:not(:disabled):not([aria-disabled='true']):active { background-color: var(--selection); color: var(--blue); }
 :where(.document-editor-scope) textarea:focus-visible, :where(.document-editor-scope) [tabindex]:not([contenteditable]):focus-visible, :where(.document-editor-scope) [role='tab']:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
-
-@media (max-height: 1031px) { .document-editor-scope { --editor-floating-bottom: 102px; } }
-@media (max-height: 500px) { .document-editor-scope { --editor-floating-bottom: 70px; } }

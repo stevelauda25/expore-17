@@ -7,14 +7,17 @@ for (const width of [1280, 1440, 1640, 1920]) test(`playground isolation and edi
   await page.setViewportSize({ width, height })
   await page.clock.install({ time: new Date('2026-10-08T08:00:00Z') })
   await openEditor(page)
+  await page.getByRole('tab', { name: 'Product usage', exact: true }).click()
+  await expect(page.locator('.product-usage-demo')).toBeVisible()
   await page.getByRole('tab', { name: 'Facility app', exact: true }).click()
   await expect(page.locator('.facility-app-scope')).toBeVisible()
   await page.getByRole('tab', { name: 'Document editor', exact: true }).click()
   await mkdir(output, { recursive: true })
   const shell = (await page.getByTestId('app-shell').boundingBox())!
   const switcher = (await page.getByRole('tablist', { name: 'UI explorations' }).boundingBox())!
-  expect(shell.y + shell.height + 12).toBeLessThanOrEqual(switcher.y)
-  expect(shell.height).toBe(Math.min(860, height - 118))
+  expect(shell.y).toBe(0)
+  expect(shell.y + shell.height).toBe(height)
+  expect(shell.height).toBe(height)
   expect(shell.width).toBe(Math.min(1440, width - 32))
   const framing = await page.evaluate(() => ({ background: getComputedStyle(document.querySelector('.exploration-page')!).backgroundColor, bodyOverflow: document.documentElement.scrollHeight > innerHeight, horizontalOverflow: document.documentElement.scrollWidth > innerWidth }))
   expect(framing).toEqual({ background: 'rgb(235, 235, 235)', bodyOverflow: false, horizontalOverflow: false })
@@ -30,9 +33,11 @@ for (const width of [1280, 1440, 1640, 1920]) test(`playground isolation and edi
   await writeFile(`${output}/integration-geometry-${width}.json`, JSON.stringify({ shell, switcher, framing }, null, 2))
 })
 
-test('resizing a live floating surface reserves the switcher and scrolls the editor internally', async ({ page }) => {
+test('resizing a live floating surface uses the full viewport and scrolls the editor internally', async ({ page }) => {
   await page.setViewportSize({ width: 1640, height: 1060 })
   await openEditor(page)
+  await page.getByRole('tab', { name: 'Product usage', exact: true }).click()
+  await expect(page.locator('.product-usage-demo')).toBeVisible()
   await page.getByRole('tab', { name: 'Facility app', exact: true }).click()
   await expect(page.locator('.facility-app-scope')).toBeVisible()
   await page.getByRole('tab', { name: 'Document editor', exact: true }).click()
@@ -42,9 +47,9 @@ test('resizing a live floating surface reserves the switcher and scrolls the edi
     await page.setViewportSize({ width: 1280, height })
     const menu = page.getByTestId('explain-menu')
     await expect(async () => {
-      const box = (await menu.boundingBox())!, switcher = (await page.getByRole('tablist', { name: 'UI explorations' }).boundingBox())!
+      const box = (await menu.boundingBox())!
       expect(box.y).toBeGreaterThanOrEqual(12)
-      expect(box.y + box.height).toBeLessThanOrEqual(height < 1032 ? switcher.y - 12 : height - 12)
+      expect(box.y + box.height).toBeLessThanOrEqual(height - 12)
       expect(await page.evaluate(() => document.documentElement.scrollHeight > innerHeight)).toBe(false)
     }).toPass()
     await expect(page.getByRole('tab', { name: 'Document editor', exact: true })).toBeInViewport()

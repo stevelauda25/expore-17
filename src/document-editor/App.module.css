@@ -1,7 +1,7 @@
-.presentation { height: 100%; display: grid; place-items: start center; padding-top: max(16px, calc((100dvh - 860px) / 2)); }
+.presentation { height: 100%; display: grid; place-items: start center; }
 .outlineCollapsed { --outline-width: 0px; }
 .outlineCollapsed .outline { visibility: hidden; padding: 0; overflow: hidden; border: 0; }
-.shell { width: min(1440px, calc(100vw - 32px)); height: min(860px, calc(100dvh - 118px)); display: grid; grid-template-columns: var(--rail-width) var(--outline-width) minmax(0, 1fr) var(--panel-width); grid-template-rows: var(--header-height) var(--header-height) minmax(0, 1fr); position: relative; border-radius: 16px; overflow: clip; box-shadow: var(--app-shadow); background: var(--surface); }
+.shell { width: min(1440px, calc(100vw - 32px)); height: 100dvh; display: grid; grid-template-columns: var(--rail-width) var(--outline-width) minmax(0, 1fr) var(--panel-width); grid-template-rows: var(--header-height) var(--header-height) minmax(0, 1fr); position: relative; border-radius: 16px; overflow: clip; box-shadow: var(--app-shadow); background: var(--surface); }
 .shell::after { content: ''; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; box-shadow: var(--app-edge); z-index: 5; }
 .rail { grid-column: 1; grid-row: 1 / -1; background: var(--rail); display: flex; flex-direction: column; border-right: .5px solid var(--paper-border); }
 .railHeader { height: 54px; flex: none; padding: 20px; border-bottom: .5px solid var(--paper-border); }
@@ -62,5 +62,3 @@
 /* The border consumes one CSS pixel; retain the measured 222 px rows without
    introducing a one-pixel horizontal scroll range in the 246 px outline. */
 .outline { padding-right: 11px; }
-
-@media (max-height: 500px) { .shell { height: calc(100dvh - 86px); } }

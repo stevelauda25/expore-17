@@ -1,0 +1,78 @@
+{
+  "fileKey": "GdagXhVqcEZsgr2PAskZh6",
+  "sourceNode": "3076:12187",
+  "features": {
+    "ai": {
+      "orb": {
+        "nodeId": "3073:7795",
+        "path": "/assets/popovers/ai-orb.png"
+      },
+      "actions": [
+        "/assets/3060-4264-7fd48.svg",
+        "/assets/3060-4264-789df.svg",
+        "/assets/3060-4264-c58c3.svg"
+      ],
+      "nodeId": "3073:7791"
+    },
+    "editor": {
+      "orb": {
+        "nodeId": "3076:10185",
+        "path": "/assets/popovers/editor-orb.png"
+      },
+      "actions": [
+        "/assets/popovers/editor-action-1.svg",
+        "/assets/popovers/editor-action-2.svg",
+        "/assets/popovers/editor-action-1.svg"
+      ],
+      "nodeId": "3076:9205"
+    },
+    "analytics": {
+      "orb": {
+        "nodeId": "3076:10413",
+        "path": "/assets/popovers/analytics-orb.png"
+      },
+      "actions": [
+        "/assets/popovers/analytics-action-1.svg",
+        "/assets/popovers/analytics-action-2.svg",
+        "/assets/popovers/analytics-action-3.svg"
+      ],
+      "nodeId": "3073:8061"
+    },
+    "settings": {
+      "orb": {
+        "nodeId": "3076:10907",
+        "path": "/assets/popovers/settings-orb.png"
+      },
+      "actions": [
+        "/assets/popovers/settings-action-1.svg",
+        "/assets/popovers/settings-action-2.svg",
+        "/assets/popovers/settings-action-3.svg"
+      ],
+      "nodeId": "3076:10638"
+    },
+    "support": {
+      "orb": {
+        "nodeId": "3076:11410",
+        "path": "/assets/popovers/support-orb.png"
+      },
+      "actions": [
+        "/assets/popovers/support-action-1.svg",
+        "/assets/popovers/support-action-2.svg",
+        "/assets/popovers/support-action-1.svg"
+      ],
+      "nodeId": "3076:11141"
+    },
+    "other": {
+      "orb": {
+        "nodeId": "3076:11907",
+        "path": "/assets/popovers/other-orb.png"
+      },
+      "actions": [
+        "/assets/popovers/other-action-1.svg",
+        "/assets/popovers/other-action-2.svg",
+        "/assets/popovers/other-action-3.svg"
+      ],
+      "nodeId": "3076:11635"
+    }
+  }
+}

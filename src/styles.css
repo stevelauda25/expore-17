@@ -36,13 +36,13 @@ a {
 }
 
 #root {
-  min-height: 100svh;
+  min-height: 100dvh;
 }
 
 .exploration-page {
   position: relative;
   display: flex;
-  min-height: 100svh;
+  min-height: 100dvh;
   isolation: isolate;
   background: #08090a;
 }
@@ -87,13 +87,14 @@ a {
 .document-editor-panel { height: 100dvh; }
 .document-editor-loading { color: #73726d; text-align: center; margin: 80px 16px; }
 /* Preserve the existing switcher treatment while fitting its additional tab on narrow screens. */
-@media (max-width: 460px) {
+@media (max-width: 680px) {
   .exploration-switcher { max-width: calc(100vw - 24px); height: auto; flex-wrap: wrap; justify-content: center; }
 }
 
-/* Facility preserves its 1440 × 734 minimum canvas inside a scrollable host.
-   Reserve 118px for the existing bottom switcher, including its clear space. */
+/* Facility keeps its minimum canvas and scrolling inside the full viewport. */
 .exploration-page--facility-app { height: 100dvh; min-height: 100dvh; background: #ebebeb; color-scheme: light; }
-.facility-app-panel { bottom: 118px; }
 .facility-app-loading { color: #5f6b69; text-align: center; margin: 80px 16px; }
-@media (max-height: 500px) { .facility-app-panel { bottom: 86px; } }
+
+/* The navigation overlays Product Usage; its existing scroll container fills the panel. */
+.exploration-page--product-usage { height: 100dvh; min-height: 100dvh; background: #fff; color-scheme: light; }
+.product-usage-loading { color: #73726d; text-align: center; margin: 80px 16px; }

@@ -12,3 +12,7 @@ coverage/
 .DS_Store
 test-results/
 playwright-report/
+
+# Product Usage exact prototype font stays local, as in its source workspace.
+/public/product-usage/fonts/SF-Pro.ttf
+/public/product-usage/fonts/License.rtf

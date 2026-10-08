@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import type { KeyboardEvent } from 'react'
 import './ExplorationSwitcher.css'
 
-export type Exploration = 'header' | 'date-picker' | 'profile' | 'document-editor' | 'facility-app'
+export type Exploration = 'header' | 'date-picker' | 'profile' | 'document-editor' | 'facility-app' | 'product-usage'
 
 interface ExplorationSwitcherProps {
   value: Exploration
@@ -15,6 +15,7 @@ const explorations: { id: Exploration; label: string }[] = [
   { id: 'profile', label: 'Profile' },
   { id: 'document-editor', label: 'Document editor' },
   { id: 'facility-app', label: 'Facility app' },
+  { id: 'product-usage', label: 'Product usage' },
 ]
 
 export function ExplorationSwitcher({ value, onChange }: ExplorationSwitcherProps) {
@@ -33,6 +34,8 @@ export function ExplorationSwitcher({ value, onChange }: ExplorationSwitcherProp
       pill.style.top = `${active.offsetTop}px`
       pill.style.width = `${bounds.width}px`
       pill.style.height = `${bounds.height}px`
+      const switcher = active.parentElement
+      switcher?.parentElement?.style.setProperty('--exploration-switcher-height', `${switcher.getBoundingClientRect().height}px`)
     }
 
     measure()
@@ -45,6 +48,8 @@ export function ExplorationSwitcher({ value, onChange }: ExplorationSwitcherProp
     // Font loading or resized labels can change both the width and tab offsets.
     const observer = new ResizeObserver(measure)
     buttons.current.forEach(button => { if (button) observer.observe(button) })
+    // Wrapping moves tabs without changing their widths. Track the container too.
+    if (active.parentElement) observer.observe(active.parentElement)
     return () => observer.disconnect()
   }, [value])
 

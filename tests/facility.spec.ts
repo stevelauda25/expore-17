@@ -13,8 +13,8 @@ async function activate(page: Page) {
 }
 for (const dpr of [1, 2]) test(`Facility source geometry, assets, typography and DPR ${dpr}`, async ({ browser }, testInfo) => {
   const suffix = testInfo.project.name === 'chromium' ? '' : `-${testInfo.project.name}`
-  // 734px of actual app plus the separate 118px shared-switcher reservation.
-  const context = await browser.newContext({ viewport: { width: 1440, height: 852 }, deviceScaleFactor: dpr })
+  // The original 734px app canvas now occupies the entire viewport.
+  const context = await browser.newContext({ viewport: { width: 1440, height: 734 }, deviceScaleFactor: dpr })
   const page = await context.newPage()
   const errors: string[] = []
   page.on('pageerror', e => errors.push(e.message))
@@ -64,7 +64,10 @@ for (const dpr of [1, 2]) test(`Facility source geometry, assets, typography and
     expect(instances.every(i => i.loaded)).toBe(true)
     for (const slot of asset.expectedSlots) expect(instances.some(i => slot.every((v: number, n: number) => Math.abs(i.rect[n] - v) < .03))).toBe(true)
   }
+  await page.keyboard.press('Meta+Shift+c')
+  await expect(page.getByRole('tablist', { name: 'UI explorations' })).toHaveCount(0)
   await page.locator('.facility-app-scope').screenshot({ path: `${output}/canonical-dpr${dpr}${suffix}.png`, animations: 'disabled' })
+  await page.keyboard.press('Meta+Shift+c')
   await page.screenshot({ path: `${output}/canonical-host-dpr${dpr}${suffix}.png`, animations: 'disabled' })
   expect(errors).toEqual([])
   await writeFile(`${output}/canonical-dpr${dpr}${suffix}.json`, JSON.stringify({ ...actual, errors }, null, 2))
@@ -80,6 +83,8 @@ test('Facility loads only on activation, remains mounted and retains controlled 
   await expect(page.locator('.facility-app-scope')).toHaveCount(0)
   expect(requests).toEqual([])
   await tab(page, 'Header').focus(); await page.keyboard.press('ArrowLeft')
+  await expect(tab(page, 'Product usage')).toBeFocused()
+  await page.keyboard.press('ArrowLeft')
   await expect(tab(page, 'Facility app')).toBeFocused()
   await activate(page)
   expect(requests.length).toBeGreaterThan(0)
@@ -87,7 +92,7 @@ test('Facility loads only on activation, remains mounted and retains controlled 
   const node = await root.elementHandle()
   await root.evaluate(el => { el.scrollTop = 180; el.scrollLeft = 130 })
   const scroll = await root.evaluate(el => [el.scrollLeft, el.scrollTop])
-  expect(scroll).toEqual([130, 180])
+  expect(scroll).toEqual([130, 94])
   await tab(page, 'Document editor').click()
   await expect(panel).toBeHidden(); await expect(panel).toHaveAttribute('inert', '')
   await panel.locator('button').first().evaluate(el => el.focus())
@@ -113,11 +118,11 @@ for (const [width, height] of [[1280, 900], [1440, 900], [1640, 1060], [1920, 10
   await page.setViewportSize({ width, height }); await page.goto('/'); await activate(page)
   const root = page.locator('.facility-app-scope')
   const panel = (await root.boundingBox())!, switcher = (await page.getByRole('tablist', { name: 'UI explorations' }).boundingBox())!
-  expect(panel.y + panel.height + 12).toBeLessThanOrEqual(switcher.y)
+  expect(panel.y).toBe(0); expect(panel.height).toBe(height)
   expect(switcher.x).toBeGreaterThan(0); expect(switcher.x + switcher.width).toBeLessThan(width)
   const geometry = await root.evaluate(el => ({ client: [el.clientWidth, el.clientHeight], scroll: [el.scrollWidth, el.scrollHeight], body: [document.documentElement.scrollWidth, document.documentElement.scrollHeight], shell: [el.firstElementChild!.clientWidth, el.firstElementChild!.clientHeight] }))
   expect(geometry.body).toEqual([width, height])
-  expect(geometry.shell).toEqual([Math.max(1440, width), Math.max(734, height - (height <= 500 ? 86 : 118))])
+  expect(geometry.shell).toEqual([Math.max(1440, width), Math.max(734, height)])
   await page.mouse.move(1, height - 1)
   await page.screenshot({ path: `${output}/host-${width}-${height}${suffix}.png`, animations: 'disabled' })
   await page.locator('.facility-app-scope .inspect-button').scrollIntoViewIfNeeded()
