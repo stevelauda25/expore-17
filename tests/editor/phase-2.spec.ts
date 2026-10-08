@@ -1,0 +1,186 @@
+import { test, expect } from '@playwright/test'
+import { reloadEditor, openEditor, selectText, stored, documentJSON, key } from './editor-helpers'
+
+test.beforeEach(async ({ page }) => { await page.setViewportSize({ width: 1640, height: 1060 }) })
+
+test('dirty → saving → saved after 800 ms idle; refresh and pagehide retain edits', async ({ page }) => {
+  await openEditor(page, 1200)
+  await expect(page.getByTestId('save-status')).toHaveText('Saved')
+  await selectText(page, 'Dear Alex,')
+  await page.keyboard.type('Dear Taylor,')
+  await expect(page.getByTestId('save-status')).toHaveText('Unsaved changes')
+  await expect(page.getByTestId('save-status')).toHaveText('Saving...')
+  await expect(page.getByTestId('saving-indicator')).toHaveAttribute('data-reduced-motion', 'true')
+  await expect(page.getByTestId('save-status')).toHaveText('Saved')
+  await reloadEditor(page)
+  await expect(page.getByTestId('document-editor')).toContainText('Dear Taylor,')
+  await selectText(page, 'Dear Taylor,')
+  await page.keyboard.type('Page hide retained')
+  await page.evaluate(() => dispatchEvent(new Event('pagehide')))
+  expect(JSON.stringify((await stored(page)).document)).toContain('Page hide retained')
+  await reloadEditor(page)
+  await expect(page.getByTestId('document-editor')).toContainText('Page hide retained')
+})
+
+test('format buttons, active states, color palette, highlight and undo', async ({ page }) => {
+  await openEditor(page)
+  await selectText(page, 'Acme Studio')
+  for (const [button, selector] of [['Bold', 'strong'], ['Italic', 'em'], ['Underline', 'u'], ['Strikethrough', 's']] as const) {
+    await page.getByRole('button', { name: button, exact: true }).click()
+    await expect(page.getByTestId('document-editor').locator(selector)).toContainText('Acme Studio')
+    await expect(page.getByRole('button', { name: button, exact: true })).toHaveAttribute('aria-pressed', 'true')
+  }
+  await page.getByRole('button', { name: 'Text color', exact: true }).click()
+  await expect(page.getByRole('dialog', { name: 'Text color choices' })).toBeVisible()
+  await page.getByRole('button', { name: 'Blue', exact: true }).click()
+  await expect(page.getByTestId('document-editor').locator('span[style*="color"]')).toHaveCSS('color', 'rgb(22, 135, 239)')
+  await page.getByRole('button', { name: 'Text color', exact: true }).click()
+  await page.getByRole('button', { name: 'Reset color', exact: true }).click()
+  await expect(page.getByTestId('document-editor').locator('span[style*="color"]')).toHaveCount(0)
+  await page.getByRole('button', { name: 'Highlight', exact: true }).click()
+  await expect(page.getByTestId('document-editor').locator('mark')).toHaveText('Acme Studio')
+  await page.keyboard.press('Meta+z')
+  await expect(page.getByTestId('document-editor').locator('mark')).toHaveCount(0)
+})
+
+test('keyboard toolbar navigation, preserved selection, nested Escape and collapse', async ({ page }) => {
+  await openEditor(page)
+  await selectText(page, 'Acme Studio')
+  await page.keyboard.press('F10')
+  await expect(page.getByRole('button', { name: 'Bold', exact: true })).toBeFocused()
+  expect(await page.locator('.preserved-selection').allTextContents()).toEqual(['A', 'cme Studi', 'o'])
+  await page.keyboard.press('ArrowRight')
+  await expect(page.getByRole('button', { name: 'Italic', exact: true })).toBeFocused()
+  await page.keyboard.press('End')
+  await page.keyboard.press('ArrowLeft')
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('dialog', { name: 'Text color choices' })).toBeVisible()
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog', { name: 'Text color choices' })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Text color', exact: true })).toBeFocused()
+  await page.keyboard.press('Escape')
+  await expect(page.getByTestId('formatting-toolbar')).not.toBeVisible()
+  await expect(page.getByTestId('document-editor')).toBeFocused()
+  await page.keyboard.press('ArrowRight')
+  await expect(page.locator('.preserved-selection')).toHaveCount(0)
+})
+
+test('search navigates matches across formatting, clears, and leaves document unchanged', async ({ page }) => {
+  await openEditor(page)
+  await selectText(page, 'Studio')
+  await page.getByRole('button', { name: 'Bold', exact: true }).click()
+  const before = await documentJSON(page)
+  await page.keyboard.press('Meta+f')
+  const input = page.getByRole('textbox', { name: 'Search document' })
+  await expect(input).toBeFocused()
+  await input.fill('ACME STUDIO')
+  await expect(page.getByRole('status', { name: 'Search matches' })).toHaveText('1/1')
+  await input.fill('website')
+  const count = await page.locator('.search-match').count()
+  expect(count).toBeGreaterThan(2)
+  await input.press('Enter')
+  await expect(page.getByRole('status', { name: 'Search matches' })).toHaveText(`2/${count}`)
+  await input.press('Shift+Enter')
+  await expect(page.getByRole('status', { name: 'Search matches' })).toHaveText(`1/${count}`)
+  await input.fill('not in this proposal')
+  await expect(page.getByRole('status', { name: 'Search matches' })).toHaveText('0/0')
+  await input.press('Escape')
+  await expect(input).toHaveValue('')
+  expect(await documentJSON(page)).toEqual(before)
+  await expect(page.getByTestId('document-editor')).toBeFocused()
+})
+
+test('outline targets and labels survive heading edits, creation, undo and reload', async ({ page }) => {
+  await openEditor(page)
+  await page.getByRole('button', { name: '2. Project Background', exact: true }).click()
+  await expect(page.getByRole('button', { name: '2. Project Background', exact: true })).toHaveAttribute('aria-current', 'location')
+  await selectText(page, 'Project Background')
+  await page.keyboard.type('Context')
+  await expect(page.getByRole('button', { name: '2. Context', exact: true })).toBeVisible()
+  await expect(page.locator('#project-background')).toHaveText('Context')
+  await page.keyboard.press('Meta+s')
+  await expect(page.getByTestId('save-status')).toHaveText('Saved')
+  await reloadEditor(page)
+  await expect(page.locator('#project-background')).toHaveText('Context')
+  await page.evaluate(() => {
+    const e = window.__phase2Test!.editor!
+    e.chain().focus('end').insertContent([{ type: 'heading', attrs: { level: 2, id: 'project-background' }, content: [{ type: 'text', text: 'New section' }] }]).run()
+  })
+  const newHeading = page.getByRole('heading', { name: 'New section', exact: true })
+  const id = await newHeading.getAttribute('id')
+  expect(id).toMatch(/^section-/)
+  await expect(page.getByRole('button', { name: '8. New section', exact: true })).toBeVisible()
+  // TipTap's focus command completes on the next animation frame.
+  await expect(page.getByTestId('document-editor')).toBeFocused()
+  await page.keyboard.press('Meta+z')
+  await expect(newHeading).toHaveCount(0)
+  await page.getByRole('button', { name: 'Toggle outline', exact: true }).click()
+  await expect(page.getByTestId('outline')).not.toBeVisible()
+  await page.getByRole('button', { name: 'Toggle outline', exact: true }).click()
+  await expect(page.getByTestId('outline')).toBeVisible()
+})
+
+test('selection bookmark maps through document transactions while palette owns focus', async ({ page }) => {
+  await openEditor(page)
+  await selectText(page, 'Acme Studio')
+  await page.getByRole('button', { name: 'Text color', exact: true }).click()
+  await page.evaluate(() => {
+    const e = window.__phase2Test!.editor!
+    e.view.dispatch(e.state.tr.insertText('Inserted before. ', 1))
+  })
+  await page.getByRole('button', { name: 'Blue', exact: true }).click()
+  await expect(page.getByTestId('document-editor').locator('span[style*="color"]')).toHaveText('Acme Studio')
+})
+
+test('quota failure is visible and retry saves the same document', async ({ page }) => {
+  await openEditor(page)
+  await expect(page.getByTestId('save-status')).toHaveText('Saved')
+  await page.evaluate(() => {
+    const original = Storage.prototype.setItem
+    Storage.prototype.setItem = function(k, v) { if (k === 'proposal-editor:document:v1') throw new DOMException('Full', 'QuotaExceededError'); original.call(this, k, v) }
+  })
+  await selectText(page, 'Dear Alex,'); await page.keyboard.type('Recoverable edit')
+  await page.getByRole('button', { name: 'Save changes', exact: true }).click()
+  await expect(page.getByRole('alert')).toContainText('could not be saved')
+  await expect(page.getByTestId('save-status')).toHaveText('Save failed')
+  await page.screenshot({ path: 'docs/qa/document-editor/inherited-phase-2/storage-error.png' })
+  // A fresh iframe supplies the unpatched native implementation without reloading the editor.
+  await page.evaluate(() => {
+    const iframe = document.createElement('iframe'); document.body.appendChild(iframe)
+    Storage.prototype.setItem = (iframe.contentWindow as Window & typeof globalThis).Storage.prototype.setItem
+    iframe.remove()
+  })
+  await page.getByRole('button', { name: 'Retry save', exact: true }).first().click()
+  await expect(page.getByTestId('save-status')).toHaveText('Saved')
+  expect(JSON.stringify((await stored(page)).document)).toContain('Recoverable edit')
+})
+
+test('malformed storage stays intact until a raw backup is written', async ({ page }) => {
+  await page.addInitScript(key => { if (!sessionStorage.getItem('seeded')) { localStorage.setItem(key, '{malformed'); sessionStorage.setItem('seeded', 'yes') } }, key)
+  await openEditor(page)
+  await expect(page.getByRole('alert')).toContainText('left untouched')
+  await selectText(page, 'Dear Alex,'); await page.keyboard.type('Recovered draft')
+  expect(await page.evaluate(key => localStorage.getItem(key), key)).toBe('{malformed')
+  await page.getByRole('button', { name: 'Back up and retry' }).click()
+  await expect(page.getByTestId('save-status')).toHaveText('Saved')
+  expect(await page.evaluate(key => Object.keys(localStorage).filter(k => k.startsWith(`${key}:backup:`)).map(k => localStorage.getItem(k)), key)).toEqual(['{malformed'])
+  expect(JSON.stringify((await stored(page)).document)).toContain('Recovered draft')
+})
+
+test('native copy/paste retains prose and formatting, excluding search/selection decorations', async ({ page, context }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write'])
+  await openEditor(page)
+  await selectText(page, 'Acme Studio')
+  await page.getByRole('button', { name: 'Bold', exact: true }).click()
+  await page.keyboard.press('Meta+c')
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('Acme Studio')
+  const html = await page.evaluate(async () => {
+    const item = (await navigator.clipboard.read())[0]
+    return (await item.getType('text/html')).text()
+  })
+  expect(html).toContain('<strong>')
+  expect(html).not.toContain('preserved-selection')
+  await selectText(page, 'Dear Alex,')
+  await page.keyboard.press('Meta+v')
+  await expect(page.getByTestId('document-editor').locator('strong')).toHaveCount(2)
+})

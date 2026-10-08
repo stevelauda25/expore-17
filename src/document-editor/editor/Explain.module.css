@@ -1,0 +1,19 @@
+.popover { z-index: 40; height: 758px; overscroll-behavior: contain; }
+.popover button { transition: background-color 150ms ease-out, color 150ms ease-out; }
+.popover button:hover { background-color: var(--hover); }
+.popover button:focus-visible { outline-offset: 2px; }
+.response { padding: 24px; display: flex; flex-direction: column; align-items: start; gap: 20px; line-height: 21px; overflow-wrap: anywhere; }
+.response h2 { font-size: 18px; font-weight: 500; line-height: 24px; }
+.back { color: var(--blue); border-radius: 4px; }
+.label { font-size: 12px; color: var(--secondary); }
+.result ul { padding-left: 20px; }
+.result li + li { margin-top: 12px; }
+.primary, .secondary { padding: 8px 12px; border-radius: 8px; box-shadow: var(--control-shadow); }
+.primary { background: var(--selection); color: var(--blue); }
+.secondary { background: var(--hover); }
+.question { color: var(--secondary); }
+.response form { display: flex; flex-direction: column; align-items: start; gap: 16px; width: 100%; }
+.response textarea { width: 100%; resize: vertical; max-height: 260px; min-height: 100px; font: inherit; padding: 10px; border: 1px solid var(--paper-border); border-radius: 8px; }
+.response textarea:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.stale { display: grid; gap: 16px; padding: 12px; border-radius: 8px; background: var(--hover); }
+.paragraph { z-index: 21; display: flex; gap: 6px; align-items: center; padding: 8px; border-radius: 8px; background: var(--surface); box-shadow: var(--control-shadow); color: var(--blue); }

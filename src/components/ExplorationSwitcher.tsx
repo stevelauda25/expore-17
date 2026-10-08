@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import type { KeyboardEvent } from 'react'
 import './ExplorationSwitcher.css'
 
-export type Exploration = 'header' | 'date-picker' | 'profile'
+export type Exploration = 'header' | 'date-picker' | 'profile' | 'document-editor'
 
 interface ExplorationSwitcherProps {
   value: Exploration
@@ -13,6 +13,7 @@ const explorations: { id: Exploration; label: string }[] = [
   { id: 'header', label: 'Header' },
   { id: 'date-picker', label: 'Date picker' },
   { id: 'profile', label: 'Profile' },
+  { id: 'document-editor', label: 'Document editor' },
 ]
 
 export function ExplorationSwitcher({ value, onChange }: ExplorationSwitcherProps) {

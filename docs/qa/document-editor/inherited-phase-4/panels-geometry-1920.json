@@ -1,0 +1,51 @@
+{
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "geometry": {
+    "app-shell": {
+      "x": 240,
+      "y": 110,
+      "width": 1440,
+      "height": 860,
+      "overflow": false
+    },
+    "outline": {
+      "x": 294,
+      "y": 164,
+      "width": 246,
+      "height": 806,
+      "overflow": false
+    },
+    "right-panel": {
+      "x": 1380,
+      "y": 164,
+      "width": 300,
+      "height": 806,
+      "overflow": false
+    },
+    "workspace": {
+      "x": 540,
+      "y": 218,
+      "width": 840,
+      "height": 752,
+      "overflow": false
+    },
+    "paper": {
+      "x": 552,
+      "y": 288,
+      "width": 816,
+      "height": 1145.625,
+      "overflow": false
+    },
+    "text-column": {
+      "x": 685,
+      "y": 368,
+      "width": 550,
+      "height": 984.625,
+      "overflow": false
+    }
+  },
+  "errors": []
+}

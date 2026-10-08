@@ -1,0 +1,22 @@
+.body { padding: 16px; line-height: 21px; overflow-wrap: anywhere; }
+.body > * + * { margin-top: 16px; }
+.body h2 { font-size: 14px; font-weight: 500; }
+.body form { display: grid; gap: 8px; }
+.body label { font-weight: 500; }
+.body textarea { width: 100%; min-height: 60px; max-height: 240px; resize: vertical; padding: 8px; border: 1px solid var(--paper-border); border-radius: var(--control-radius); background: var(--surface); }
+.body button { color: var(--blue); border-radius: 6px; padding: 6px 8px; text-align: left; background: var(--selection); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.meta, .body time { font-size: 12px; line-height: 18px; color: var(--secondary); }
+.meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px; }
+.card { border: 1px solid var(--paper-border); border-radius: var(--control-radius); padding: 12px; display: grid; gap: 12px; }
+.card blockquote { margin: 0; border-left: 2px solid var(--selection-edge); padding-left: 8px; color: var(--secondary); white-space: pre-wrap; }
+.quote { color: var(--secondary); max-height: 84px; overflow: auto; }
+.prose { white-space: pre-wrap; }
+.reply { border-top: 1px solid var(--paper-border); padding-top: 8px; }
+.revisions { list-style: none; padding: 0; display: grid; gap: 8px; }
+.revisions button { display: grid; width: 100%; background: var(--surface); border: 1px solid var(--paper-border); }
+.revisions button[aria-pressed='true'] { background: var(--selection); }
+.preview { max-height: 260px; overflow: auto; padding: 8px; border: 1px solid var(--paper-border); background: var(--workspace); }
+.preview h1 { font-size: 18px; font-weight: 500; }
+.preview > * + * { margin-top: 12px; }
+.preview ul, .preview ol { padding-left: 20px; }

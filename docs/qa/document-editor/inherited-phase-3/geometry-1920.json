@@ -1,0 +1,100 @@
+{
+  "viewport": {
+    "width": 1920,
+    "height": 1080
+  },
+  "menu": {
+    "x": 1339,
+    "y": 250,
+    "width": 382,
+    "height": 758
+  },
+  "assets": [
+    {
+      "src": "/assets/document-editor/orb-20.png",
+      "natural": [
+        21,
+        21
+      ],
+      "width": 21,
+      "height": 21
+    },
+    {
+      "src": "/assets/document-editor/summary.svg",
+      "natural": [
+        16,
+        16
+      ],
+      "width": 16,
+      "height": 16
+    },
+    {
+      "src": "/assets/document-editor/key-points.svg",
+      "natural": [
+        16,
+        16
+      ],
+      "width": 16,
+      "height": 16
+    },
+    {
+      "src": "/assets/document-editor/simplify.svg",
+      "natural": [
+        16,
+        16
+      ],
+      "width": 16,
+      "height": 16
+    },
+    {
+      "src": "/assets/document-editor/rewrite.svg",
+      "natural": [
+        16,
+        16
+      ],
+      "width": 16,
+      "height": 16
+    },
+    {
+      "src": "/assets/document-editor/question.svg",
+      "natural": [
+        16,
+        16
+      ],
+      "width": 16,
+      "height": 16
+    },
+    {
+      "src": "/assets/document-editor/badge-investment.png",
+      "natural": [
+        14,
+        15
+      ],
+      "width": 14,
+      "height": 15
+    },
+    {
+      "src": "/assets/document-editor/badge-experience.png",
+      "natural": [
+        14,
+        15
+      ],
+      "width": 14,
+      "height": 15
+    },
+    {
+      "src": "/assets/document-editor/badge-structure.png",
+      "natural": [
+        14,
+        15
+      ],
+      "width": 14,
+      "height": 15
+    }
+  ],
+  "overflow": {
+    "body": false,
+    "workspace": false
+  },
+  "errors": []
+}

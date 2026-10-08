@@ -1,0 +1,67 @@
+{
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "geometry": {
+    "shell": {
+      "x": 16,
+      "y": 20,
+      "width": 1248,
+      "height": 782
+    },
+    "paper": {
+      "x": 328,
+      "y": 198,
+      "width": 624,
+      "height": 1145.625
+    },
+    "text": {
+      "x": 365,
+      "y": 278,
+      "width": 550,
+      "height": 984.625
+    },
+    "title": {
+      "x": 365,
+      "y": 278,
+      "width": 550,
+      "height": 18
+    },
+    "date": {
+      "x": 365,
+      "y": 316,
+      "width": 550,
+      "height": 21
+    },
+    "summary": {
+      "x": 365,
+      "y": 486,
+      "width": 550,
+      "height": 21
+    },
+    "background": {
+      "x": 365,
+      "y": 623,
+      "width": 550,
+      "height": 21
+    },
+    "objectives": {
+      "x": 365,
+      "y": 760,
+      "width": 550,
+      "height": 21
+    },
+    "workspace": {
+      "x": 316,
+      "y": 128,
+      "width": 648,
+      "height": 674
+    }
+  },
+  "overflow": {
+    "body": false,
+    "workspace": false
+  },
+  "errors": []
+}

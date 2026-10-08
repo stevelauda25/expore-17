@@ -1,0 +1,19 @@
+{
+  "shell": {
+    "x": 240,
+    "y": 110,
+    "width": 1440,
+    "height": 860
+  },
+  "switcher": {
+    "x": 759.015625,
+    "y": 994,
+    "width": 401.96875,
+    "height": 38
+  },
+  "framing": {
+    "background": "rgb(235, 235, 235)",
+    "bodyOverflow": false,
+    "horizontalOverflow": false
+  }
+}

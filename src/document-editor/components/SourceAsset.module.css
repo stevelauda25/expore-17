@@ -1,0 +1,11 @@
+.icon { display: block; flex: none; }
+.orb14, .orb20 { position: relative; display: block; flex: none; }
+.orb14 { width: 14px; height: 14px; }
+.orb20 { width: 20px; height: 20px; }
+.orb14 img, .orb20 img { position: absolute; left: 0; top: 0; display: block; }
+.badge { position: relative; display: inline-block; width: 20px; height: 14px; vertical-align: -2px; user-select: none; }
+.badge img { display: block; position: absolute; top: 0; left: 0; }
+
+.badge[data-badge="investment"] img, .badge[data-badge="experience"] img { left: 1.5px; }
+.badge[data-badge="structure"] { width: 18px; }
+.badge[data-badge="experience"] img, .badge[data-badge="structure"] img { top: 1px; }

@@ -1,68 +1,52 @@
 # UI exploration playground
 
-React 19.3, TypeScript 5.9, Vite 7.3, and plain CSS. This workspace was empty when inspected; the scaffold was created here with the user's approval. There was no existing repository, router, design system, component library, or application code to modify.
+React, TypeScript and Vite playground with four explorations: **Header**, **Date picker**, **Profile**, and **Document editor**. Header is selected initially. The existing switcher supports Arrow Left/Right, Home/End, linked tab panels, roving focus and its moving indicator.
 
-## Run
+## Run and verify
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
-Use the local URL printed by Vite. `/` renders the playground. Header is selected by default. React state switches panels without navigation or reloading. No routing, icon, or animation libraries are needed. Inter Regular and Medium are bundled locally using `@fontsource/inter`; the logo and icon exports live in `public/assets/figma`.
+Open the URL printed by Vite. The editor loads only on its first activation and then stays mounted. No iframe, external editor server or localhost dependency is used in production.
 
 ```sh
 npm run lint
 npm run typecheck
+npm run test:unit
 npm run build
 npm run preview
+# Install browser binaries once when needed:
+npx playwright install chromium firefox webkit
+# Complete integration acceptance gate (local test server uses port 5180):
+npm run audit:integration
 ```
 
-## Components
+The existing Vercel project deploys the repository's `main` branch. Its production alias is [expore-17.vercel.app](https://expore-17.vercel.app/). No project/build settings were changed for this integration.
 
-- `App`: playground and selected exploration state.
-- `ExplorationSwitcher`: accessible bottom tablist with ArrowLeft/ArrowRight, Home/End, and roving tab stops.
-- `EmptyDemo`: empty light panel used for Date picker and Profile.
-- `HeaderDemo` and `HeaderNav`: Header preview, navigation, and disclosure behavior.
-- `ProductsDropdown`, `ProductMenuItem`, and `UtilityLink`: data-driven product columns and utility row.
+## Document editor usage
 
-### Created files
+- Click **Document editor** after Profile. Type directly in the proposal. Select text for Bold, Italic, Underline, Strikethrough, Text color, Highlight or Ask AI. F10/Tab enters the selection toolbar; arrows and Home/End move among its controls. Escape dismisses floating tools and restores focus. Standard editor undo/redo and rich-text clipboard behavior are supported.
+- Use Search or Cmd/Ctrl+F for document search. Enter/Shift+Enter moves through results. The outline follows document headings and scrolls internally. Cmd/Ctrl+S or **Save changes** saves immediately; edits also autosave after 800ms of inactivity. Errors remain visible with retry controls. Recovery of malformed/conflicting local data requires a successful raw backup before replacement.
+- The blue orb opens Explain and its approved mode. Annotated clauses and paragraph hover controls open Explain for their source text; Ask AI uses the current selection. Summary, Key points, Simplify, Rewrite, question and suggestion actions use the original deterministic local prototype. Rewrite changes the document only after **Apply** and can be undone. Cancellation and stale-source checks prevent obsolete results from applying.
+- In **Comments**, enter a comment and choose **Add document comment** or **Comment on selection**. Replies, resolve/reopen and mapped quote anchors persist. Deleted anchors retain their original quote and show **Detached**. **Show quoted text** returns to an attached passage.
+- In **History**, open a timestamped revision for a non-mutating preview and explicitly restore it. The current document and comments must save successfully before restoration proceeds. Revisions retain the existing deduplication and 50-snapshot limit.
+- Close the editing banner or document tools with their close buttons. The orb reopens Explain. Switching among playground tabs retains content, selection context, scroll, Comments/History state and unsubmitted comment/reply/question drafts. Hidden editor shortcuts and floating surfaces are suspended; hidden pending Explain requests are cancelled. Completed results survive switching.
 
-```text
-.gitignore
-README.md
-package.json
-package-lock.json
-index.html
-vite.config.ts
-eslint.config.js
-tsconfig.json
-tsconfig.app.json
-tsconfig.node.json
-src/main.tsx
-src/App.tsx
-src/styles.css
-src/components/EmptyDemo.tsx
-src/components/ExplorationSwitcher.tsx
-src/components/ExplorationSwitcher.css
-src/components/header/HeaderDemo.tsx
-src/components/header/HeaderNav.tsx
-src/components/header/ProductsDropdown.tsx
-src/components/header/ProductMenuItem.tsx
-src/components/header/UtilityLink.tsx
-src/components/header/header.css
-public/assets/figma/logo.svg
-public/assets/figma/ai-agent.svg
-public/assets/figma/knowledge-base.svg
-public/assets/figma/workflow-builder.svg
-public/assets/figma/analytics.svg
-public/assets/figma/api-documentation.svg
-public/assets/figma/help-center.svg
-public/assets/figma/product-updates.svg
-public/assets/figma/icon-noise.png
-```
+The editor uses its own scoped tokens, CSS modules, `Proposal Inter` font family and portal container. Source artwork, font binaries/license, October 6, 2026 date, proposal copy and the approved Scope of Work, Timeline, Budget and Next Step additions are preserved. Its gray frame and maximum 1440 × 860 app remain. At 900px viewport height the app uses 782px with internal scrolling so the existing bottom switcher never covers editor controls. Reduced-motion preferences are respected.
 
-No pre-existing files were modified. `node_modules` and `dist` are generated and ignored.
+Persistence is local to each browser/origin under `proposal-editor:document:v1`; this is not a server-backed collaboration service. Unsubmitted drafts and Explain results survive tab switching, but reset on reload; saved document/comments/revisions survive reload. Explain is a local prototype. Navigation/authentication destinations remain demonstration interactions. The approved layout targets desktop sizes; no mobile editor redesign is included.
+
+## Components and assets
+
+- `src/App.tsx`, `src/components/ExplorationSwitcher.tsx`: four-tab playground and lazy, persistent editor mounting.
+- `src/components/header`, `date-picker`, `profile`: existing explorations, preserved unchanged.
+- `src/document-editor`: integrated production EditorApp, existing editor/selection/persistence logic, Comments and History, plus an active-state/portal boundary. Presentation fixtures were excluded.
+- `public/assets/document-editor`, `public/fonts/document-editor`: original editor artwork, Inter fonts and OFL license, isolated from existing assets and `@fontsource/inter`.
+- `tests/editor`: inherited Phase 2–4 functional/visual tests and cross-browser core smoke tests. `tests/integration*.spec.ts`: tab integration, lazy loading, retention, isolation and layout checks. DEV-only test adapters are removed from production builds.
+
+[Integration QA and evidence](docs/qa/document-editor/README.md) records commands, inherited coverage, exact visual metrics and limitations. [Integration handoff](docs/handoffs/document-editor-integration.md) describes implementation boundaries and deployment verification. `node_modules`, `dist` and transient browser results are ignored.
 
 ## Design source
 
@@ -94,13 +78,3 @@ The menu is centered relative to the Header container, matching its Figma CENTER
 Products opens on mouse hover; clicking toggles its current state. A pointer bridge and 150ms close grace period allow travel into the menu. Outside pointer presses, Escape, and focus leaving the disclosure close it. Enter/Space toggle; ArrowDown opens and focuses the first link. Tab follows every link normally without a focus trap. Escape and prototype link activation return focus safely when needed. The nonmodal popup uses matching `aria-haspopup="dialog"` and `role="dialog"` semantics, `aria-expanded`, `aria-controls`, and `inert` while closed.
 
 Motion uses 160ms entry, 120ms exit, and 140ms hover transitions. Reduced-motion preferences remove the dropdown transition. At narrower widths, the navigation wraps into a second row and product columns stack; no hamburger navigation is introduced. The menu is viewport-constrained and scrolls on small/short screens, reserving space for the switcher.
-
-## Validation
-
-TypeScript, ESLint, and the production build pass. Browser checks covered the default tab; hover opening; trigger-to-menu travel; click toggles; item hover; outside click; Escape and focus restoration; Enter/Space; full Tab order; tab switching and return to Header; switcher keyboard controls; and loaded assets. No application console errors or warnings were observed.
-
-Compared the rendered Header with Figma at 1440 × 900. Browser geometry matches the Header, central navigation, authentication, dropdown, cards, icons, utility row, and switcher measurements above. Responsive bounds were checked at 1280, 768, 720, 560, 390, and 320px widths, plus short landscape layouts.
-
-## Deferred
-
-Date picker and Profile contain only empty white shells. Their actual components and Figma inspections are deferred until separate frames are supplied. Navigation destinations and authentication flows are outside this UI exploration: navigation links do not navigate, and Log in/Sign up are visual interaction previews.

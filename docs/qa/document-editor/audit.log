@@ -1,0 +1,558 @@
+
+> explore-component@0.0.0 audit:integration
+> npm run lint && npm run typecheck && npm run test:unit && npm run build && node scripts/check-production.mjs && npm run test:browser && node scripts/compare-integration.mjs
+
+
+> explore-component@0.0.0 lint
+> eslint .
+
+
+> explore-component@0.0.0 typecheck
+> tsc -b --pretty false && tsc -p tsconfig.tests.json --pretty false
+
+
+> explore-component@0.0.0 test:unit
+> node --test src/components/date-picker/*.test.mjs && vitest run
+
+✔ local keys and sameDay use calendar fields rather than hours or UTC dates (0.98475ms)
+✔ day arithmetic handles year boundaries and Gregorian leap years without mutation (0.091042ms)
+✔ month navigation always chooses day 1, including from the 31st (0.076958ms)
+✔ calendar grids contain 42 distinct consecutive local days, Sunday through Saturday (0.395167ms)
+✔ ranges include both boundaries, normalize reversed selections, and allow one day (0.409209ms)
+✔ all presets have exact inclusive lengths and cross month/year boundaries (0.110708ms)
+✔ calendar arithmetic stays local through DST in New York and Los Angeles (100.63975ms)
+✔ every pair of 42 visible dates, including reverse order, produces exact endpoint-inclusive coverage (30.318ms)
+✔ isolated segments round all corners while aligned neighboring edges remain flush (0.078084ms)
+✔ left, right, and both-side expansion round only the exposed neighboring corners (0.072541ms)
+✔ the requested three-row 5–7, 1–7, 1–6 shape rounds both step transitions (0.105375ms)
+✔ null, same local calendar day, and wholly off-grid selections have no segments (0.120334ms)
+✔ partial rows retain actual endpoints, including Saturday-only and Sunday-only segments (0.222875ms)
+✔ clipping compares visible neighboring edges, even when both true endpoints are off-grid (0.217167ms)
+✔ adjacent-month dates share their actual calendar row instead of breaking at month boundaries (0.158417ms)
+✔ year rollover and leap-day ranges use continuous Sunday–Saturday geometry (0.110416ms)
+✔ Last 30 and Last 90 days produce clipped runs when navigating between covered months (0.200583ms)
+✔ non-noon selection boundaries use local calendar days and remain unmodified (0.074ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 164.107667
+
+ RUN  v5.0.3 /private/tmp/expore-17-document-editor
+
+
+ Test Files  4 passed (4)
+      Tests  21 passed (21)
+   Start at  15:34:50
+   Duration  151ms (transform 49%, import 42%, tests 7%, worker 2%)
+
+
+> explore-component@0.0.0 build
+> tsc -b && vite build
+
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 566 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                      0.45 kB │ gzip:   0.29 kB
+dist/assets/inter-latin-400-normal-C38fXH4l.woff2   23.66 kB
+dist/assets/inter-latin-500-normal-Cerq10X2.woff2   24.27 kB
+dist/assets/inter-latin-400-normal-CyCys3Eg.woff    30.70 kB
+dist/assets/inter-latin-500-normal-BL9OpVg8.woff    31.28 kB
+dist/assets/DocumentEditorDemo-BRP8c5Qq.css         21.24 kB │ gzip:   4.91 kB
+dist/assets/index-DybPspsf.css                      25.44 kB │ gzip:   5.56 kB
+dist/assets/index-yru4ofWg.js                      337.54 kB │ gzip:  97.70 kB
+dist/assets/DocumentEditorDemo-ZUCSR7JL.js         671.53 kB │ gzip: 215.84 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 1.07s
+All production chunks exclude test adapters, fixtures and localhost URLs.
+{
+  "url": "http://127.0.0.1:56249",
+  "checkedAt": "2026-10-08T08:34:59.279Z",
+  "errors": [],
+  "failed": [],
+  "passed": true,
+  "checks": [
+    "Header initial",
+    "four keyboard tabs",
+    "lazy production chunk",
+    "native editing",
+    "save/reload",
+    "Comments and History",
+    "draft and scroll retention",
+    "hidden shortcuts",
+    "Explain result",
+    "source assets/font",
+    "inert test adapter"
+  ]
+}
+
+> explore-component@0.0.0 test:browser
+> playwright test
+
+
+Running 66 tests using 1 worker
+
+(node:12383) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/editor/editor-smoke.spec.ts:4:1 › core editing, keyboard selection, formatting, undo/redo, save and reload (1.7s)
+  ✓   2 [chromium] › tests/editor/editor-smoke.spec.ts:35:1 › Explain marker, keyboard menu, rewrite Apply and undo across browsers (2.8s)
+  ✓   3 [chromium] › tests/editor/editor-smoke.spec.ts:59:1 › comments, keyboard tabs, revision preview/restore and close/reopen across browsers (2.9s)
+  ✓   4 [chromium] › tests/editor/phase-2-visual.spec.ts:8:3 › live editor geometry and unclipped selections at 1640 (1.2s)
+  ✓   5 [chromium] › tests/editor/phase-2-visual.spec.ts:8:3 › live editor geometry and unclipped selections at 1280 (1.2s)
+  ✓   6 [chromium] › tests/editor/phase-2-visual.spec.ts:8:3 › live editor geometry and unclipped selections at 1440 (1.2s)
+  ✓   7 [chromium] › tests/editor/phase-2-visual.spec.ts:8:3 › live editor geometry and unclipped selections at 1920 (1.2s)
+  ✓   8 [chromium] › tests/editor/phase-2.spec.ts:6:1 › dirty → saving → saved after 800 ms idle; refresh and pagehide retain edits (6.8s)
+  ✓   9 [chromium] › tests/editor/phase-2.spec.ts:25:1 › format buttons, active states, color palette, highlight and undo (1.3s)
+  ✓  10 [chromium] › tests/editor/phase-2.spec.ts:46:1 › keyboard toolbar navigation, preserved selection, nested Escape and collapse (973ms)
+  ✓  11 [chromium] › tests/editor/phase-2.spec.ts:68:1 › search navigates matches across formatting, clears, and leaves document unchanged (1.0s)
+  ✓  12 [chromium] › tests/editor/phase-2.spec.ts:93:1 › outline targets and labels survive heading edits, creation, undo and reload (2.0s)
+  ✓  13 [chromium] › tests/editor/phase-2.spec.ts:123:1 › selection bookmark maps through document transactions while palette owns focus (1.0s)
+  ✓  14 [chromium] › tests/editor/phase-2.spec.ts:135:1 › quota failure is visible and retry saves the same document (2.0s)
+  ✓  15 [chromium] › tests/editor/phase-2.spec.ts:158:1 › malformed storage stays intact until a raw backup is written (1.1s)
+  ✓  16 [chromium] › tests/editor/phase-2.spec.ts:170:1 › native copy/paste retains prose and formatting, excluding search/selection decorations (1.0s)
+  ✓  17 [chromium] › tests/editor/phase-3-visual.spec.ts:7:35 › Explain visual and edge positioning at 1640 (2.2s)
+  ✓  18 [chromium] › tests/editor/phase-3-visual.spec.ts:7:35 › Explain visual and edge positioning at 1280 (2.1s)
+  ✓  19 [chromium] › tests/editor/phase-3-visual.spec.ts:7:35 › Explain visual and edge positioning at 1440 (2.2s)
+  ✓  20 [chromium] › tests/editor/phase-3-visual.spec.ts:7:35 › Explain visual and edge positioning at 1920 (2.2s)
+  ✓  21 [chromium] › tests/editor/phase-3-visual.spec.ts:57:1 › short viewport menu scrolls internally and keyboard focus reveals edge chips (1.9s)
+  ✓  22 [chromium] › tests/editor/phase-3.spec.ts:17:1 › orb toggles mapped annotations; clause and paragraph triggers preserve pure prose (3.2s)
+  ✓  23 [chromium] › tests/editor/phase-3.spec.ts:57:1 › selection to all five action results, question field, exact menu copy and Back (5.6s)
+  ✓  24 [chromium] › tests/editor/phase-3.spec.ts:77:1 › all five suggestion chips route to matching actions or grounded questions (5.5s)
+  ✓  25 [chromium] › tests/editor/phase-3.spec.ts:90:1 › cancel, injected error, retry, Back and dismissal abort obsolete requests (5.3s)
+  ✓  26 [chromium] › tests/editor/phase-3.spec.ts:114:1 › stale source cancels loading, blocks Apply after result, and requires regeneration (3.5s)
+  ✓  27 [chromium] › tests/editor/phase-3.spec.ts:135:1 › outside-source edits map the range; Apply is explicit and one undoable transaction (1.9s)
+  ✓  28 [chromium] › tests/editor/phase-3.spec.ts:157:1 › keyboard navigation, Escape restoration, outside dismissal and source switching (2.0s)
+  ✓  29 [chromium] › tests/editor/phase-3.spec.ts:187:1 › deleted sources cannot apply, and a new selection replaces a stale context (2.8s)
+  ✓  30 [chromium] › tests/editor/phase-3.spec.ts:211:1 › orb opens existing selection, mode exit cancels generation, and subsequent typing has its own undo (2.1s)
+  ✓  31 [chromium] › tests/editor/phase-3.spec.ts:231:1 › Tab leaves the menu cleanly and Back restores the action-list focus (1.9s)
+  ✓  32 [chromium] › tests/editor/phase-4-visual.spec.ts:6:3 › Comments, History, focused controls and internal scrolling at 1640 (2.4s)
+  ✓  33 [chromium] › tests/editor/phase-4-visual.spec.ts:6:3 › Comments, History, focused controls and internal scrolling at 1280 (2.3s)
+  ✓  34 [chromium] › tests/editor/phase-4-visual.spec.ts:6:3 › Comments, History, focused controls and internal scrolling at 1440 (2.4s)
+  ✓  35 [chromium] › tests/editor/phase-4-visual.spec.ts:6:3 › Comments, History, focused controls and internal scrolling at 1920 (2.4s)
+  ✓  36 [chromium] › tests/editor/phase-4.spec.ts:6:1 › document and selected comments persist, anchors map and detach; replies resolve and reopen (2.2s)
+  ✓  37 [chromium] › tests/editor/phase-4.spec.ts:41:1 › preview is non-mutating; restoration preserves unsaved current document and revision comments (2.2s)
+  ✓  38 [chromium] › tests/editor/phase-4.spec.ts:67:1 › failed pre-restore save is visible and leaves editor and preview intact; retry is explicit (2.0s)
+  ✓  39 [chromium] › tests/editor/phase-4.spec.ts:84:1 › tabs retain editor identity, workspace scroll, selection and Explain results; hidden loading is cancelled (2.8s)
+  ✓  40 [chromium] › tests/editor/phase-4.spec.ts:114:1 › tabs support arrows, Home/End and focus; close controls restore focus and orb mode behavior (1.2s)
+  ✓  41 [chromium] › tests/editor/phase-4.spec.ts:141:1 › reduced motion disables transitions and saving animation; normal controls use 150 ms ease-out (1.2s)
+  ✓  42 [chromium] › tests/editor/phase-4.spec.ts:156:1 › comment save failure keeps draft data for retry and reload (2.8s)
+  ✓  43 [chromium] › tests/editor/phase-4.spec.ts:174:1 › source changes while Explain is hidden still disable a stale rewrite (1.9s)
+  ✓  44 [chromium] › tests/integration-visual.spec.ts:5:47 › playground isolation and editor framing at 1280 (1.4s)
+  ✓  45 [chromium] › tests/integration-visual.spec.ts:5:47 › playground isolation and editor framing at 1440 (1.4s)
+  ✓  46 [chromium] › tests/integration-visual.spec.ts:5:47 › playground isolation and editor framing at 1640 (1.4s)
+  ✓  47 [chromium] › tests/integration-visual.spec.ts:5:47 › playground isolation and editor framing at 1920 (1.4s)
+  ✓  48 [chromium] › tests/integration-visual.spec.ts:30:1 › resizing a live floating surface reserves the switcher and scrolls the editor internally (1.4s)
+  ✓  49 [chromium] › tests/integration.spec.ts:7:1 › Header remains initial; four lazy tabs keep switcher semantics, indicator and keyboard focus (980ms)
+  ✓  50 [chromium] › tests/integration.spec.ts:36:1 › editor stays mounted with mapped selection, workspace scroll, comments and panel drafts; hidden autosave and refresh persist (4.1s)
+  ✓  51 [chromium] › tests/integration.spec.ts:69:1 › hidden editor releases shortcuts, removes floating surfaces and cancels pending Explain without stealing tab focus (3.0s)
+  ✓  52 [chromium] › tests/integration.spec.ts:118:1 › existing Header, Date picker and Profile interactions still work after editor activation (1.1s)
+(node:12518) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  53 [firefox] › tests/editor/editor-smoke.spec.ts:4:1 › core editing, keyboard selection, formatting, undo/redo, save and reload (2.4s)
+  ✓  54 [firefox] › tests/editor/editor-smoke.spec.ts:35:1 › Explain marker, keyboard menu, rewrite Apply and undo across browsers (2.7s)
+  ✓  55 [firefox] › tests/editor/editor-smoke.spec.ts:59:1 › comments, keyboard tabs, revision preview/restore and close/reopen across browsers (3.3s)
+  ✓  56 [firefox] › tests/integration.spec.ts:7:1 › Header remains initial; four lazy tabs keep switcher semantics, indicator and keyboard focus (862ms)
+  ✓  57 [firefox] › tests/integration.spec.ts:36:1 › editor stays mounted with mapped selection, workspace scroll, comments and panel drafts; hidden autosave and refresh persist (4.4s)
+  ✓  58 [firefox] › tests/integration.spec.ts:69:1 › hidden editor releases shortcuts, removes floating surfaces and cancels pending Explain without stealing tab focus (3.4s)
+  ✓  59 [firefox] › tests/integration.spec.ts:118:1 › existing Header, Date picker and Profile interactions still work after editor activation (1.3s)
+(node:12552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  60 [webkit] › tests/editor/editor-smoke.spec.ts:4:1 › core editing, keyboard selection, formatting, undo/redo, save and reload (1.7s)
+  ✓  61 [webkit] › tests/editor/editor-smoke.spec.ts:35:1 › Explain marker, keyboard menu, rewrite Apply and undo across browsers (2.9s)
+  ✓  62 [webkit] › tests/editor/editor-smoke.spec.ts:59:1 › comments, keyboard tabs, revision preview/restore and close/reopen across browsers (3.0s)
+  ✓  63 [webkit] › tests/integration.spec.ts:7:1 › Header remains initial; four lazy tabs keep switcher semantics, indicator and keyboard focus (641ms)
+  ✓  64 [webkit] › tests/integration.spec.ts:36:1 › editor stays mounted with mapped selection, workspace scroll, comments and panel drafts; hidden autosave and refresh persist (4.2s)
+  ✓  65 [webkit] › tests/integration.spec.ts:69:1 › hidden editor releases shortcuts, removes floating surfaces and cancels pending Explain without stealing tab focus (2.6s)
+  ✓  66 [webkit] › tests/integration.spec.ts:118:1 › existing Header, Date picker and Profile interactions still work after editor activation (1.2s)
+
+  66 passed (2.5m)
+[
+  {
+    "name": "isolation-header-1280",
+    "rawFullFrameFraction": 0.006892361111111111,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        390,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-date-picker-1280",
+    "rawFullFrameFraction": 0.009017361111111111,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        390,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-profile-1280",
+    "rawFullFrameFraction": 0.008626736111111111,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        390,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-header-1440",
+    "rawFullFrameFraction": 0.006125771604938272,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        470,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-date-picker-1440",
+    "rawFullFrameFraction": 0.008014660493827161,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        470,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-profile-1440",
+    "rawFullFrameFraction": 0.00767283950617284,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        470,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-header-1640",
+    "rawFullFrameFraction": 0.0045679935572940636,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-date-picker-1640",
+    "rawFullFrameFraction": 0.005985388863322595,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-profile-1640",
+    "rawFullFrameFraction": 0.0057184767602393004,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-header-1920",
+    "rawFullFrameFraction": 0.003833912037037037,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-date-picker-1920",
+    "rawFullFrameFraction": 0.0050053047839506174,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-profile-1920",
+    "rawFullFrameFraction": 0.004794077932098765,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "figma-default",
+    "rawFullFrameFraction": 0.01815922687528762,
+    "fraction": 0.010179475379659457,
+    "ceiling": 0.02,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {
+      "header": {
+        "differentPixels": 1615,
+        "fraction": 0.01038451646090535,
+        "ceiling": 0.04
+      },
+      "document": {
+        "differentPixels": 14289,
+        "fraction": 0.025675996204933587,
+        "ceiling": 0.04
+      },
+      "empty": {
+        "differentPixels": 854,
+        "fraction": 0.0037854609929078016,
+        "ceiling": 0.04
+      }
+    }
+  },
+  {
+    "name": "source-default-1640",
+    "rawFullFrameFraction": 0.007979751495628164,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "source-default-1920",
+    "rawFullFrameFraction": 0.006687885802469136,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "figma-annotated",
+    "rawFullFrameFraction": 0.018259318913943855,
+    "fraction": 0.010279567418315693,
+    "ceiling": 0.02,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {
+      "header": {
+        "differentPixels": 1615,
+        "fraction": 0.01038451646090535,
+        "ceiling": 0.04
+      },
+      "document": {
+        "differentPixels": 14463,
+        "fraction": 0.025988657926513715,
+        "ceiling": 0.04
+      },
+      "empty": {
+        "differentPixels": 854,
+        "fraction": 0.0037854609929078016,
+        "ceiling": 0.04
+      }
+    }
+  },
+  {
+    "name": "source-annotated-1640",
+    "rawFullFrameFraction": 0.007979751495628164,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "source-annotated-1920",
+    "rawFullFrameFraction": 0.006687885802469136,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "figma-selection-explain",
+    "rawFullFrameFraction": 0.020238150023009664,
+    "fraction": 0.012200874367234238,
+    "ceiling": 0.02,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ],
+      [
+        794,
+        651,
+        26,
+        25
+      ]
+    ],
+    "crops": {
+      "header": {
+        "differentPixels": 1615,
+        "fraction": 0.01038451646090535,
+        "ceiling": 0.04
+      },
+      "document": {
+        "differentPixels": 14627,
+        "fraction": 0.026283350583635214,
+        "ceiling": 0.04
+      },
+      "empty": {
+        "differentPixels": 3847,
+        "fraction": 0.01705230496453901,
+        "ceiling": 0.04
+      },
+      "menu": {
+        "differentPixels": 4030,
+        "fraction": 0.013283670644076736,
+        "ceiling": 0.04
+      },
+      "toolbar": {
+        "differentPixels": 404,
+        "fraction": 0.025289514866979657,
+        "ceiling": 0.04
+      }
+    }
+  },
+  {
+    "name": "source-selection-explain-1640",
+    "rawFullFrameFraction": 0.007979751495628164,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "source-selection-explain-1920",
+    "rawFullFrameFraction": 0.006687885802469136,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  }
+]

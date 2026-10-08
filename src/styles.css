@@ -82,3 +82,11 @@ a {
     scroll-behavior: auto !important;
   }
 }
+
+.exploration-page--document-editor { height: 100dvh; min-height: 100dvh; background: #ebebeb; color-scheme: light; }
+.document-editor-panel { height: 100dvh; }
+.document-editor-loading { color: #73726d; text-align: center; margin: 80px 16px; }
+/* Preserve the existing switcher treatment while fitting its additional tab on narrow screens. */
+@media (max-width: 460px) {
+  .exploration-switcher { max-width: calc(100vw - 24px); height: auto; flex-wrap: wrap; justify-content: center; }
+}

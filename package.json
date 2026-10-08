@@ -6,15 +6,27 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "typecheck": "tsc -b --pretty false",
+    "typecheck": "tsc -b --pretty false && tsc -p tsconfig.tests.json --pretty false",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:unit": "node --test src/components/date-picker/*.test.mjs && vitest run",
+    "test:browser": "playwright test",
+    "audit:integration": "npm run lint && npm run typecheck && npm run test:unit && npm run build && node scripts/check-production.mjs && npm run test:browser && node scripts/compare-integration.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "border-beam": "^1.3.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "@floating-ui/react": "0.27.20",
+    "@tiptap/core": "3.31.4",
+    "@tiptap/extension-bubble-menu": "3.31.4",
+    "@tiptap/extension-highlight": "3.31.4",
+    "@tiptap/extension-text-style": "3.31.4",
+    "@tiptap/pm": "3.31.4",
+    "@tiptap/react": "3.31.4",
+    "@tiptap/starter-kit": "3.31.4",
+    "motion": "14.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
@@ -28,6 +40,10 @@
     "globals": "^16.5.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.1",
-    "vite": "^7.2.6"
+    "vite": "^7.2.6",
+    "vitest": "5.0.3",
+    "@playwright/test": "1.64.0",
+    "pixelmatch": "8.0.0",
+    "pngjs": "7.0.0"
   }
 }

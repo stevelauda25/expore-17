@@ -1,0 +1,233 @@
+{
+  "fileKey": "GdagXhVqcEZsgr2PAskZh6",
+  "assets": [
+    {
+      "file": "chevron.svg",
+      "bytes": 331,
+      "sha256": "b0699278a47cd4974602598c87e9375c36203e30ab6f528c2c2664974ca7a197",
+      "sourceAsset": "56cf3.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "search.svg",
+      "bytes": 634,
+      "sha256": "112033ac87e192ff17b1eccf9718b8efa7e7357a75ef4823bba6f9726f5e0113",
+      "sourceAsset": "c2b18.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "outline.svg",
+      "bytes": 793,
+      "sha256": "7840b8e1e7c469f3786b17a9fcb3365292e57ec6b5d82babf9171c61ff8478e7",
+      "sourceAsset": "5b901.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "home.svg",
+      "bytes": 827,
+      "sha256": "a661f18b6a6bd7387b1af9d8136bb2526d023fce8085f66d2eee178b241f885b",
+      "sourceAsset": "c9c51.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "document.svg",
+      "bytes": 1077,
+      "sha256": "a2980ff97bf7a7af6e5dff586fd3c116a93b1d2650b1aa94592b22724bfd1d86",
+      "sourceAsset": "dcc4c.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "scan.svg",
+      "bytes": 1538,
+      "sha256": "078d72d25242ba6ed24da20d03f3234f3e146faaeb5ecd804198e074e07be68c",
+      "sourceAsset": "d3cff.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "calendar.svg",
+      "bytes": 1337,
+      "sha256": "d440312c477c2d24c59e4603d0d7f25fd12a46c5076fd260deeeaea36b001b0a",
+      "sourceAsset": "1643a.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "library.svg",
+      "bytes": 737,
+      "sha256": "bf7df159e675bd17299a6a75eb5a5e4e869f0412ab94948f21325c54863da81d",
+      "sourceAsset": "c5fd6.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "settings.svg",
+      "bytes": 2652,
+      "sha256": "b414fe5d3247c0dffa790574a8c118dfef20fe0f4502687f4f859a803f4156c8",
+      "sourceAsset": "1b09c.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "send.svg",
+      "bytes": 1321,
+      "sha256": "39ee0bcce664c27b5ed75eb38c7d49373ba57f49dd261e502c3ca41f203e87d6",
+      "sourceAsset": "a6ff1.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "document-title.svg",
+      "bytes": 1478,
+      "sha256": "2aa0cb61992129b802efd39e78e4d220f60c4b89ab619ecba35a322fd493db89",
+      "sourceAsset": "74125.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "saving-track.svg",
+      "bytes": 531,
+      "sha256": "4d7402db52e9d72e9407523190838ad27e191859b3026a904b1ab2da828a24ba",
+      "sourceAsset": "e7b97.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "saving-arc.svg",
+      "bytes": 371,
+      "sha256": "87e65dcb6a1c964c6f2a2068bb6790907746a30a0fc0eeb7cb42e01bf3eccb29",
+      "sourceAsset": "1d193.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "tab-line.svg",
+      "bytes": 218,
+      "sha256": "bcba3ac431984aed891fff8957b9fd7cff1b6478dbe021767cb11a1a562dac93",
+      "sourceAsset": "ead31.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "close-panel.svg",
+      "bytes": 455,
+      "sha256": "8694bdc8c8861542366c041e98c0e8b2a2b4a66acca6824a10686430ffe5acb3",
+      "sourceAsset": "46653.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "edit.svg",
+      "bytes": 1125,
+      "sha256": "fa139eaf4fb9283d3f0e4d12cc5064cc347ced5e4bce99de22687ab61e38051e",
+      "sourceAsset": "0c9a2.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "close-banner.svg",
+      "bytes": 455,
+      "sha256": "8694bdc8c8861542366c041e98c0e8b2a2b4a66acca6824a10686430ffe5acb3",
+      "sourceAsset": "f83a7.svg",
+      "context": "3096:1061"
+    },
+    {
+      "file": "toolbar-divider.svg",
+      "bytes": 240,
+      "sha256": "586e9a853e4ae5f10d271b25ad81e5dec3c7c92b3a5ae913e2a3cb72b0fe2328",
+      "sourceAsset": "3481b.svg",
+      "context": "3061:7215"
+    },
+    {
+      "file": "bold.svg",
+      "bytes": 925,
+      "sha256": "0deaa097129240f16f129b89166d22de3f28087e50a091bf72f256b3fc24249d",
+      "sourceAsset": "4ab71.svg",
+      "context": "3061:7215"
+    },
+    {
+      "file": "italic.svg",
+      "bytes": 600,
+      "sha256": "4ac6e6e21c1bacc7d4d409512998de69e04cae27fdddb6c9ffe32e2f68dc3061",
+      "sourceAsset": "1b755.svg",
+      "context": "3061:7215"
+    },
+    {
+      "file": "underline.svg",
+      "bytes": 641,
+      "sha256": "9c204cb4089872f67b239d47dd3791d27e382831a70a89b8179166e21e02349c",
+      "sourceAsset": "8dcad.svg",
+      "context": "3061:7215"
+    },
+    {
+      "file": "strikethrough.svg",
+      "bytes": 940,
+      "sha256": "f0e548ec4b7c4c94b8ef3cfe1b364495f34def3006fb882eff81e90171ecd8d9",
+      "sourceAsset": "60f9f.svg",
+      "context": "3061:7215"
+    },
+    {
+      "file": "highlight.svg",
+      "bytes": 2628,
+      "sha256": "89ed39222f0f0cc1ba7940cce57e85ce50497524a0579947b8567d8096d262c8",
+      "sourceAsset": "6073d.svg",
+      "context": "3061:7215"
+    },
+    {
+      "file": "summary.svg",
+      "bytes": 1483,
+      "sha256": "83f6a58191ef86420b670a6f963da892d97a9ce6d677657aaab2ce8fe3096eca",
+      "sourceAsset": "3337d.svg",
+      "context": "3061:7482"
+    },
+    {
+      "file": "key-points.svg",
+      "bytes": 962,
+      "sha256": "371281ad455f391054ef00a8f9e2afee99240ed779b24eaa853ccf7a8fb74b95",
+      "sourceAsset": "6b161.svg",
+      "context": "3061:7482"
+    },
+    {
+      "file": "simplify.svg",
+      "bytes": 1673,
+      "sha256": "30104796bc2312c3f55cc5fc25ac0e135741a016be35ec420bbac36a7c49f5bc",
+      "sourceAsset": "248fb.svg",
+      "context": "3061:7482"
+    },
+    {
+      "file": "rewrite.svg",
+      "bytes": 1123,
+      "sha256": "eb65e91cebcb885282f298f91593d4af2650f76ba07eedaff19948f941eb7482",
+      "sourceAsset": "e8e23.svg",
+      "context": "3061:7482"
+    },
+    {
+      "file": "question.svg",
+      "bytes": 1302,
+      "sha256": "dc8b6ff37a082a051e8a66ce3a4414ee3b5c3051c218cf15c0ab4f7e6f086810",
+      "sourceAsset": "7a7e4.svg",
+      "context": "3061:7482"
+    },
+    {
+      "file": "orb-14.png",
+      "bytes": 646,
+      "sha256": "ddf9e548b50d125d93319629b429fd97bb4c0fb4d17ad2398d9f5ef21bdb98c3",
+      "nodeId": "3061:6883"
+    },
+    {
+      "file": "orb-20.png",
+      "bytes": 1018,
+      "sha256": "97ab7514baae6de5136fecd8d1b678702492538ef7c6dc91cd1b352c2f613cf0",
+      "nodeId": "3061:7489"
+    },
+    {
+      "file": "badge-investment.png",
+      "bytes": 536,
+      "sha256": "4e5b53483a6ec79e82121fc63427814f94b281196e83a87e8f44bf80ca5560ca",
+      "nodeId": "3061:7461"
+    },
+    {
+      "file": "badge-experience.png",
+      "bytes": 718,
+      "sha256": "890cf41fc15810dac1479640613fdcbecfcec9446619201272f7d18b22875982",
+      "nodeId": "3061:7469",
+      "exportMethod": "get_screenshot, contentsOnly=true; download_assets omitted emoji glyphs"
+    },
+    {
+      "file": "badge-structure.png",
+      "bytes": 672,
+      "sha256": "e2cc9882562b0c90ab3137258be1f8c4083e3bfe7339404a1b8e93264d2d1abb",
+      "nodeId": "3061:7459",
+      "exportMethod": "get_screenshot, contentsOnly=true; download_assets omitted emoji glyphs"
+    }
+  ]
+}

@@ -1,0 +1,381 @@
+[
+  {
+    "name": "isolation-header-1280",
+    "rawFullFrameFraction": 0.006892361111111111,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        390,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-date-picker-1280",
+    "rawFullFrameFraction": 0.009017361111111111,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        390,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-profile-1280",
+    "rawFullFrameFraction": 0.008626736111111111,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        390,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-header-1440",
+    "rawFullFrameFraction": 0.006125771604938272,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        470,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-date-picker-1440",
+    "rawFullFrameFraction": 0.008014660493827161,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        470,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-profile-1440",
+    "rawFullFrameFraction": 0.00767283950617284,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        470,
+        808,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-header-1640",
+    "rawFullFrameFraction": 0.0045679935572940636,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-date-picker-1640",
+    "rawFullFrameFraction": 0.005985388863322595,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-profile-1640",
+    "rawFullFrameFraction": 0.0057184767602393004,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-header-1920",
+    "rawFullFrameFraction": 0.003833912037037037,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-date-picker-1920",
+    "rawFullFrameFraction": 0.0050053047839506174,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "isolation-profile-1920",
+    "rawFullFrameFraction": 0.004794077932098765,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "figma-default",
+    "rawFullFrameFraction": 0.01815922687528762,
+    "fraction": 0.010179475379659457,
+    "ceiling": 0.02,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {
+      "header": {
+        "differentPixels": 1615,
+        "fraction": 0.01038451646090535,
+        "ceiling": 0.04
+      },
+      "document": {
+        "differentPixels": 14289,
+        "fraction": 0.025675996204933587,
+        "ceiling": 0.04
+      },
+      "empty": {
+        "differentPixels": 854,
+        "fraction": 0.0037854609929078016,
+        "ceiling": 0.04
+      }
+    }
+  },
+  {
+    "name": "source-default-1640",
+    "rawFullFrameFraction": 0.007979751495628164,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "source-default-1920",
+    "rawFullFrameFraction": 0.006687885802469136,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "figma-annotated",
+    "rawFullFrameFraction": 0.018259318913943855,
+    "fraction": 0.010279567418315693,
+    "ceiling": 0.02,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {
+      "header": {
+        "differentPixels": 1615,
+        "fraction": 0.01038451646090535,
+        "ceiling": 0.04
+      },
+      "document": {
+        "differentPixels": 14463,
+        "fraction": 0.025988657926513715,
+        "ceiling": 0.04
+      },
+      "empty": {
+        "differentPixels": 854,
+        "fraction": 0.0037854609929078016,
+        "ceiling": 0.04
+      }
+    }
+  },
+  {
+    "name": "source-annotated-1640",
+    "rawFullFrameFraction": 0.007979751495628164,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "source-annotated-1920",
+    "rawFullFrameFraction": 0.006687885802469136,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "figma-selection-explain",
+    "rawFullFrameFraction": 0.020238150023009664,
+    "fraction": 0.012200874367234238,
+    "ceiling": 0.02,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ],
+      [
+        794,
+        651,
+        26,
+        25
+      ]
+    ],
+    "crops": {
+      "header": {
+        "differentPixels": 1615,
+        "fraction": 0.01038451646090535,
+        "ceiling": 0.04
+      },
+      "document": {
+        "differentPixels": 14627,
+        "fraction": 0.026283350583635214,
+        "ceiling": 0.04
+      },
+      "empty": {
+        "differentPixels": 3847,
+        "fraction": 0.01705230496453901,
+        "ceiling": 0.04
+      },
+      "menu": {
+        "differentPixels": 4030,
+        "fraction": 0.013283670644076736,
+        "ceiling": 0.04
+      },
+      "toolbar": {
+        "differentPixels": 404,
+        "fraction": 0.025289514866979657,
+        "ceiling": 0.04
+      }
+    }
+  },
+  {
+    "name": "source-selection-explain-1640",
+    "rawFullFrameFraction": 0.007979751495628164,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        570,
+        968,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  },
+  {
+    "name": "source-selection-explain-1920",
+    "rawFullFrameFraction": 0.006687885802469136,
+    "fraction": 0,
+    "ceiling": 0.001,
+    "masks": [
+      [
+        710,
+        988,
+        500,
+        56
+      ]
+    ],
+    "crops": {}
+  }
+]

@@ -1,0 +1,70 @@
+@font-face {
+  font-family: 'Proposal Inter';
+  src: url('/fonts/document-editor/InterVariable.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Proposal Inter';
+  src: url('/fonts/document-editor/InterVariable-Italic.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+.document-editor-scope {
+  font-family: 'Proposal Inter', sans-serif;
+  font-size: 14px;
+  color-scheme: light;
+  text-rendering: auto;
+  height: 100%;
+  --editor-floating-bottom: 12px;
+  font-weight: 400;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  font-optical-sizing: none;
+  color: #000;
+  --frame: #ebebeb;
+  --surface: #fff;
+  --rail: #f9f9f9;
+  --workspace: #fbfbfb;
+  --hover: #f6f6f6;
+  --secondary: #73726d;
+  --body: rgb(0 0 0 / 80%);
+  --blue: #1687ef;
+  --selection: #f3f9fe;
+  --selection-edge: #85c0f6;
+  --border: rgb(0 0 0 / 10%);
+  --paper-border: #e5e5e5;
+  --control-radius: 8px;
+  --rail-width: 54px;
+  --outline-width: 246px;
+  --panel-width: 300px;
+  --header-height: 54px;
+  --control-shadow: 0 .5px 2px rgb(0 0 0 / 4%), 0 .5px 2px rgb(0 0 0 / 4%), inset 0 -.5px 1px rgb(0 0 0 / 12%), inset 0 .5px 4px rgb(255 255 255 / 25%);
+  --app-shadow: 0 1px 2px -1px #0003, 0 2px 4px -2px rgb(0 0 0 / 15%), 0 4px 8px -2px rgb(0 0 0 / 5%);
+  --app-edge: inset 0 .5px .5px rgb(255 255 255 / 25%), inset 0 -.5px .5px rgb(0 0 0 / 10%), inset 0 0 0 .5px rgb(0 0 0 / 15%);
+  --popover-shadow: 0 1px 4px rgb(0 0 0 / 10%), 0 0 0 .5px rgb(0 0 0 / 10%), 0 8px 17px rgb(0 0 0 / 5%), 0 31px 31px rgb(0 0 0 / 4%), 0 69px 41px rgb(0 0 0 / 3%), 0 123px 49px rgb(0 0 0 / 1%);
+}
+:where(.document-editor-scope) * { box-sizing: border-box; }
+
+
+:where(.document-editor-scope) button, :where(.document-editor-scope) input { font: inherit; color: inherit; }
+:where(.document-editor-scope) button { border: 0; padding: 0; background: none; }
+:where(.document-editor-scope) button:focus-visible, :where(.document-editor-scope) input:focus-visible, :where(.document-editor-scope) a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+:where(.document-editor-scope) button:disabled { opacity: .5; }
+:where(.document-editor-scope) button, :where(.document-editor-scope) a { -webkit-tap-highlight-color: transparent; }
+:where(.document-editor-scope) button:not([aria-disabled='true']):not(:disabled) { cursor: pointer; }
+:where(.document-editor-scope) p, :where(.document-editor-scope) h1, :where(.document-editor-scope) h2, :where(.document-editor-scope) ul { margin: 0; }
+@media (prefers-reduced-motion: reduce) {
+:where(.document-editor-scope) *, :where(.document-editor-scope) *::before, :where(.document-editor-scope) *::after { transition: none !important; animation: none !important; }
+}
+:where(.document-editor-scope) [hidden] { display: none !important; }
+:where(.document-editor-scope) textarea { font: inherit; color: inherit; }
+:where(.document-editor-scope) button, :where(.document-editor-scope) input, :where(.document-editor-scope) textarea, :where(.document-editor-scope) [tabindex] { transition: background-color 150ms ease-out, color 150ms ease-out, opacity 150ms ease-out; }
+:where(.document-editor-scope) button:not(:disabled):not([aria-disabled='true']):hover { background-color: var(--hover); }
+:where(.document-editor-scope) button:not(:disabled):not([aria-disabled='true']):active { background-color: var(--selection); color: var(--blue); }
+:where(.document-editor-scope) textarea:focus-visible, :where(.document-editor-scope) [tabindex]:not([contenteditable]):focus-visible, :where(.document-editor-scope) [role='tab']:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+
+@media (max-height: 1031px) { .document-editor-scope { --editor-floating-bottom: 102px; } }
+@media (max-height: 500px) { .document-editor-scope { --editor-floating-bottom: 70px; } }

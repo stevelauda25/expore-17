@@ -1,0 +1,35 @@
+.content { outline: none; overflow-wrap: anywhere; }
+/* Preserve typed whitespace while allowing trailing spaces to hang at line ends,
+   as in the source paragraphs. break-spaces pushes the annotated line over. */
+.content[contenteditable] { white-space: pre-wrap; }
+.content > p + p { margin-top: 12px; }
+.content > h2, .content > h3 { color: #000; font-size: 14px; font-weight: 500; line-height: 21px; margin-top: 20px; margin-bottom: 12px; scroll-margin-top: 20px; }
+.content > h3 { font-size: 13px; }
+.content > p[data-role='date'] { color: var(--secondary); }
+.content ul, .content ol { padding-left: 21px; line-height: 22.4px; }
+.content li p { margin: 0; }
+.content strong { font-weight: 600; }
+.content blockquote { margin: 12px 0; border-left: 2px solid var(--selection-edge); padding-left: 12px; }
+.content pre { white-space: pre-wrap; background: var(--hover); padding: 12px; border-radius: 8px; }
+.content :global(.preserved-selection), .content ::selection { background: var(--selection); color: var(--blue); }
+.content :global(.preserved-selection) { box-decoration-break: clone; }
+.content :global(.selection-start) { border-left: 1px solid var(--selection-edge); margin-left: -1px; }
+.content :global(.selection-end) { border-right: 1px solid var(--selection-edge); margin-right: -1px; }
+.content :global(.search-match) { background: #fff1a6; color: #000; }
+.content :global(.search-current) { background: #ffda66; outline: 1px solid #a87b16; }
+.toolbar { z-index: 20; width: 339px; min-width: 339px; max-width: 339px; height: 30px; display: flex; align-items: center; gap: 8px; padding: 8px; border-radius: 8px; background: white; box-shadow: var(--control-shadow); outline: .5px solid var(--border); outline-offset: -.5px; white-space: nowrap; color: #000; line-height: 14px; }
+.toolbar > img { width: auto; margin-left: -.5px; margin-right: -.5px; }
+.toolbar button { flex: none; border-radius: 3px; }
+.toolbar button:hover, .toolbar button:focus-visible { background: var(--hover); }
+.toolbar button[aria-pressed='true'] { background: var(--selection); outline: 2px solid var(--selection-edge); color: var(--blue); }
+.ask, .colorControl { display: flex; align-items: center; gap: 6px; }
+.colorControl { gap: 8px; }
+.swatch { width: 14px; height: 14px; border-radius: 3px; background: #333; box-shadow: inset 0 0 0 .5px rgb(255 255 255 / 10%); }
+.palette { z-index: 30; width: 156px; padding: 6px; border-radius: 8px; background: white; box-shadow: var(--popover-shadow); }
+.palette button { display: flex; gap: 8px; align-items: center; width: 100%; padding: 8px; text-align: left; border-radius: 4px; }
+.palette button:hover, .palette button:focus-visible { background: var(--hover); }
+.searchCount { font-size: 11px; color: var(--secondary); white-space: nowrap; }
+.searchButton { flex: none; width: 16px; line-height: 14px; }
+.notice { position: fixed; z-index: 40; bottom: 24px; left: 50%; transform: translateX(-50%); max-width: min(640px, calc(100vw - 48px)); padding: 14px 18px; background: white; border: 1px solid var(--paper-border); box-shadow: var(--popover-shadow); border-radius: 10px; line-height: 21px; display: flex; gap: 16px; align-items: center; }
+.notice button { color: var(--blue); white-space: nowrap; }
+.error { color: #9d3d26; }

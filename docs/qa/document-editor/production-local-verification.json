@@ -1,0 +1,20 @@
+{
+  "url": "http://127.0.0.1:56249",
+  "checkedAt": "2026-10-08T08:34:59.279Z",
+  "errors": [],
+  "failed": [],
+  "passed": true,
+  "checks": [
+    "Header initial",
+    "four keyboard tabs",
+    "lazy production chunk",
+    "native editing",
+    "save/reload",
+    "Comments and History",
+    "draft and scroll retention",
+    "hidden shortcuts",
+    "Explain result",
+    "source assets/font",
+    "inert test adapter"
+  ]
+}
